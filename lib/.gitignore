@@ -1,0 +1,5 @@
+target
+libs
+jni/glfw
+jni/imgui/.travis.yml
+jni/imgui/cmake-build-debug

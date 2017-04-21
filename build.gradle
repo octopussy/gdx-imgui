@@ -1,0 +1,43 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+ /*       classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:$nexusPluginVersion"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokkaVersion"*/
+        classpath "com.netflix.nebula:gradle-extra-configurations-plugin:$configurationsPluginVersion"
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'nebula.provided-base'
+
+    group 'com.github.octopussy'
+    version libVersion
+
+    sourceCompatibility = 1.6
+    targetCompatibility = 1.6
+
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+    }
+
+    dependencies {
+        provided "com.badlogicgames.gdx:gdx:$gdxVersion"
+        provided "com.badlogicgames.gdx:gdx:$gdxVersion"
+        provided "com.badlogicgames.gdx:gdx-jnigen:$gdxVersion"
+        provided "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
+        provided "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+        provided "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
+
+        //provided fileTree(dir: '../libs', include: '*.jar')
+
+        testCompile group: 'junit', name: 'junit', version: '4.12'
+    }
+
+}
