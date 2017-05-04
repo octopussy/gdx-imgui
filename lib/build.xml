@@ -1,0 +1,8 @@
+<project name="gdx-imgui-lib" basedir=".">
+
+  <target name="buildNatives">
+    <ant antfile="build-macosx64.xml" dir="jni"/>
+    <ant antfile="build.xml" target="pack-natives" dir="jni"/>
+  </target>
+
+</project>
