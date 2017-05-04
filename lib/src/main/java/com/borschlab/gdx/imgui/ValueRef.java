@@ -5,17 +5,17 @@ package com.borschlab.gdx.imgui;
  */
 public class ValueRef<T> {
 
-	private T value;
+  private T value;
 
-	public ValueRef(T initial) {
-		value = initial;
-	}
+  public ValueRef(T initial) {
+    value = initial;
+  }
 
-	public T get() {
-		return value;
-	}
+  public T get() {
+    return value;
+  }
 
-	public void set(T value) {
-		this.value = value;
-	}
+  public void set(T value) {
+    this.value = value;
+  }
 }

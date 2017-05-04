@@ -9,7 +9,7 @@ import com.borschlab.gdx.imgui.ValueRef;
 /**
  * @author octopussy
  */
-public class WindowDemo extends ImDemoApp {
+public class WindowDemo02 extends ImDemoApp {
 
   private ValueRef<Boolean> isClosableWindowOpen = new ValueRef<Boolean>(true);
 
@@ -21,8 +21,8 @@ public class WindowDemo extends ImDemoApp {
     ImGui.begin("Main", ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.ShowBorders);
 
     //Gdx.app.log("log", ImGui.getWindowContentRegionMin().toString());
-    Gdx.app.log("log", ImGui.getWindowSize().toString());
-    Gdx.app.log("log", String.valueOf(ImGui.isWindowCollapsed()));
+    //Gdx.app.log("log", ImGui.getWindowSize().toString());
+    //Gdx.app.log("log", String.valueOf(ImGui.isWindowCollapsed()));
 
     ImGui.end();
 

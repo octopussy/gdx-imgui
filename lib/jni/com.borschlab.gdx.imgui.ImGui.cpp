@@ -2,7 +2,7 @@
 
 //@line:12
 
-		#include <imgui.h>
+                #include <imgui.h>
 		#include <utils.h>
 	 JNIEXPORT jobject JNICALL Java_com_borschlab_gdx_imgui_ImGui_getTexDataAsRGBA32(JNIEnv* env, jclass clazz) {
 
@@ -331,7 +331,7 @@ JNIEXPORT jint JNICALL Java_com_borschlab_gdx_imgui_ImGui_getTotalVtxCount(JNIEn
 
 }
 
-JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_showUserGuide(JNIEnv* env, jclass clazz) {
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_showNativeUserGuide(JNIEnv* env, jclass clazz) {
 
 
 //@line:200
@@ -341,7 +341,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_showUserGuide(JNIEnv* 
 
 }
 
-JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_showTestWindow(JNIEnv* env, jclass clazz) {
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_showNativeTestWindow(JNIEnv* env, jclass clazz) {
 
 
 //@line:204
@@ -762,10 +762,42 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setKeyboardFocusHere(J
 
 }
 
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_separator(JNIEnv* env, jclass clazz) {
+
+
+//@line:520
+
+      ImGui::Separator();
+  
+
+}
+
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_text(JNIEnv* env, jclass clazz, jstring obj_str) {
+	char* str = (char*)env->GetStringUTFChars(obj_str, 0);
+
+
+//@line:571
+
+      ImGui::Text(str);
+  
+	env->ReleaseStringUTFChars(obj_str, str);
+
+}
+
+JNIEXPORT jstring JNICALL Java_com_borschlab_gdx_imgui_ImGui_getVersion(JNIEnv* env, jclass clazz) {
+
+
+//@line:792
+
+    return env->NewStringUTF(ImGui::GetVersion());
+  
+
+}
+
 static inline jboolean wrapped_Java_com_borschlab_gdx_imgui_ImGui_beginJni__Ljava_lang_String_2I
 (JNIEnv* env, jclass clazz, jstring obj_name, jint flags, char* name) {
 
-//@line:495
+//@line:802
 
 		return ImGui::Begin(name, NULL, flags);
 	
@@ -784,7 +816,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_beginJni__Ljava_la
 static inline jobject wrapped_Java_com_borschlab_gdx_imgui_ImGui_beginJni__Ljava_lang_String_2ZI
 (JNIEnv* env, jclass clazz, jstring obj_name, jboolean initialOpenValue, jint flags, char* name) {
 
-//@line:500
+//@line:807
 
 		bool open = initialOpenValue;
 		bool collapsed = ImGui::Begin(name, &open);

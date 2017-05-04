@@ -10,7 +10,7 @@ public class Demo01 extends ImDemoApp {
 
   @Override
   public void renderGui() {
-    ImGui.showUserGuide();
-    ImGui.showTestWindow();
+    ImGui.showNativeUserGuide();
+    ImGui.showNativeTestWindow();
   }
 }

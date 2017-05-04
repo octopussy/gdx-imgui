@@ -217,18 +217,18 @@ JNIEXPORT jint JNICALL Java_com_borschlab_gdx_imgui_ImGui_getTotalVtxCount
 
 /*
  * Class:     com_borschlab_gdx_imgui_ImGui
- * Method:    showUserGuide
+ * Method:    showNativeUserGuide
  * Signature: ()V
  */
-JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_showUserGuide
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_showNativeUserGuide
   (JNIEnv *, jclass);
 
 /*
  * Class:     com_borschlab_gdx_imgui_ImGui
- * Method:    showTestWindow
+ * Method:    showNativeTestWindow
  * Signature: ()V
  */
-JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_showTestWindow
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_showNativeTestWindow
   (JNIEnv *, jclass);
 
 /*
@@ -566,6 +566,30 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setScrollFromPosY
  */
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setKeyboardFocusHere
   (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    separator
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_separator
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    text
+ * Signature: (Ljava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_text
+  (JNIEnv *, jclass, jstring);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    getVersion
+ * Signature: ()Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_com_borschlab_gdx_imgui_ImGui_getVersion
+  (JNIEnv *, jclass);
 
 /*
  * Class:     com_borschlab_gdx_imgui_ImGui

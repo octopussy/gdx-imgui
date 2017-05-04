@@ -1,5 +1,3 @@
-package com.borschlab.gdx.imgui;
-
 import com.badlogic.gdx.jnigen.AntScriptGenerator;
 import com.badlogic.gdx.jnigen.BuildConfig;
 import com.badlogic.gdx.jnigen.BuildTarget;
@@ -8,7 +6,7 @@ import com.badlogic.gdx.jnigen.NativeCodeGenerator;
 
 import java.io.File;
 
-public class _jniGenBuild {
+public class _generate {
   public static void main(String[] args) throws Exception {
 
     String[] cppIncludes = {

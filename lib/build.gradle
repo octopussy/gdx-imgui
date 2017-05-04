@@ -1,0 +1,17 @@
+apply plugin: 'application'
+
+mainClassName = "_generate"
+
+task buildNatives(dependsOn: 'run') {
+    doLast {
+        exec {
+            executable 'ant'
+            args "-buildfile", "jni/build-macosx64.xml"
+        }
+
+        exec {
+            executable 'ant'
+            args "-buildfile", "jni/build.xml", "pack-natives"
+        }
+    }
+}
