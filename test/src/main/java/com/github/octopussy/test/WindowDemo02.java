@@ -1,17 +1,16 @@
 package com.github.octopussy.test;
 
-import com.badlogic.gdx.Gdx;
+import com.borschlab.gdx.imgui.ImBool;
 import com.borschlab.gdx.imgui.ImGui;
 import com.borschlab.gdx.imgui.ImGuiSetCond;
 import com.borschlab.gdx.imgui.ImGuiWindowFlags;
-import com.borschlab.gdx.imgui.ValueRef;
 
 /**
  * @author octopussy
  */
 public class WindowDemo02 extends ImDemoApp {
 
-  private ValueRef<Boolean> isClosableWindowOpen = new ValueRef<Boolean>(true);
+  private ImBool isClosableWindowOpen = ImBool.from(true);
 
   @Override
   public void renderGui() {
@@ -26,7 +25,7 @@ public class WindowDemo02 extends ImDemoApp {
 
     ImGui.end();
 
-    if (isClosableWindowOpen.get()) {
+    if (isClosableWindowOpen.value) {
       ImGui.setNextWindowPos(110, 10, ImGuiSetCond.Once);
       ImGui.setNextWindowSize(400, 400, ImGuiSetCond.Once);
       ImGui.begin("Closable", isClosableWindowOpen);

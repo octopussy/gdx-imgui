@@ -1,39 +1,51 @@
 package com.github.octopussy.test;
 
+import com.borschlab.gdx.imgui.ImBool;
 import com.borschlab.gdx.imgui.ImGui;
+import com.borschlab.gdx.imgui.ImGuiSetCond;
 import com.borschlab.gdx.imgui.ImGuiWindowFlags;
-import com.borschlab.gdx.imgui.ValueRef;
 
 /**
  * @author octopussy
  */
 public class WindowDemo01 extends ImDemoApp {
+
+  private ImBool p_open = ImBool.from(true);
+
   // Examples apps
-  static boolean show_app_main_menu_bar = false;
-  static boolean show_app_console = false;
-  static boolean show_app_log = false;
-  static boolean show_app_layout = false;
-  static boolean show_app_property_editor = false;
-  static boolean show_app_long_text = false;
-  static boolean show_app_auto_resize = false;
-  static boolean show_app_constrained_resize = false;
-  static boolean show_app_fixed_overlay = false;
-  static boolean show_app_manipulating_window_title = false;
-  static boolean show_app_custom_rendering = false;
-  static boolean show_app_style_editor = false;
+  private ImBool show_app_main_menu_bar = ImBool.from(false);
+  private ImBool show_app_console = ImBool.from(false);
+  private ImBool show_app_log = ImBool.from(false);
+  private ImBool show_app_layout = ImBool.from(false);
+  private ImBool show_app_property_editor = ImBool.from(false);
+  private ImBool show_app_long_text = ImBool.from(false);
+  private ImBool show_app_auto_resize = ImBool.from(false);
+  private ImBool show_app_constrained_resize = ImBool.from(false);
+  private ImBool show_app_fixed_overlay = ImBool.from(false);
+  private ImBool show_app_manipulating_window_title = ImBool.from(false);
+  private ImBool show_app_custom_rendering = ImBool.from(false);
+  private ImBool show_app_style_editor = ImBool.from(false);
+  private ImBool show_app_about = ImBool.from(false);
+  private ImBool show_app_metrics = ImBool.from(false);
 
-  static boolean show_app_metrics = false;
+  // various window flags
+  private ImBool no_titlebar = ImBool.from(false);
+  private ImBool no_border = ImBool.from(true);
+  private ImBool no_resize = ImBool.from(false);
+  private ImBool no_move = ImBool.from(false);
+  private ImBool no_scrollbar = ImBool.from(false);
+  private ImBool no_collapse = ImBool.from(false);
+  private ImBool no_menu = ImBool.from(false);
 
-  private static ValueRef<Boolean> show_app_about = new ValueRef<Boolean>(false);
 
   @Override
   public void renderGui() {
-    showTestWindow();
+    showTestWindow(p_open);
   }
 
   // Demonstrate most ImGui features (big function!)
-  private void showTestWindow(/*bool* p_open*/) {
-//
+  private void showTestWindow(ImBool p_open) {
+    // TODO example apps
 //    if (show_app_main_menu_bar) ShowExampleAppMainMenuBar();
 //    if (show_app_console) ShowExampleAppConsole(&show_app_console);
 //    if (show_app_log) ShowExampleAppLog(&show_app_log);
@@ -49,78 +61,63 @@ public class WindowDemo01 extends ImDemoApp {
 //    if (show_app_metrics) ImGui::ShowMetricsWindow(&show_app_metrics);
 //    if (show_app_style_editor) { ImGui::Begin("Style Editor", &show_app_style_editor); ImGui::ShowStyleEditor(); ImGui::End(); }
 
-    show_app_about.set(true);
-    if (show_app_about.get()) {
+    if (show_app_about.value) {
       ImGui.begin("About ImGui", show_app_about, ImGuiWindowFlags.AlwaysAutoResize);
-      ImGui.text("dear imgui, %s", ImGui.getVersion());
+      ImGui.text("dear imgui (java edition), %s", ImGui.getVersion());
       ImGui.separator();
       ImGui.text("By Omar Cornut and all github contributors.");
       ImGui.text("ImGui is licensed under the MIT License, see LICENSE for more information.");
       ImGui.end();
     }
-//
-//    static bool no_titlebar = false;
-//    static bool no_border = true;
-//    static bool no_resize = false;
-//    static bool no_move = false;
-//    static bool no_scrollbar = false;
-//    static bool no_collapse = false;
-//    static bool no_menu = false;
-//
-//    // Demonstrate the various window flags. Typically you would just use the default.
-//    ImGuiWindowFlags window_flags = 0;
-//    if (no_titlebar)  window_flags |= ImGuiWindowFlags_NoTitleBar;
-//    if (!no_border)   window_flags |= ImGuiWindowFlags_ShowBorders;
-//    if (no_resize)    window_flags |= ImGuiWindowFlags_NoResize;
-//    if (no_move)      window_flags |= ImGuiWindowFlags_NoMove;
-//    if (no_scrollbar) window_flags |= ImGuiWindowFlags_NoScrollbar;
-//    if (no_collapse)  window_flags |= ImGuiWindowFlags_NoCollapse;
-//    if (!no_menu)     window_flags |= ImGuiWindowFlags_MenuBar;
-//    ImGui::SetNextWindowSize(ImVec2(550,680), ImGuiSetCond_FirstUseEver);
-//    if (!ImGui::Begin("ImGui Demo", p_open, window_flags))
-//    {
-//      // Early out if the window is collapsed, as an optimization.
-//      ImGui::End();
-//      return;
-//    }
-//
-//    //ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.65f);    // 2/3 of the space for widget and 1/3 for labels
-//    ImGui::PushItemWidth(-140);                                 // Right align, keep 140 pixels for labels
-//
-//    ImGui::Text("Dear ImGui says hello.");
-//
-//    // Menu
-//    if (ImGui::BeginMenuBar())
-//    {
-//      if (ImGui::BeginMenu("Menu"))
-//      {
-//        ShowExampleMenuFile();
-//        ImGui::EndMenu();
-//      }
-//      if (ImGui::BeginMenu("Examples"))
-//      {
-//        ImGui::MenuItem("Main menu bar", NULL, &show_app_main_menu_bar);
-//        ImGui::MenuItem("Console", NULL, &show_app_console);
-//        ImGui::MenuItem("Log", NULL, &show_app_log);
-//        ImGui::MenuItem("Simple layout", NULL, &show_app_layout);
-//        ImGui::MenuItem("Property editor", NULL, &show_app_property_editor);
-//        ImGui::MenuItem("Long text display", NULL, &show_app_long_text);
-//        ImGui::MenuItem("Auto-resizing window", NULL, &show_app_auto_resize);
-//        ImGui::MenuItem("Constrained-resizing window", NULL, &show_app_constrained_resize);
-//        ImGui::MenuItem("Simple overlay", NULL, &show_app_fixed_overlay);
-//        ImGui::MenuItem("Manipulating window title", NULL, &show_app_manipulating_window_title);
-//        ImGui::MenuItem("Custom rendering", NULL, &show_app_custom_rendering);
-//        ImGui::EndMenu();
-//      }
-//      if (ImGui::BeginMenu("Help"))
-//      {
-//        ImGui::MenuItem("Metrics", NULL, &show_app_metrics);
-//        ImGui::MenuItem("Style Editor", NULL, &show_app_style_editor);
-//        ImGui::MenuItem("About ImGui", NULL, &show_app_about);
-//        ImGui::EndMenu();
-//      }
-//      ImGui::EndMenuBar();
-//    }
+
+    // Demonstrate the various window flags. Typically you would just use the default.
+    int window_flags = 0;
+    if (no_titlebar.value) window_flags |= ImGuiWindowFlags.NoTitleBar;
+    if (!no_border.value) window_flags |= ImGuiWindowFlags.ShowBorders;
+    if (no_resize.value) window_flags |= ImGuiWindowFlags.NoResize;
+    if (no_move.value) window_flags |= ImGuiWindowFlags.NoMove;
+    if (no_scrollbar.value) window_flags |= ImGuiWindowFlags.NoScrollbar;
+    if (no_collapse.value) window_flags |= ImGuiWindowFlags.NoCollapse;
+    if (!no_menu.value) window_flags |= ImGuiWindowFlags.MenuBar;
+    ImGui.setNextWindowSize(550, 680, ImGuiSetCond.FirstUseEver);
+    if (!ImGui.begin("ImGui Demo", p_open, window_flags)) {
+      // Early out if the window is collapsed, as an optimization.
+      ImGui.end();
+      return;
+    }
+
+    ImGui.pushItemWidth(ImGui.getWindowWidth() * 0.65f);    // 2/3 of the space for widget and 1/3 for labels
+    ImGui.pushItemWidth(-140);                              // Right align, keep 140 pixels for labels
+
+    ImGui.text("Dear ImGui says hello.");
+    // Menu
+    if (ImGui.beginMenuBar()) {
+      if (ImGui.beginMenu("Menu")) {
+        // TODO ShowExampleMenuFile();
+        ImGui.endMenu();
+      }
+      if (ImGui.beginMenu("Examples")) {
+        ImGui.menuItem("Main menu bar", show_app_main_menu_bar);
+        ImGui.menuItem("Console", show_app_console);
+        ImGui.menuItem("Log", show_app_log);
+        ImGui.menuItem("Simple layout", show_app_layout);
+        ImGui.menuItem("Property editor", show_app_property_editor);
+        ImGui.menuItem("Long text display", show_app_long_text);
+        ImGui.menuItem("Auto-resizing window", show_app_auto_resize);
+        ImGui.menuItem("Constrained-resizing window", show_app_constrained_resize);
+        ImGui.menuItem("Simple overlay", show_app_fixed_overlay);
+        ImGui.menuItem("Manipulating window title", show_app_manipulating_window_title);
+        ImGui.menuItem("Custom rendering", show_app_custom_rendering);
+        ImGui.endMenu();
+      }
+      if (ImGui.beginMenu("Help")) {
+        ImGui.menuItem("Metrics", show_app_metrics);
+        ImGui.menuItem("Style Editor", show_app_style_editor);
+        ImGui.menuItem("About ImGui", show_app_about);
+        ImGui.endMenu();
+      }
+      ImGui.endMenuBar();
+    }
 //
 //    ImGui::Spacing();
 //    if (ImGui::CollapsingHeader("Help"))
@@ -1522,7 +1519,6 @@ public class WindowDemo01 extends ImDemoApp {
 //      }
 //    }
 //
-//    ImGui::End();
-//  }
+    ImGui.end();
   }
 }

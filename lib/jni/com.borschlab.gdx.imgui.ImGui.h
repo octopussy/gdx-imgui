@@ -241,6 +241,22 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_showMetricsWindow
 
 /*
  * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    begin
+ * Signature: (Ljava/lang/String;I)Z
+ */
+JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_begin__Ljava_lang_String_2I
+  (JNIEnv *, jclass, jstring, jint);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    begin
+ * Signature: (Ljava/lang/String;Lcom/borschlab/gdx/imgui/ImBool;I)Z
+ */
+JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_begin__Ljava_lang_String_2Lcom_borschlab_gdx_imgui_ImBool_2I
+  (JNIEnv *, jclass, jstring, jobject, jint);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
  * Method:    end
  * Signature: ()V
  */
@@ -569,6 +585,14 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setKeyboardFocusHere
 
 /*
  * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    pushItemWidth
+ * Signature: (F)V
+ */
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_pushItemWidth
+  (JNIEnv *, jclass, jfloat);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
  * Method:    separator
  * Signature: ()V
  */
@@ -585,39 +609,68 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_text
 
 /*
  * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    beginMenuBar
+ * Signature: ()Z
+ */
+JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_beginMenuBar
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    endMenuBar
+ * Signature: ()Z
+ */
+JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_endMenuBar
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    beginMenu
+ * Signature: (Ljava/lang/String;Z)Z
+ */
+JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_beginMenu
+  (JNIEnv *, jclass, jstring, jboolean);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    endMenu
+ * Signature: ()Z
+ */
+JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_endMenu
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    menuItem
+ * Signature: (Ljava/lang/String;Ljava/lang/String;ZZ)Z
+ */
+JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_menuItem__Ljava_lang_String_2Ljava_lang_String_2ZZ
+  (JNIEnv *, jclass, jstring, jstring, jboolean, jboolean);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    menuItem
+ * Signature: (Ljava/lang/String;Lcom/borschlab/gdx/imgui/ImBool;)Z
+ */
+JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_menuItem__Ljava_lang_String_2Lcom_borschlab_gdx_imgui_ImBool_2
+  (JNIEnv *, jclass, jstring, jobject);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    menuItem
+ * Signature: (Ljava/lang/String;Ljava/lang/String;Lcom/borschlab/gdx/imgui/ImBool;)Z
+ */
+JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_menuItem__Ljava_lang_String_2Ljava_lang_String_2Lcom_borschlab_gdx_imgui_ImBool_2
+  (JNIEnv *, jclass, jstring, jstring, jobject);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
  * Method:    getVersion
  * Signature: ()Ljava/lang/String;
  */
 JNIEXPORT jstring JNICALL Java_com_borschlab_gdx_imgui_ImGui_getVersion
   (JNIEnv *, jclass);
 
-/*
- * Class:     com_borschlab_gdx_imgui_ImGui
- * Method:    beginJni
- * Signature: (Ljava/lang/String;I)Z
- */
-JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_beginJni__Ljava_lang_String_2I
-  (JNIEnv *, jclass, jstring, jint);
-
-/*
- * Class:     com_borschlab_gdx_imgui_ImGui
- * Method:    beginJni
- * Signature: (Ljava/lang/String;ZI)Lcom/borschlab/gdx/imgui/ImGui/BeginWindowJniResult;
- */
-JNIEXPORT jobject JNICALL Java_com_borschlab_gdx_imgui_ImGui_beginJni__Ljava_lang_String_2ZI
-  (JNIEnv *, jclass, jstring, jboolean, jint);
-
-#ifdef __cplusplus
-}
-#endif
-#endif
-/* Header for class com_borschlab_gdx_imgui_ImGui_BeginWindowJniResult */
-
-#ifndef _Included_com_borschlab_gdx_imgui_ImGui_BeginWindowJniResult
-#define _Included_com_borschlab_gdx_imgui_ImGui_BeginWindowJniResult
-#ifdef __cplusplus
-extern "C" {
-#endif
 #ifdef __cplusplus
 }
 #endif

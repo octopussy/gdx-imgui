@@ -21,7 +21,7 @@ public class ImGui {
 
 
   public static native ImGuiTexData getTexDataAsRGBA32(); /*
-		ImGuiIO& io = ImGui::GetIO();
+                ImGuiIO& io = ImGui::GetIO();
 		unsigned char* pixels;
 		int width, height, bpp;
 		io.Fonts->GetTexDataAsRGBA32(&pixels, &width, &height, &bpp);
@@ -219,23 +219,21 @@ public class ImGui {
     return begin(name, null, 0);
   }
 
-  public static boolean begin(String name, int flags) {
-    return begin(name, null, flags);
-  }
+  public static native boolean begin(String name, int flags); /*
+    return ImGui::Begin(name, NULL, flags);
+  */
 
-  public static boolean begin(String name, ValueRef<Boolean> openRef) {
+
+  public static boolean begin(String name, ImBool openRef) {
     return begin(name, openRef, 0);
   }
 
-  public static boolean begin(String name, ValueRef<Boolean> openRef, int flags) {
-    if (openRef != null) {
-      BeginWindowJniResult result = beginJni(name, openRef.get(), flags);
-      openRef.set(result.isOpen);
-      return result.isCollapsed;
-    } else {
-      return beginJni(name, flags);
-    }
-  }
+  public static native boolean begin(String name, ImBool openRef, int flags); /*
+        bool open = getImBool(env, openRef);
+	bool collapsed = ImGui::Begin(name, &open, flags);
+	setImBool(env, openRef, open);
+	return collapsed;
+  */
 
   public static native void end(); /* ImGui::End(); */
 
@@ -505,9 +503,15 @@ public class ImGui {
   // ImU32         GetColorU32(ImGuiCol idx, float alpha_mul = 1.0f);                  // retrieve given style color with style alpha applied and optional extra alpha multiplier
   // ImU32         GetColorU32(const ImVec4& col);                                     // retrieve given color with style alpha applied
 
+
   // Parameters stacks (current window)
-//  IMGUI_API void          PushItemWidth(float item_width);                                    // width of items for the common item+label case, pixels. 0.0f = default to ~2/3 of windows width, >0.0f: width in pixels, <0.0f align xx pixels to the right of window (so -1.0f always align width to the right side)
-//  IMGUI_API void          PopItemWidth();
+
+  // width of items for the common item+label case, pixels. 0.0f = default to ~2/3 of windows width, >0.0f: width in pixels, <0.0f align xx pixels to the right of window (so -1.0f always align width to the right side)
+  public static native void pushItemWidth(float itemWidth); /*
+      ImGui::PushItemWidth(itemWidth);
+  */
+
+  //  IMGUI_API void          PopItemWidth();
 //  IMGUI_API float         CalcItemWidth();                                                    // width of item given pushed settings and current cursor position
 //  IMGUI_API void          PushTextWrapPos(float wrap_pos_x = 0.0f);                           // word-wrapping for Text*() commands. < 0.0f: no wrapping; 0.0f: wrap to end of window (or column); > 0.0f: wrap at 'wrap_pos_x' position in window local space
 //  IMGUI_API void          PopTextWrapPos();
@@ -695,12 +699,52 @@ public class ImGui {
 //  // Menus
 //  IMGUI_API bool          BeginMainMenuBar();                                                 // create and append to a full screen menu-bar. only call EndMainMenuBar() if this returns true!
 //  IMGUI_API void          EndMainMenuBar();
-//  IMGUI_API bool          BeginMenuBar();                                                     // append to menu-bar of current window (requires ImGuiWindowFlags_MenuBar flag set). only call EndMenuBar() if this returns true!
-//  IMGUI_API void          EndMenuBar();
-//  IMGUI_API bool          BeginMenu(const char* label, bool enabled = true);                  // create a sub-menu entry. only call EndMenu() if this returns true!
-//  IMGUI_API void          EndMenu();
-//  IMGUI_API bool          MenuItem(const char* label, const char* shortcut = NULL, bool selected = false, bool enabled = true);  // return true when activated. shortcuts are displayed for convenience but not processed by ImGui at the moment
-//  IMGUI_API bool          MenuItem(const char* label, const char* shortcut, bool* p_selected, bool enabled = true);              // return true when activated + toggle (*p_selected) if p_selected != NULL
+
+  // append to menu-bar of current window (requires ImGuiWindowFlags_MenuBar flag set). only call EndMenuBar() if this returns true!
+  public static native boolean beginMenuBar(); /*
+    return ImGui::BeginMenuBar();
+  */
+
+  public static native boolean endMenuBar(); /*
+    ImGui::EndMenuBar();
+  */
+
+  // create a sub-menu entry. only call EndMenu() if this returns true!
+  public static native boolean beginMenu(String label, boolean enabled); /*
+    return ImGui::BeginMenu(label, enabled);
+  */
+
+  public static boolean beginMenu(String label) {
+    return beginMenu(label, true);
+  }
+
+  public static native boolean endMenu(); /*
+    ImGui::EndMenu();
+  */
+
+  // return true when activated. shortcuts are displayed for convenience but not processed by ImGui at the moment
+  public static boolean menuItem(String label, String shortcut) { return menuItem(label, shortcut, false, true); }
+  public static boolean menuItem(String label, String shortcut, boolean selected) { return menuItem(label, shortcut, selected, true); }
+  public static native boolean menuItem(String label, String shortcut, boolean selected, boolean enabled); /*
+      return ImGui::MenuItem(label, shortcut, selected, enabled);
+  */
+
+  // return true when activated + toggle (*p_selected) if p_selected != NULL
+  public static native boolean menuItem(String label, ImBool selected); /*
+      bool p_selected = getImBool(env, selected);
+      bool result = ImGui::MenuItem(label, NULL, &p_selected);
+      setImBool(env, selected, p_selected);
+      return result;
+  */
+
+  public static native boolean menuItem(String label, String shortcut, ImBool selected); /*
+      bool p_selected = getImBool(env, selected);
+      bool result = ImGui::MenuItem(label, shortcut, &p_selected);
+      setImBool(env, selected, p_selected);
+      return result;
+  */
+
+//  IMGUI_API bool          MenuItem(const char* label, const char* shortcut, bool* p_selected, bool enabled = true);
 //
 //  // Popups
 //  IMGUI_API void          OpenPopup(const char* str_id);                                      // mark popup as open. popups are closed when user click outside, or activate a pressable item, or CloseCurrentPopup() is called within a BeginPopup()/EndPopup() block. popup identifiers are relative to the current ID-stack (so OpenPopup and BeginPopup needs to be at the same level).
@@ -798,32 +842,4 @@ public class ImGui {
 //  IMGUI_API ImGuiContext* GetCurrentContext();
 //  IMGUI_API void          SetCurrentContext(ImGuiContext* ctx);
 
-
-  private static native boolean beginJni(String name, int flags); /*
-		return ImGui::Begin(name, NULL, flags);
-	*/
-
-  // TODO: optimize without BeginWindowJniResult
-  private static native BeginWindowJniResult beginJni(String name, boolean initialOpenValue, int flags); /*
-		bool open = initialOpenValue;
-		bool collapsed = ImGui::Begin(name, &open);
-
-		jclass resultCls = env->FindClass("com/borschlab/gdx/imgui/ImGui$BeginWindowJniResult");
-	 	assert(resultCls != NULL);
-
-		jmethodID ctor = env->GetMethodID(resultCls, "<init>", "(ZZ)V");
-		assert(ctor != NULL);
-
-		return env->NewObject(resultCls, ctor, collapsed, open);
-	*/
-
-  private static class BeginWindowJniResult {
-    public final boolean isCollapsed;
-    public final boolean isOpen;
-
-    public BeginWindowJniResult(boolean isCollapsed, boolean isOpen) {
-      this.isCollapsed = isCollapsed;
-      this.isOpen = isOpen;
-    }
-  }
 }

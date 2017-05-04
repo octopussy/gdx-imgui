@@ -16,4 +16,24 @@ jobject toGdxVec2(JNIEnv* env, const ImVec2& v) {
     return env->NewObject(vecCls, vecCtor, v.x, v.y);
 }
 
+bool getImBool(JNIEnv* env, jobject imbool) {
+    jclass resultCls = env->FindClass("com/borschlab/gdx/imgui/ImBool");
+    assert(resultCls != NULL);
+
+    jmethodID getMethod = env->GetMethodID(resultCls, "isSet", "()Z");
+    assert(getMethod != NULL);
+
+    return env->CallBooleanMethod(imbool, getMethod);
+}
+
+void setImBool(JNIEnv* env, jobject imbool, bool value) {
+    jclass resultCls = env->FindClass("com/borschlab/gdx/imgui/ImBool");
+    assert(resultCls != NULL);
+
+    jmethodID setMethod = env->GetMethodID(resultCls, "set", "(Z)V");
+    assert(setMethod != NULL);
+
+    env->CallVoidMethod(imbool, setMethod, value);
+}
+
 #endif
