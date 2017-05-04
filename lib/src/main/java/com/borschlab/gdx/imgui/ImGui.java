@@ -525,9 +525,21 @@ public class ImGui {
       ImGui::Separator();
   */
 
-//  IMGUI_API void          SameLine(float pos_x = 0.0f, float spacing_w = -1.0f);              // call between widgets or groups to layout them horizontally
+  // call between widgets or groups to layout them horizontally
+  public static native void sameLine(float posX, float spacingW); /*
+      ImGui::SameLine(posX, spacingW);
+  */
+
+  public static void sameLine() { sameLine(0f, -1f); }
+  public static void sameLine(float posX) { sameLine(posX, -1f); }
+
 //  IMGUI_API void          NewLine();                                                          // undo a SameLine()
-//  IMGUI_API void          Spacing();                                                          // add vertical spacing
+
+  // add vertical spacing
+  public static native void spacing(); /*
+      ImGui::Spacing();
+  */
+
 //  IMGUI_API void          Dummy(const ImVec2& size);                                          // add a dummy item of given size
 //  IMGUI_API void          Indent(float indent_w = 0.0f);                                      // move content position toward the right, by style.IndentSpacing or indent_w if >0
 //  IMGUI_API void          Unindent(float indent_w = 0.0f);                                    // move content position back to the left, by style.IndentSpacing or indent_w if >0
@@ -580,13 +592,20 @@ public class ImGui {
     text(String.format(fmt, args));
   }
 
-//  IMGUI_API void          TextV(const char* fmt, va_list args);
 //  IMGUI_API void          TextColored(const ImVec4& col, const char* fmt, ...) IM_PRINTFARGS(2);  // shortcut for PushStyleColor(ImGuiCol_Text, col); Text(fmt, ...); PopStyleColor();
 //  IMGUI_API void          TextColoredV(const ImVec4& col, const char* fmt, va_list args);
 //  IMGUI_API void          TextDisabled(const char* fmt, ...) IM_PRINTFARGS(1);                    // shortcut for PushStyleColor(ImGuiCol_Text, style.Colors[ImGuiCol_TextDisabled]); Text(fmt, ...); PopStyleColor();
 //  IMGUI_API void          TextDisabledV(const char* fmt, va_list args);
-//  IMGUI_API void          TextWrapped(const char* fmt, ...) IM_PRINTFARGS(1);                     // shortcut for PushTextWrapPos(0.0f); Text(fmt, ...); PopTextWrapPos();. Note that this won't work on an auto-resizing window if there's no other widgets to extend the window width, yoy may need to set a size using SetNextWindowSize().
-//  IMGUI_API void          TextWrappedV(const char* fmt, va_list args);
+
+  // shortcut for PushTextWrapPos(0.0f); Text(fmt, ...); PopTextWrapPos();. Note that this won't work on an auto-resizing window if there's no other widgets to extend the window width, yoy may need to set a size using SetNextWindowSize().
+  public static native void textWrapped(String str); /*
+      ImGui::TextWrapped(str);
+  */
+
+  public static void textWrapped(String fmt, Object... args) {
+    text(String.format(fmt, args));
+  }
+
 //  IMGUI_API void          TextUnformatted(const char* text, const char* text_end = NULL);         // doesn't require null terminated string if 'text_end' is specified. no copy done to any bounded stack buffer, recommended for long chunks of text
 //  IMGUI_API void          LabelText(const char* label, const char* fmt, ...) IM_PRINTFARGS(2);    // display text+label aligned the same way as value+label widgets
 //  IMGUI_API void          LabelTextV(const char* label, const char* fmt, va_list args);
@@ -598,6 +617,14 @@ public class ImGui {
 //  IMGUI_API bool          InvisibleButton(const char* str_id, const ImVec2& size);
 //  IMGUI_API void          Image(ImTextureID user_texture_id, const ImVec2& size, const ImVec2& uv0 = ImVec2(0,0), const ImVec2& uv1 = ImVec2(1,1), const ImVec4& tint_col = ImVec4(1,1,1,1), const ImVec4& border_col = ImVec4(0,0,0,0));
 //  IMGUI_API bool          ImageButton(ImTextureID user_texture_id, const ImVec2& size, const ImVec2& uv0 = ImVec2(0,0),  const ImVec2& uv1 = ImVec2(1,1), int frame_padding = -1, const ImVec4& bg_col = ImVec4(0,0,0,0), const ImVec4& tint_col = ImVec4(1,1,1,1));    // <0 frame_padding uses default frame padding settings. 0 for no padding
+
+  public static native boolean checkbox(String label, ImBool v); /*
+    bool p_v = getImBool(env, v);
+    bool result = ImGui::Checkbox(label, &p_v);
+    setImBool(env, v, p_v);
+    return result;
+  */
+
 //  IMGUI_API bool          Checkbox(const char* label, bool* v);
 //  IMGUI_API bool          CheckboxFlags(const char* label, unsigned int* flags, unsigned int flags_value);
 //  IMGUI_API bool          RadioButton(const char* label, bool active);
@@ -670,7 +697,14 @@ public class ImGui {
 //  IMGUI_API void          TreeAdvanceToLabelPos();                                                // advance cursor x position by GetTreeNodeToLabelSpacing()
 //  IMGUI_API float         GetTreeNodeToLabelSpacing();                                            // horizontal distance preceding label when using TreeNode*() or Bullet() == (g.FontSize + style.FramePadding.x*2) for a regular unframed TreeNode
 //  IMGUI_API void          SetNextTreeNodeOpen(bool is_open, ImGuiSetCond cond = 0);               // set next TreeNode/CollapsingHeader open state.
-//  IMGUI_API bool          CollapsingHeader(const char* label, ImGuiTreeNodeFlags flags = 0);      // if returning 'true' the header is open. doesn't indent nor push on ID stack. user doesn't have to call TreePop().
+
+  // if returning 'true' the header is open. doesn't indent nor push on ID stack. user doesn't have to call TreePop().
+  // ImGuiTreeNodeFlags flags
+  public static native boolean collapsingHeader(String label, int flags); /*
+      return ImGui::CollapsingHeader(label, flags);
+  */
+  public static boolean collapsingHeader(String label){ return collapsingHeader(label, 0); }
+
 //  IMGUI_API bool          CollapsingHeader(const char* label, bool* p_open, ImGuiTreeNodeFlags flags = 0); // when 'p_open' isn't NULL, display an additional small close button on upper right of the header
 //
 //  // Widgets: Selectable / Lists

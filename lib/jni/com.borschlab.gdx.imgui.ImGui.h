@@ -601,11 +601,51 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_separator
 
 /*
  * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    sameLine
+ * Signature: (FF)V
+ */
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_sameLine
+  (JNIEnv *, jclass, jfloat, jfloat);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    spacing
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_spacing
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
  * Method:    text
  * Signature: (Ljava/lang/String;)V
  */
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_text
   (JNIEnv *, jclass, jstring);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    textWrapped
+ * Signature: (Ljava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_textWrapped
+  (JNIEnv *, jclass, jstring);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    checkbox
+ * Signature: (Ljava/lang/String;Lcom/borschlab/gdx/imgui/ImBool;)Z
+ */
+JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_checkbox
+  (JNIEnv *, jclass, jstring, jobject);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    collapsingHeader
+ * Signature: (Ljava/lang/String;I)Z
+ */
+JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_collapsingHeader
+  (JNIEnv *, jclass, jstring, jint);
 
 /*
  * Class:     com_borschlab_gdx_imgui_ImGui

@@ -21,6 +21,6 @@ public class Launcher {
     cfg.height = 768;
     cfg.title = "Dear Gdx ImGui";
 
-    LwjglApplication app = new LwjglApplication(new WindowDemo01(), cfg);
+    LwjglApplication app = new LwjglApplication(new PortedNativeDemo(), cfg);
   }
 }

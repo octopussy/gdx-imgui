@@ -8,7 +8,7 @@ import com.borschlab.gdx.imgui.ImGuiWindowFlags;
 /**
  * @author octopussy
  */
-public class WindowDemo01 extends ImDemoApp {
+public class PortedNativeDemo extends ImDemoApp {
 
   private ImBool p_open = ImBool.from(true);
 
@@ -118,37 +118,35 @@ public class WindowDemo01 extends ImDemoApp {
       }
       ImGui.endMenuBar();
     }
-//
-//    ImGui::Spacing();
-//    if (ImGui::CollapsingHeader("Help"))
-//    {
-//      ImGui::TextWrapped("This window is being created by the ShowTestWindow() function. Please refer to the code for programming reference.\n\nUser Guide:");
-//      ImGui::ShowUserGuide();
-//    }
-//
-//    if (ImGui::CollapsingHeader("Window options"))
-//    {
-//      ImGui::Checkbox("No titlebar", &no_titlebar); ImGui::SameLine(150);
-//      ImGui::Checkbox("No border", &no_border); ImGui::SameLine(300);
-//      ImGui::Checkbox("No resize", &no_resize);
-//      ImGui::Checkbox("No move", &no_move); ImGui::SameLine(150);
-//      ImGui::Checkbox("No scrollbar", &no_scrollbar); ImGui::SameLine(300);
-//      ImGui::Checkbox("No collapse", &no_collapse);
-//      ImGui::Checkbox("No menu", &no_menu);
-//
-//      if (ImGui::TreeNode("Style"))
-//      {
-//        ImGui::ShowStyleEditor();
-//        ImGui::TreePop();
-//      }
-//
-//      if (ImGui::TreeNode("Logging"))
-//      {
-//        ImGui::TextWrapped("The logging API redirects all text output so you can easily capture the content of a window or a block. Tree nodes can be automatically expanded. You can also call ImGui::LogText() to output directly to the log without a visual output.");
-//        ImGui::LogButtons();
-//        ImGui::TreePop();
-//      }
-//    }
+
+    ImGui.spacing();
+    if (ImGui.collapsingHeader("Help")) {
+      ImGui.textWrapped("This window is being created by the ShowTestWindow() function. Please refer to the code for programming reference.\n\nUser Guide:");
+      // TODO: ported showUserGuide();
+    }
+
+    if (ImGui.collapsingHeader("Window options")) {
+      ImGui.checkbox("No titlebar", no_titlebar); ImGui.sameLine(150);
+      ImGui.checkbox("No border", no_border); ImGui.sameLine(300);
+      ImGui.checkbox("No resize", no_resize);
+      ImGui.checkbox("No move", no_move); ImGui.sameLine(150);
+      ImGui.checkbox("No scrollbar", no_scrollbar); ImGui.sameLine(300);
+      ImGui.checkbox("No collapse", no_collapse);
+      ImGui.checkbox("No menu", no_menu);
+
+      /*if (ImGui::TreeNode("Style"))
+      {
+        ImGui::ShowStyleEditor();
+        ImGui::TreePop();
+      }
+
+      if (ImGui::TreeNode("Logging"))
+      {
+        ImGui::TextWrapped("The logging API redirects all text output so you can easily capture the content of a window or a block. Tree nodes can be automatically expanded. You can also call ImGui::LogText() to output directly to the log without a visual output.");
+        ImGui::LogButtons();
+        ImGui::TreePop();
+      }*/
+    }
 //
 //    if (ImGui::CollapsingHeader("Widgets"))
 //    {

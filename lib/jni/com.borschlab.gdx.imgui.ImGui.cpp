@@ -823,11 +823,31 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_separator(JNIEnv* env,
 
 }
 
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_sameLine(JNIEnv* env, jclass clazz, jfloat posX, jfloat spacingW) {
+
+
+//@line:529
+
+      ImGui::SameLine(posX, spacingW);
+  
+
+}
+
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_spacing(JNIEnv* env, jclass clazz) {
+
+
+//@line:539
+
+      ImGui::Spacing();
+  
+
+}
+
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_text(JNIEnv* env, jclass clazz, jstring obj_str) {
 	char* str = (char*)env->GetStringUTFChars(obj_str, 0);
 
 
-//@line:575
+//@line:587
 
       ImGui::Text(str);
   
@@ -835,10 +855,63 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_text(JNIEnv* env, jcla
 
 }
 
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_textWrapped(JNIEnv* env, jclass clazz, jstring obj_str) {
+	char* str = (char*)env->GetStringUTFChars(obj_str, 0);
+
+
+//@line:601
+
+      ImGui::TextWrapped(str);
+  
+	env->ReleaseStringUTFChars(obj_str, str);
+
+}
+
+static inline jboolean wrapped_Java_com_borschlab_gdx_imgui_ImGui_checkbox
+(JNIEnv* env, jclass clazz, jstring obj_label, jobject v, char* label) {
+
+//@line:621
+
+    bool p_v = getImBool(env, v);
+    bool result = ImGui::Checkbox(label, &p_v);
+    setImBool(env, v, p_v);
+    return result;
+  
+}
+
+JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_checkbox(JNIEnv* env, jclass clazz, jstring obj_label, jobject v) {
+	char* label = (char*)env->GetStringUTFChars(obj_label, 0);
+
+	jboolean JNI_returnValue = wrapped_Java_com_borschlab_gdx_imgui_ImGui_checkbox(env, clazz, obj_label, v, label);
+
+	env->ReleaseStringUTFChars(obj_label, label);
+
+	return JNI_returnValue;
+}
+
+static inline jboolean wrapped_Java_com_borschlab_gdx_imgui_ImGui_collapsingHeader
+(JNIEnv* env, jclass clazz, jstring obj_label, jint flags, char* label) {
+
+//@line:703
+
+      return ImGui::CollapsingHeader(label, flags);
+  
+}
+
+JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_collapsingHeader(JNIEnv* env, jclass clazz, jstring obj_label, jint flags) {
+	char* label = (char*)env->GetStringUTFChars(obj_label, 0);
+
+	jboolean JNI_returnValue = wrapped_Java_com_borschlab_gdx_imgui_ImGui_collapsingHeader(env, clazz, obj_label, flags, label);
+
+	env->ReleaseStringUTFChars(obj_label, label);
+
+	return JNI_returnValue;
+}
+
 JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_beginMenuBar(JNIEnv* env, jclass clazz) {
 
 
-//@line:704
+//@line:738
 
     return ImGui::BeginMenuBar();
   
@@ -848,7 +921,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_beginMenuBar(JNIEn
 JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_endMenuBar(JNIEnv* env, jclass clazz) {
 
 
-//@line:708
+//@line:742
 
     ImGui::EndMenuBar();
   
@@ -858,7 +931,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_endMenuBar(JNIEnv*
 static inline jboolean wrapped_Java_com_borschlab_gdx_imgui_ImGui_beginMenu
 (JNIEnv* env, jclass clazz, jstring obj_label, jboolean enabled, char* label) {
 
-//@line:713
+//@line:747
 
     return ImGui::BeginMenu(label, enabled);
   
@@ -877,7 +950,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_beginMenu(JNIEnv* 
 JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_endMenu(JNIEnv* env, jclass clazz) {
 
 
-//@line:721
+//@line:755
 
     ImGui::EndMenu();
   
@@ -887,7 +960,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_endMenu(JNIEnv* en
 static inline jboolean wrapped_Java_com_borschlab_gdx_imgui_ImGui_menuItem__Ljava_lang_String_2Ljava_lang_String_2ZZ
 (JNIEnv* env, jclass clazz, jstring obj_label, jstring obj_shortcut, jboolean selected, jboolean enabled, char* label, char* shortcut) {
 
-//@line:728
+//@line:762
 
       return ImGui::MenuItem(label, shortcut, selected, enabled);
   
@@ -908,7 +981,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_menuItem__Ljava_la
 static inline jboolean wrapped_Java_com_borschlab_gdx_imgui_ImGui_menuItem__Ljava_lang_String_2Lcom_borschlab_gdx_imgui_ImBool_2
 (JNIEnv* env, jclass clazz, jstring obj_label, jobject selected, char* label) {
 
-//@line:733
+//@line:767
 
       bool p_selected = getImBool(env, selected);
       bool result = ImGui::MenuItem(label, NULL, &p_selected);
@@ -930,7 +1003,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_menuItem__Ljava_la
 static inline jboolean wrapped_Java_com_borschlab_gdx_imgui_ImGui_menuItem__Ljava_lang_String_2Ljava_lang_String_2Lcom_borschlab_gdx_imgui_ImBool_2
 (JNIEnv* env, jclass clazz, jstring obj_label, jstring obj_shortcut, jobject selected, char* label, char* shortcut) {
 
-//@line:740
+//@line:774
 
       bool p_selected = getImBool(env, selected);
       bool result = ImGui::MenuItem(label, shortcut, &p_selected);
@@ -954,7 +1027,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_menuItem__Ljava_la
 JNIEXPORT jstring JNICALL Java_com_borschlab_gdx_imgui_ImGui_getVersion(JNIEnv* env, jclass clazz) {
 
 
-//@line:836
+//@line:870
 
     return env->NewStringUTF(ImGui::GetVersion());
   
