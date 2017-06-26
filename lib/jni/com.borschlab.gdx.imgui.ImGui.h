@@ -716,8 +716,16 @@ JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_getTreeNodeToLabelSp
  * Method:    collapsingHeader
  * Signature: (Ljava/lang/String;I)Z
  */
-JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_collapsingHeader
+JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_collapsingHeader__Ljava_lang_String_2I
   (JNIEnv *, jclass, jstring, jint);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    collapsingHeader
+ * Signature: (Ljava/lang/String;Lcom/borschlab/gdx/imgui/ImBool;)Z
+ */
+JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_collapsingHeader__Ljava_lang_String_2Lcom_borschlab_gdx_imgui_ImBool_2
+  (JNIEnv *, jclass, jstring, jobject);
 
 /*
  * Class:     com_borschlab_gdx_imgui_ImGui

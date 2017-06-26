@@ -754,6 +754,13 @@ public class ImGui {
       return ImGui::CollapsingHeader(label, flags);
   */
 
+  public static native boolean collapsingHeader(String label, ImBool v); /*
+      bool p_v = getImBool(env, v);
+      bool result = ImGui::CollapsingHeader(label, &p_v);
+      setImBool(env, v, p_v);
+      return result;
+  */
+
   public static boolean collapsingHeader(String label) {
     return collapsingHeader(label, 0);
   }

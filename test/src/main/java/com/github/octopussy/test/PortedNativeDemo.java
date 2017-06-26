@@ -732,20 +732,21 @@ public class PortedNativeDemo extends ImDemoApp {
     }
   }
 
+  private ImBool closable_group = ImBool.from(true);
   private void collapsingHeaders() {
     if (ImGui.treeNode("Collapsing Headers")) {
-    /*static bool closable_group = true;
-    if (ImGui::CollapsingHeader("Header"))
-    {
-      ImGui::Checkbox("Enable extra group", &closable_group);
-      for (int i = 0; i < 5; i++)
-        ImGui::Text("Some content %d", i);
-    }
-    if (ImGui::CollapsingHeader("Header with a close button", &closable_group))
-    {
-      for (int i = 0; i < 5; i++)
-        ImGui::Text("More content %d", i);
-    }*/
+
+      if (ImGui.collapsingHeader ("Header"))
+      {
+        ImGui.checkbox ("Enable extra group", closable_group);
+        for (int i = 0; i < 5; i++)
+          ImGui.text ("Some content %d", i);
+      }
+      if (ImGui.collapsingHeader ("Header with a close button", closable_group))
+      {
+        for (int i = 0; i < 5; i++)
+          ImGui.text ("More content %d", i);
+      }
       ImGui.treePop(); // collapsing headers
     }
   }
