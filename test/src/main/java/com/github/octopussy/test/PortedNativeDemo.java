@@ -173,6 +173,7 @@ public class PortedNativeDemo extends ImDemoApp {
         if (ImGui.treeNode("Advanced, with Selectable nodes")) {
           //TODO ShowHelpMarker("This is a more standard looking tree with selectable nodes.\nClick to select, CTRL+Click to toggle, click on arrows or double-click to open.");
 
+          //ShowHelpMarker("This is a more standard looking tree with selectable nodes.\nClick to select, CTRL+Click to toggle, click on arrows or double-click to open.");
           ImGui.checkbox("Align label with current X position)", align_label_with_current_x_position);
           ImGui.text("Hello!");
           if (align_label_with_current_x_position.value) {
@@ -180,15 +181,14 @@ public class PortedNativeDemo extends ImDemoApp {
           }
 
           int node_clicked = -1; // Temporary storage of what node we have clicked to process selection at the end of the loop. May be a pointer to your own node type, etc.
-          ImGui.pushStyleVar(ImGuiStyleVar.IndentSpacing, ImGui.getFontSize()*3); // Increase spacing to differentiate leaves from expanded contents.
-          for (int i = 0; i < 6; i++)
-          {
-            // Disable the default open on single-click behavior and pass in Selected flag according to our selection state.
+          //ImGui.pushStyleVar(ImGuiStyleVar.IndentSpacing, ImGui.getFontSize() * 3); // Increase spacing to differentiate leaves from expanded contents.
+          for (int i = 0; i < 6; i++) {
+            /*// Disable the default open on single-click behavior and pass in Selected flag according to our selection state.
             int s = 0;
             if ((selection_mask & (1 << i)) != 0) {
               s = ImGuiTreeNodeFlags.Selected;
             }
-            
+
             int node_flags = ImGuiTreeNodeFlags.OpenOnArrow | ImGuiTreeNodeFlags.OpenOnDoubleClick | s;
 
             if (i < 3)
@@ -209,27 +209,24 @@ public class PortedNativeDemo extends ImDemoApp {
               ImGui::TreeNodeEx((void*)(intptr_t)i, node_flags | ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen, "Selectable Leaf %d", i);
               if (ImGui::IsItemClicked())
               node_clicked = i;
-            }
+            }*/
           }
-          if (node_clicked != -1)
-          {
+          if (node_clicked != -1) {
             // Update selection state. Process outside of tree loop to avoid visual inconsistencies during the clicking-frame.
-            if (ImGui::GetIO().KeyCtrl)
+            /*if (ImGui::GetIO().KeyCtrl)
             selection_mask ^= (1 << node_clicked);          // CTRL+click to toggle
                     else //if (!(selection_mask & (1 << node_clicked))) // Depending on selection behavior you want, this commented bit preserve selection when clicking on item that is part of the selection
-            selection_mask = (1 << node_clicked);           // Click to single-select
+            selection_mask = (1 << node_clicked);           // Click to single-select*/
           }
-          ImGui::PopStyleVar();
+          /*ImGui::PopStyleVar();
           if (align_label_with_current_x_position)
-            ImGui::Indent(ImGui::GetTreeNodeToLabelSpacing());
-          ImGui::TreePop();
-        }
-          ImGui.treePop(); // advanced trees
+            ImGui::Indent(ImGui::GetTreeNodeToLabelSpacing()); */
+          ImGui.treePop();
         }
         ImGui.treePop(); // trees
       }
 
-        if (ImGui.treeNode("Collapsing Headers")) {
+      if (ImGui.treeNode("Collapsing Headers")) {
         /*static bool closable_group = true;
         if (ImGui::CollapsingHeader("Header"))
         {
@@ -242,27 +239,27 @@ public class PortedNativeDemo extends ImDemoApp {
           for (int i = 0; i < 5; i++)
             ImGui::Text("More content %d", i);
         }*/
-          ImGui.treePop(); // collapsing headers
-        }
+        ImGui.treePop(); // collapsing headers
+      }
 
-        if (ImGui.treeNode("Bullets")) {
+      if (ImGui.treeNode("Bullets")) {
         /*ImGui::BulletText("Bullet point 1");
         ImGui::BulletText("Bullet point 2\nOn multiple lines");
         ImGui::Bullet(); ImGui::Text("Bullet point 3 (two calls)");
         ImGui::Bullet(); ImGui::SmallButton("Button");*/
-          ImGui.treePop();
-        }
+        ImGui.treePop();
+      }
 
-        if (ImGui.treeNode("Colored Text")) {
-          // Using shortcut. You can use PushStyleColor()/PopStyleColor() for more flexibility.
+      if (ImGui.treeNode("Colored Text")) {
+        // Using shortcut. You can use PushStyleColor()/PopStyleColor() for more flexibility.
         /*ImGui::TextColored(ImVec4(1.0f,0.0f,1.0f,1.0f), "Pink");
         ImGui::TextColored(ImVec4(1.0f,1.0f,0.0f,1.0f), "Yellow");
         ImGui::TextDisabled("Disabled");*/
-          ImGui.treePop();
-        }
+        ImGui.treePop();
+      }
 
-        if (ImGui.treeNode("Word Wrapping")) {
-          // Using shortcut. You can use PushTextWrapPos()/PopTextWrapPos() for more flexibility.
+      if (ImGui.treeNode("Word Wrapping")) {
+        // Using shortcut. You can use PushTextWrapPos()/PopTextWrapPos() for more flexibility.
         /*ImGui::TextWrapped("This text should automatically wrap on the edge of the window. The current implementation for text wrapping follows simple rules suitable for English and possibly other languages.");
         ImGui::Spacing();
 
@@ -285,25 +282,25 @@ public class PortedNativeDemo extends ImDemoApp {
         ImGui::GetWindowDrawList()->AddRect(ImGui::GetItemRectMin(), ImGui::GetItemRectMax(), IM_COL32(255,255,0,255));
         ImGui::PopTextWrapPos();
 */
-          ImGui.treePop();
-        }
+        ImGui.treePop();
+      }
 
-        if (ImGui.treeNode("UTF-8 Text")) {
-          // UTF-8 test with Japanese characters
-          // (needs a suitable font, try Arial Unicode or M+ fonts http://mplus-fonts.sourceforge.jp/mplus-outline-fonts/index-en.html)
-          // Most compiler appears to support UTF-8 in source code (with Visual Studio you need to save your file as 'UTF-8 without signature')
-          // However for the sake for maximum portability here we are *not* including raw UTF-8 character in this source file, instead we encode the string with hexadecimal constants.
-          // In your own application be reasonable and use UTF-8 in source or retrieve the data from file system!
-          // Note that characters values are preserved even if the font cannot be displayed, so you can safely copy & paste garbled characters into another application.
+      if (ImGui.treeNode("UTF-8 Text")) {
+        // UTF-8 test with Japanese characters
+        // (needs a suitable font, try Arial Unicode or M+ fonts http://mplus-fonts.sourceforge.jp/mplus-outline-fonts/index-en.html)
+        // Most compiler appears to support UTF-8 in source code (with Visual Studio you need to save your file as 'UTF-8 without signature')
+        // However for the sake for maximum portability here we are *not* including raw UTF-8 character in this source file, instead we encode the string with hexadecimal constants.
+        // In your own application be reasonable and use UTF-8 in source or retrieve the data from file system!
+        // Note that characters values are preserved even if the font cannot be displayed, so you can safely copy & paste garbled characters into another application.
         /*ImGui::TextWrapped("CJK text will only appears if the font was loaded with the appropriate CJK character ranges. Call io.Font->LoadFromFileTTF() manually to load extra character ranges.");
         ImGui::Text("Hiragana: \xe3\x81\x8b\xe3\x81\x8d\xe3\x81\x8f\xe3\x81\x91\xe3\x81\x93 (kakikukeko)");
         ImGui::Text("Kanjis: \xe6\x97\xa5\xe6\x9c\xac\xe8\xaa\x9e (nihongo)");
         static char buf[32] = "\xe6\x97\xa5\xe6\x9c\xac\xe8\xaa\x9e";
         ImGui::InputText("UTF-8 input", buf, IM_ARRAYSIZE(buf));*/
-          ImGui.treePop();
-        }
+        ImGui.treePop();
+      }
 
-        if (ImGui.treeNode("Images")) {
+      if (ImGui.treeNode("Images")) {
         /*ImGui::TextWrapped("Below we are displaying the font texture (which is the only texture we have access to in this demo). Use the 'ImTextureID' type as storage to pass pointers or identifier to your own texture data. Hover the texture for a zoomed view!");
         ImVec2 tex_screen_pos = ImGui::GetCursorScreenPos();
         float tex_w = (float)ImGui::GetIO().Fonts->TexWidth;
@@ -337,10 +334,10 @@ public class PortedNativeDemo extends ImDemoApp {
         }
         ImGui::NewLine();
         ImGui::Text("Pressed %d times.", pressed_count);*/
-          ImGui.treePop();
-        }
+        ImGui.treePop();
+      }
 
-        if (ImGui.treeNode("Selectables")) {
+      if (ImGui.treeNode("Selectables")) {
         /*if (ImGui::TreeNode("Basic"))
         {
           static bool selected[4] = { false, true, false, false };
@@ -393,10 +390,10 @@ public class PortedNativeDemo extends ImDemoApp {
           }
           ImGui::TreePop();
         }*/
-          ImGui.treePop();
-        }
+        ImGui.treePop();
+      }
 
-        if (ImGui.treeNode("Filtered Text Input")) {
+      if (ImGui.treeNode("Filtered Text Input")) {
         /*static char buf1[64] = ""; ImGui::InputText("default", buf1, 64);
         static char buf2[64] = ""; ImGui::InputText("decimal", buf2, 64, ImGuiInputTextFlags_CharsDecimal);
         static char buf3[64] = ""; ImGui::InputText("hexadecimal", buf3, 64, ImGuiInputTextFlags_CharsHexadecimal | ImGuiInputTextFlags_CharsUppercase);
@@ -411,10 +408,10 @@ public class PortedNativeDemo extends ImDemoApp {
         ImGui::SameLine(); ShowHelpMarker("Display all characters as '*'.\nDisable clipboard cut and copy.\nDisable logging.\n");
         ImGui::InputText("password (clear)", bufpass, 64, ImGuiInputTextFlags_CharsNoBlank);*/
 
-          ImGui.treePop();
-        }
+        ImGui.treePop();
+      }
 
-        if (ImGui.treeNode("Multi-line Text Input")) {
+      if (ImGui.treeNode("Multi-line Text Input")) {
         /*static bool read_only = false;
         static char text[1024*16] =
         "*//*\n"
@@ -432,52 +429,59 @@ public class PortedNativeDemo extends ImDemoApp {
         ImGui::Checkbox("Read-only", &read_only);
         ImGui::PopStyleVar();
         ImGui::InputTextMultiline("##source", text, IM_ARRAYSIZE(text), ImVec2(-1.0f, ImGui::GetTextLineHeight() * 16), ImGuiInputTextFlags_AllowTabInput | (read_only ? ImGuiInputTextFlags_ReadOnly : 0));*/
-          ImGui.treePop();
-        }
-//
-//      static bool a=false;
-//      if (ImGui::Button("Button")) { printf("Clicked\n"); a ^= 1; }
-//      if (a)
-//      {
-//        ImGui::SameLine();
-//        ImGui::Text("Thanks for clicking me!");
-//      }
-//
-//      static bool check = true;
-//      ImGui::Checkbox("checkbox", &check);
-//
-//      static int e = 0;
-//      ImGui::RadioButton("radio a", &e, 0); ImGui::SameLine();
-//      ImGui::RadioButton("radio b", &e, 1); ImGui::SameLine();
-//      ImGui::RadioButton("radio c", &e, 2);
-//
-//      // Color buttons, demonstrate using PushID() to add unique identifier in the ID stack, and changing style.
-//      for (int i = 0; i < 7; i++)
-//      {
-//        if (i > 0) ImGui::SameLine();
-//        ImGui::PushID(i);
-//        ImGui::PushStyleColor(ImGuiCol_Button, ImColor::HSV(i/7.0f, 0.6f, 0.6f));
-//        ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImColor::HSV(i/7.0f, 0.7f, 0.7f));
-//        ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImColor::HSV(i/7.0f, 0.8f, 0.8f));
-//        ImGui::Button("Click");
-//        ImGui::PopStyleColor(3);
-//        ImGui::PopID();
-//      }
-//
-//      ImGui::Text("Hover over me");
-//      if (ImGui::IsItemHovered())
-//      ImGui::SetTooltip("I am a tooltip");
-//
-//      ImGui::SameLine();
-//      ImGui::Text("- or me");
-//      if (ImGui::IsItemHovered())
-//      {
-//        ImGui::BeginTooltip();
-//        ImGui::Text("I am a fancy tooltip");
-//        static float arr[] = { 0.6f, 0.1f, 1.0f, 0.5f, 0.92f, 0.1f, 0.2f };
-//        ImGui::PlotLines("Curve", arr, IM_ARRAYSIZE(arr));
-//        ImGui::EndTooltip();
-//      }
+        ImGui.treePop();
+      }
+
+/*      static bool a=false;
+      if (ImGui::Button("Button")) { printf("Clicked\n"); a ^= 1; }
+      if (a)
+      {
+        ImGui::SameLine();
+        ImGui::Text("Thanks for clicking me!");
+      }*/
+
+
+
+
+/*      static bool check = true;
+      ImGui::Checkbox("checkbox", &check);
+
+      static int e = 0;
+      ImGui::RadioButton("radio a", &e, 0); ImGui::SameLine();
+      ImGui::RadioButton("radio b", &e, 1); ImGui::SameLine();
+      ImGui::RadioButton("radio c", &e, 2);
+
+      // Color buttons, demonstrate using PushID() to add unique identifier in the ID stack, and changing style.
+      for (int i = 0; i < 7; i++)
+      {
+        if (i > 0) ImGui::SameLine();
+        ImGui::PushID(i);
+        ImGui::PushStyleColor(ImGuiCol_Button, ImColor::HSV(i/7.0f, 0.6f, 0.6f));
+        ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImColor::HSV(i/7.0f, 0.7f, 0.7f));
+        ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImColor::HSV(i/7.0f, 0.8f, 0.8f));
+        ImGui::Button("Click");
+        ImGui::PopStyleColor(3);
+        ImGui::PopID();
+      }*/
+
+
+
+/*      ImGui::Text("Hover over me");
+      if (ImGui::IsItemHovered())
+      ImGui::SetTooltip("I am a tooltip");
+
+      ImGui::SameLine();
+      ImGui::Text("- or me");
+      if (ImGui::IsItemHovered())
+      {
+        ImGui::BeginTooltip();
+        ImGui::Text("I am a fancy tooltip");
+        static float arr[] = { 0.6f, 0.1f, 1.0f, 0.5f, 0.92f, 0.1f, 0.2f };
+        ImGui::PlotLines("Curve", arr, IM_ARRAYSIZE(arr));
+        ImGui::EndTooltip();
+      }*/
+
+
 //
 //      // Testing IMGUI_ONCE_UPON_A_FRAME macro
 //      //for (int i = 0; i < 5; i++)
@@ -497,35 +501,35 @@ public class PortedNativeDemo extends ImDemoApp {
 //
 //        const char* items[] = { "AAAA", "BBBB", "CCCC", "DDDD", "EEEE", "FFFF", "GGGG", "HHHH", "IIII", "JJJJ", "KKKK" };
 //      static int item2 = -1;
-//      ImGui::Combo("combo scroll", &item2, items, IM_ARRAYSIZE(items));   // Combo using proper array. You can also pass a callback to retrieve array value, no need to create/copy an array just for that.
-//
-//      {
-//        static char str0[128] = "Hello, world!";
-//        static int i0=123;
-//        static float f0=0.001f;
-//        ImGui::InputText("input text", str0, IM_ARRAYSIZE(str0));
-//        ImGui::SameLine(); ShowHelpMarker("Hold SHIFT or use mouse to select text.\n" "CTRL+Left/Right to word jump.\n" "CTRL+A or double-click to select all.\n" "CTRL+X,CTRL+C,CTRL+V clipboard.\n" "CTRL+Z,CTRL+Y undo/redo.\n" "ESCAPE to revert.\n");
-//
-//        ImGui::InputInt("input int", &i0);
-//        ImGui::SameLine(); ShowHelpMarker("You can apply arithmetic operators +,*,/ on numerical values.\n  e.g. [ 100 ], input \'*2\', result becomes [ 200 ]\nUse +- to subtract.\n");
-//
-//        ImGui::InputFloat("input float", &f0, 0.01f, 1.0f);
-//
-//        static float vec4a[4] = { 0.10f, 0.20f, 0.30f, 0.44f };
-//        ImGui::InputFloat3("input float3", vec4a);
-//      }
-//
-//      {
-//        static int i1=50, i2=42;
-//        ImGui::DragInt("drag int", &i1, 1);
-//        ImGui::SameLine(); ShowHelpMarker("Click and drag to edit value.\nHold SHIFT/ALT for faster/slower edit.\nDouble-click or CTRL+click to input value.");
-//
-//        ImGui::DragInt("drag int 0..100", &i2, 1, 0, 100, "%.0f%%");
-//
-//        static float f1=1.00f, f2=0.0067f;
-//        ImGui::DragFloat("drag float", &f1, 0.005f);
-//        ImGui::DragFloat("drag small float", &f2, 0.0001f, 0.0f, 0.0f, "%.06f ns");
-//      }
+/*      ImGui::Combo("combo scroll", &item2, items, IM_ARRAYSIZE(items));   // Combo using proper array. You can also pass a callback to retrieve array value, no need to create/copy an array just for that.
+
+      {
+        static char str0[128] = "Hello, world!";
+        static int i0=123;
+        static float f0=0.001f;
+        ImGui::InputText("input text", str0, IM_ARRAYSIZE(str0));
+        ImGui::SameLine(); ShowHelpMarker("Hold SHIFT or use mouse to select text.\n" "CTRL+Left/Right to word jump.\n" "CTRL+A or double-click to select all.\n" "CTRL+X,CTRL+C,CTRL+V clipboard.\n" "CTRL+Z,CTRL+Y undo/redo.\n" "ESCAPE to revert.\n");
+
+        ImGui::InputInt("input int", &i0);
+        ImGui::SameLine(); ShowHelpMarker("You can apply arithmetic operators +,*,/ on numerical values.\n  e.g. [ 100 ], input \'*2\', result becomes [ 200 ]\nUse +- to subtract.\n");
+
+        ImGui::InputFloat("input float", &f0, 0.01f, 1.0f);
+
+        static float vec4a[4] = { 0.10f, 0.20f, 0.30f, 0.44f };
+        ImGui::InputFloat3("input float3", vec4a);
+      }*/
+
+/*      {
+        static int i1=50, i2=42;
+        ImGui::DragInt("drag int", &i1, 1);
+        ImGui::SameLine(); ShowHelpMarker("Click and drag to edit value.\nHold SHIFT/ALT for faster/slower edit.\nDouble-click or CTRL+click to input value.");
+
+        ImGui::DragInt("drag int 0..100", &i2, 1, 0, 100, "%.0f%%");
+
+        static float f1=1.00f, f2=0.0067f;
+        ImGui::DragFloat("drag float", &f1, 0.005f);
+        ImGui::DragFloat("drag small float", &f2, 0.0001f, 0.0f, 0.0f, "%.06f ns");
+      }*/
 //
 //      {
 //        static int i1=0;
@@ -1520,10 +1524,8 @@ public class PortedNativeDemo extends ImDemoApp {
 //      }
 //    }
 //
-
-      }
-
-    ImGui.end();
     }
+    ImGui.end();
   }
+}
 

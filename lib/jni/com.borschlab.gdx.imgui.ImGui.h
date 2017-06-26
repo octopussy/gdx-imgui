@@ -585,6 +585,22 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setKeyboardFocusHere
 
 /*
  * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    pushStyleVar
+ * Signature: (IF)V
+ */
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_pushStyleVar
+  (JNIEnv *, jclass, jint, jfloat);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    getFontSize
+ * Signature: ()F
+ */
+JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_getFontSize
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
  * Method:    pushItemWidth
  * Signature: (F)V
  */
@@ -617,6 +633,22 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_spacing
 
 /*
  * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    indent
+ * Signature: (F)V
+ */
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_indent
+  (JNIEnv *, jclass, jfloat);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    unindent
+ * Signature: (F)V
+ */
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_unindent
+  (JNIEnv *, jclass, jfloat);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
  * Method:    text
  * Signature: (Ljava/lang/String;)V
  */
@@ -633,11 +665,43 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_textWrapped
 
 /*
  * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    smallButton
+ * Signature: (Ljava/lang/String;)Z
+ */
+JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_smallButton
+  (JNIEnv *, jclass, jstring);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
  * Method:    checkbox
  * Signature: (Ljava/lang/String;Lcom/borschlab/gdx/imgui/ImBool;)Z
  */
 JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_checkbox
   (JNIEnv *, jclass, jstring, jobject);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    treeNode
+ * Signature: (Ljava/lang/String;)Z
+ */
+JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_treeNode
+  (JNIEnv *, jclass, jstring);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    treePop
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_treePop
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    getTreeNodeToLabelSpacing
+ * Signature: ()F
+ */
+JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_getTreeNodeToLabelSpacing
+  (JNIEnv *, jclass);
 
 /*
  * Class:     com_borschlab_gdx_imgui_ImGui
@@ -702,6 +766,14 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_menuItem__Ljava_la
  */
 JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_menuItem__Ljava_lang_String_2Ljava_lang_String_2Lcom_borschlab_gdx_imgui_ImBool_2
   (JNIEnv *, jclass, jstring, jstring, jobject);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    logButtons
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_logButtons
+  (JNIEnv *, jclass);
 
 /*
  * Class:     com_borschlab_gdx_imgui_ImGui
