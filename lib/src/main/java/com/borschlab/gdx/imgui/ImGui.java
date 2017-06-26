@@ -50,7 +50,7 @@ public class ImGui {
   public static native float getDeltaTime(); /* ImGui::GetIO().DeltaTime; */
 
   public static native void setDisplaySize(float width, float height); /*
-		ImGuiIO& io = ImGui::GetIO();
+                ImGuiIO& io = ImGui::GetIO();
 	 	io.DisplaySize = ImVec2(width, height);
 	*/
 
@@ -498,6 +498,7 @@ public class ImGui {
   private static native void pushStyleVar(int idx, float val); /*
     ImGui::PushStyleVar(idx, val);
   */
+
   public static void pushStyleVar(ImGuiStyleVar idx, float val) {
     pushStyleVar(idx.ordinal(), val);
   }
@@ -718,11 +719,17 @@ public class ImGui {
     return ImGui::TreeNode(label);
   */
 
+  // flags - ImGuiTreeNodeFlags
+  public static native boolean treeNodeEx(String label, int flags); /*
+    return ImGui::TreeNodeEx(label, flags);
+  */
+
+  //  IMGUI_API bool          TreeNodeEx(const char* label, ImGuiTreeNodeFlags flags = 0);
+
 //  IMGUI_API bool          TreeNode(const char* str_id, const char* fmt, ...) IM_PRINTFARGS(2);    // read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().
 //  IMGUI_API bool          TreeNode(const void* ptr_id, const char* fmt, ...) IM_PRINTFARGS(2);    // "
 //  IMGUI_API bool          TreeNodeV(const char* str_id, const char* fmt, va_list args);           // "
 //  IMGUI_API bool          TreeNodeV(const void* ptr_id, const char* fmt, va_list args);           // "
-//  IMGUI_API bool          TreeNodeEx(const char* label, ImGuiTreeNodeFlags flags = 0);
 //  IMGUI_API bool          TreeNodeEx(const char* str_id, ImGuiTreeNodeFlags flags, const char* fmt, ...) IM_PRINTFARGS(3);
 //  IMGUI_API bool          TreeNodeEx(const void* ptr_id, ImGuiTreeNodeFlags flags, const char* fmt, ...) IM_PRINTFARGS(3);
 //  IMGUI_API bool          TreeNodeExV(const char* str_id, ImGuiTreeNodeFlags flags, const char* fmt, va_list args);
@@ -864,8 +871,17 @@ public class ImGui {
 //  IMGUI_API bool          IsItemHovered();                                                    // was the last item hovered by mouse?
 //  IMGUI_API bool          IsItemHoveredRect();                                                // was the last item hovered by mouse? even if another item is active or window is blocked by popup while we are hovering this
 //  IMGUI_API bool          IsItemActive();                                                     // was the last item active? (e.g. button being held, text field being edited- items that don't interact will always return false)
-//  IMGUI_API bool          IsItemClicked(int mouse_button = 0);                                // was the last item clicked? (e.g. button/node just clicked on)
-//  IMGUI_API bool          IsItemVisible();                                                    // was the last item visible? (aka not out of sight due to clipping/scrolling.)
+
+  // was the last item clicked? (e.g. button/node just clicked on)
+  public static native boolean isItemClicked(int mouseButton); /*
+    return ImGui::IsItemClicked(mouseButton);
+  */
+
+  public static boolean isItemClicked() {
+    return isItemClicked(0);
+  }
+
+  //  IMGUI_API bool          IsItemVisible();                                                    // was the last item visible? (aka not out of sight due to clipping/scrolling.)
 //  IMGUI_API bool          IsAnyItemHovered();
 //  IMGUI_API bool          IsAnyItemActive();
 //  IMGUI_API ImVec2        GetItemRectMin();                                                   // get bounding rect of last item in screen space

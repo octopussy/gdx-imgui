@@ -689,6 +689,14 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_treeNode
 
 /*
  * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    treeNodeEx
+ * Signature: (Ljava/lang/String;I)Z
+ */
+JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_treeNodeEx
+  (JNIEnv *, jclass, jstring, jint);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
  * Method:    treePop
  * Signature: ()V
  */
@@ -774,6 +782,14 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_menuItem__Ljava_la
  */
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_logButtons
   (JNIEnv *, jclass);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    isItemClicked
+ * Signature: (I)Z
+ */
+JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_isItemClicked
+  (JNIEnv *, jclass, jint);
 
 /*
  * Class:     com_borschlab_gdx_imgui_ImGui
