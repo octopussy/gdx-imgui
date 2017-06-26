@@ -724,8 +724,6 @@ public class ImGui {
     return ImGui::TreeNodeEx(label, flags);
   */
 
-  //  IMGUI_API bool          TreeNodeEx(const char* label, ImGuiTreeNodeFlags flags = 0);
-
 //  IMGUI_API bool          TreeNode(const char* str_id, const char* fmt, ...) IM_PRINTFARGS(2);    // read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().
 //  IMGUI_API bool          TreeNode(const void* ptr_id, const char* fmt, ...) IM_PRINTFARGS(2);    // "
 //  IMGUI_API bool          TreeNodeV(const char* str_id, const char* fmt, va_list args);           // "

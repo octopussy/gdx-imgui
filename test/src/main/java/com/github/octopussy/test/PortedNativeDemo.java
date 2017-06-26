@@ -43,6 +43,9 @@ public class PortedNativeDemo extends ImDemoApp {
 
   // Demonstrate most ImGui features (big function!)
   private void showTestWindow(ImBool p_open) {
+
+    Thread.currentThread().setName("***XUI***");
+
     // TODO example apps
 //    if (show_app_main_menu_bar) ShowExampleAppMainMenuBar();
 //    if (show_app_console) ShowExampleAppConsole(&show_app_console);
@@ -677,16 +680,13 @@ public class PortedNativeDemo extends ImDemoApp {
       //ImGui.pushStyleVar(ImGuiStyleVar.IndentSpacing, ImGui.getFontSize() * 3); // Increase spacing to differentiate leaves from expanded contents.
       for (int i = 0; i < 6; i++) {
         // Disable the default open on single-click behavior and pass in Selected flag according to our selection state.
-        int s = 0;
-        if ((selection_mask & (1 << i)) != 0) {
-          s = ImGuiTreeNodeFlags.Selected;
-        }
-
-        int node_flags = ImGuiTreeNodeFlags.OpenOnArrow | ImGuiTreeNodeFlags.OpenOnDoubleClick | s;
+        int node_flags = ImGuiTreeNodeFlags.OpenOnArrow | ImGuiTreeNodeFlags.OpenOnDoubleClick
+          | (((selection_mask & (1 << i)) != 0) ? ImGuiTreeNodeFlags.Selected : 0);
 
         if (i < 3) {
           // Node
-          boolean node_open = ImGui.treeNodeEx(String.format("Selectable Node %d", i), node_flags);
+          String format = String.format("Selectable Node %d", i);
+          boolean node_open = ImGui.treeNodeEx(format, node_flags);
           if (ImGui.isItemClicked())
             node_clicked = i;
           if (node_open) {
@@ -694,11 +694,11 @@ public class PortedNativeDemo extends ImDemoApp {
             ImGui.treePop();
           }
         } else {
-        /*  // Leaf: The only reason we have a TreeNode at all is to allow selection of the leaf. Otherwise we can use BulletText() or TreeAdvanceToLabelPos()+Text().
-          ImGui::TreeNodeEx((void*)(intptr_t)i, node_flags | ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen, "Selectable Leaf %d", i);
-          if (ImGui::IsItemClicked())
-          node_clicked = i;
-        }*/
+          // Leaf: The only reason we have a TreeNode at all is to allow selection of the leaf. Otherwise we can use BulletText() or TreeAdvanceToLabelPos()+Text().
+          String format = String.format("Selectable Leaf %d", i);
+          ImGui.treeNodeEx(format, node_flags | ImGuiTreeNodeFlags.Leaf | ImGuiTreeNodeFlags.NoTreePushOnOpen);
+          if (ImGui.isItemClicked())
+            node_clicked = i;
         }
         if (node_clicked != -1) {
           // Update selection state. Process outside of tree loop to avoid visual inconsistencies during the clicking-frame.
