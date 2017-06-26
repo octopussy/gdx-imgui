@@ -39,7 +39,7 @@ public class ImGui {
 	*/
 
 	/*public static native void setTexID(void*id) *//*
-	 	TexID = id;
+                 TexID = id;
 	 	}
 	*/
 
@@ -494,11 +494,24 @@ public class ImGui {
   // void          PopFont();
   // void          PushStyleColor(ImGuiCol idx, const ImVec4& col);
   // void          PopStyleColor(int count = 1);
+
+  private static native void pushStyleVar(int idx, float val); /*
+    ImGui::PushStyleVar(idx, val);
+  */
+  public static void pushStyleVar(ImGuiStyleVar idx, float val) {
+    pushStyleVar(idx.ordinal(), val);
+  }
+
   // void          PushStyleVar(ImGuiStyleVar idx, float val);
   // void          PushStyleVar(ImGuiStyleVar idx, const ImVec2& val);
   // void          PopStyleVar(int count = 1);
   // ImFont*       GetFont();                                                          // get current font
-  // float         GetFontSize();                                                      // get current font size (= height in pixels) of current font with current scale applied
+
+  // get current font size (= height in pixels) of current font with current scale applied
+  public static native float getFontSize(); /*
+      return ImGui::GetFontSize();
+  */
+
   // ImVec2        GetFontTexUvWhitePixel();                                           // get UV coordinate for a while pixel, useful to draw custom shapes via the ImDrawList API
   // ImU32         GetColorU32(ImGuiCol idx, float alpha_mul = 1.0f);                  // retrieve given style color with style alpha applied and optional extra alpha multiplier
   // ImU32         GetColorU32(const ImVec4& col);                                     // retrieve given color with style alpha applied
@@ -530,8 +543,13 @@ public class ImGui {
       ImGui::SameLine(posX, spacingW);
   */
 
-  public static void sameLine() { sameLine(0f, -1f); }
-  public static void sameLine(float posX) { sameLine(posX, -1f); }
+  public static void sameLine() {
+    sameLine(0f, -1f);
+  }
+
+  public static void sameLine(float posX) {
+    sameLine(posX, -1f);
+  }
 
 //  IMGUI_API void          NewLine();                                                          // undo a SameLine()
 
@@ -541,8 +559,17 @@ public class ImGui {
   */
 
 //  IMGUI_API void          Dummy(const ImVec2& size);                                          // add a dummy item of given size
-//  IMGUI_API void          Indent(float indent_w = 0.0f);                                      // move content position toward the right, by style.IndentSpacing or indent_w if >0
-//  IMGUI_API void          Unindent(float indent_w = 0.0f);                                    // move content position back to the left, by style.IndentSpacing or indent_w if >0
+
+  // move content position toward the right, by style.IndentSpacing or indent_w if >0
+  public static native void indent(float indentW); /*
+      ImGui::Indent(indentW);
+  */
+
+  // move content position back to the left, by style.IndentSpacing or indent_w if >0
+  public static native void unindent(float indentW); /*
+      ImGui::Unindent(indentW);
+  */
+
 //  IMGUI_API void          BeginGroup();                                                       // lock horizontal starting position + capture group bounding box into one "item" (so you can use IsItemHovered() or layout primitives such as SameLine() on whole group, etc.)
 //  IMGUI_API void          EndGroup();
 //  IMGUI_API ImVec2        GetCursorPos();                                                     // cursor position is relative to window position
@@ -613,6 +640,10 @@ public class ImGui {
 //  IMGUI_API void          BulletText(const char* fmt, ...) IM_PRINTFARGS(1);                      // shortcut for Bullet()+Text()
 //  IMGUI_API void          BulletTextV(const char* fmt, va_list args);
 //  IMGUI_API bool          Button(const char* label, const ImVec2& size = ImVec2(0,0));            // button
+
+  public static native boolean smallButton(String label); /*
+    return ImGui::SmallButton(label);
+  */
 //  IMGUI_API bool          SmallButton(const char* label);                                         // button with FramePadding=(0,0)
 //  IMGUI_API bool          InvisibleButton(const char* str_id, const ImVec2& size);
 //  IMGUI_API void          Image(ImTextureID user_texture_id, const ImVec2& size, const ImVec2& uv0 = ImVec2(0,0), const ImVec2& uv1 = ImVec2(1,1), const ImVec4& tint_col = ImVec4(1,1,1,1), const ImVec4& border_col = ImVec4(0,0,0,0));
@@ -681,7 +712,12 @@ public class ImGui {
 //  IMGUI_API bool          VSliderInt(const char* label, const ImVec2& size, int* v, int v_min, int v_max, const char* display_format = "%.0f");
 //
 //  // Widgets: Trees
-//  IMGUI_API bool          TreeNode(const char* label);                                            // if returning 'true' the node is open and the tree id is pushed into the id stack. user is responsible for calling TreePop().
+
+  // if returning 'true' the node is open and the tree id is pushed into the id stack. user is responsible for calling TreePop().
+  public static native boolean treeNode(String label); /*
+    return ImGui::TreeNode(label);
+  */
+
 //  IMGUI_API bool          TreeNode(const char* str_id, const char* fmt, ...) IM_PRINTFARGS(2);    // read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().
 //  IMGUI_API bool          TreeNode(const void* ptr_id, const char* fmt, ...) IM_PRINTFARGS(2);    // "
 //  IMGUI_API bool          TreeNodeV(const char* str_id, const char* fmt, va_list args);           // "
@@ -693,9 +729,18 @@ public class ImGui {
 //  IMGUI_API bool          TreeNodeExV(const void* ptr_id, ImGuiTreeNodeFlags flags, const char* fmt, va_list args);
 //  IMGUI_API void          TreePush(const char* str_id = NULL);                                    // ~ Indent()+PushId(). Already called by TreeNode() when returning true, but you can call Push/Pop yourself for layout purpose
 //  IMGUI_API void          TreePush(const void* ptr_id = NULL);                                    // "
-//  IMGUI_API void          TreePop();                                                              // ~ Unindent()+PopId()
+
+  // ~ Unindent()+PopId()
+  public static native void treePop(); /*
+     ImGui::TreePop();
+  */
 //  IMGUI_API void          TreeAdvanceToLabelPos();                                                // advance cursor x position by GetTreeNodeToLabelSpacing()
-//  IMGUI_API float         GetTreeNodeToLabelSpacing();                                            // horizontal distance preceding label when using TreeNode*() or Bullet() == (g.FontSize + style.FramePadding.x*2) for a regular unframed TreeNode
+
+  // horizontal distance preceding label when using TreeNode*() or Bullet() == (g.FontSize + style.FramePadding.x*2) for a regular unframed TreeNode
+  public static native float getTreeNodeToLabelSpacing(); /*
+    return ImGui::GetTreeNodeToLabelSpacing();
+  */
+
 //  IMGUI_API void          SetNextTreeNodeOpen(bool is_open, ImGuiSetCond cond = 0);               // set next TreeNode/CollapsingHeader open state.
 
   // if returning 'true' the header is open. doesn't indent nor push on ID stack. user doesn't have to call TreePop().
@@ -703,7 +748,10 @@ public class ImGui {
   public static native boolean collapsingHeader(String label, int flags); /*
       return ImGui::CollapsingHeader(label, flags);
   */
-  public static boolean collapsingHeader(String label){ return collapsingHeader(label, 0); }
+
+  public static boolean collapsingHeader(String label) {
+    return collapsingHeader(label, 0);
+  }
 
 //  IMGUI_API bool          CollapsingHeader(const char* label, bool* p_open, ImGuiTreeNodeFlags flags = 0); // when 'p_open' isn't NULL, display an additional small close button on upper right of the header
 //
@@ -757,8 +805,14 @@ public class ImGui {
   */
 
   // return true when activated. shortcuts are displayed for convenience but not processed by ImGui at the moment
-  public static boolean menuItem(String label, String shortcut) { return menuItem(label, shortcut, false, true); }
-  public static boolean menuItem(String label, String shortcut, boolean selected) { return menuItem(label, shortcut, selected, true); }
+  public static boolean menuItem(String label, String shortcut) {
+    return menuItem(label, shortcut, false, true);
+  }
+
+  public static boolean menuItem(String label, String shortcut, boolean selected) {
+    return menuItem(label, shortcut, selected, true);
+  }
+
   public static native boolean menuItem(String label, String shortcut, boolean selected, boolean enabled); /*
       return ImGui::MenuItem(label, shortcut, selected, enabled);
   */
@@ -778,7 +832,7 @@ public class ImGui {
       return result;
   */
 
-//  IMGUI_API bool          MenuItem(const char* label, const char* shortcut, bool* p_selected, bool enabled = true);
+  //  IMGUI_API bool          MenuItem(const char* label, const char* shortcut, bool* p_selected, bool enabled = true);
 //
 //  // Popups
 //  IMGUI_API void          OpenPopup(const char* str_id);                                      // mark popup as open. popups are closed when user click outside, or activate a pressable item, or CloseCurrentPopup() is called within a BeginPopup()/EndPopup() block. popup identifiers are relative to the current ID-stack (so OpenPopup and BeginPopup needs to be at the same level).
@@ -795,6 +849,10 @@ public class ImGui {
 //  IMGUI_API void          LogToFile(int max_depth = -1, const char* filename = NULL);         // start logging to file
 //  IMGUI_API void          LogToClipboard(int max_depth = -1);                                 // start logging to OS clipboard
 //  IMGUI_API void          LogFinish();                                                        // stop logging (close file, etc.)
+
+  public static native void logButtons(); /*
+      ImGui::LogButtons();
+  */
 //  IMGUI_API void          LogButtons();                                                       // helper to display buttons for logging to tty/file/clipboard
 //  IMGUI_API void          LogText(const char* fmt, ...) IM_PRINTFARGS(1);                     // pass text data straight to log (without being displayed)
 //
@@ -838,10 +896,10 @@ public class ImGui {
 //  IMGUI_API void          ColorConvertHSVtoRGB(float h, float s, float v, float& out_r, float& out_g, float& out_b);
 //
 //  // Inputs
-//  IMGUI_API int           GetKeyIndex(ImGuiKey key);                                          // map ImGuiKey_* values into user's key index. == io.KeyMap[key]
-//  IMGUI_API bool          IsKeyDown(int key_index);                                           // key_index into the keys_down[] array, imgui doesn't know the semantic of each entry, uses your own indices!
-//  IMGUI_API bool          IsKeyPressed(int key_index, bool repeat = true);                    // uses user's key indices as stored in the keys_down[] array. if repeat=true. uses io.KeyRepeatDelay / KeyRepeatRate
-//  IMGUI_API bool          IsKeyReleased(int key_index);                                       // "
+//  IMGUI_API int           GetKeyIndex(ImGuiKey imgui_key);                                          // map ImGuiKey_* values into user's key index. == io.KeyMap[key]
+//  IMGUI_API bool          IsKeyDown(int user_key_index);                                           // key_index into the keys_down[] array, imgui doesn't know the semantic of each entry, uses your own indices!
+//  IMGUI_API bool          IsKeyPressed(int user_key_index, bool repeat = true);                    // uses user's key indices as stored in the keys_down[] array. if repeat=true. uses io.KeyRepeatDelay / KeyRepeatRate
+//  IMGUI_API bool          IsKeyReleased(int user_key_index);                                       // "
 //  IMGUI_API bool          IsMouseDown(int button);                                            // is mouse button held
 //  IMGUI_API bool          IsMouseClicked(int button, bool repeat = false);                    // did mouse button clicked (went from !Down to Down)
 //  IMGUI_API bool          IsMouseDoubleClicked(int button);                                   // did mouse button double-clicked. a double-click returns false in IsMouseClicked(). uses io.MouseDoubleClickTime.

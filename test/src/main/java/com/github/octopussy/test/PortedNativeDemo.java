@@ -1,42 +1,40 @@
 package com.github.octopussy.test;
 
-import com.borschlab.gdx.imgui.ImBool;
-import com.borschlab.gdx.imgui.ImGui;
-import com.borschlab.gdx.imgui.ImGuiSetCond;
-import com.borschlab.gdx.imgui.ImGuiWindowFlags;
+import com.borschlab.gdx.imgui.*;
 
-/**
- * @author octopussy
- */
 public class PortedNativeDemo extends ImDemoApp {
 
-  private ImBool p_open = ImBool.from(true);
+  ImBool p_open = ImBool.from(true);
 
   // Examples apps
-  private ImBool show_app_main_menu_bar = ImBool.from(false);
-  private ImBool show_app_console = ImBool.from(false);
-  private ImBool show_app_log = ImBool.from(false);
-  private ImBool show_app_layout = ImBool.from(false);
-  private ImBool show_app_property_editor = ImBool.from(false);
-  private ImBool show_app_long_text = ImBool.from(false);
-  private ImBool show_app_auto_resize = ImBool.from(false);
-  private ImBool show_app_constrained_resize = ImBool.from(false);
-  private ImBool show_app_fixed_overlay = ImBool.from(false);
-  private ImBool show_app_manipulating_window_title = ImBool.from(false);
-  private ImBool show_app_custom_rendering = ImBool.from(false);
-  private ImBool show_app_style_editor = ImBool.from(false);
-  private ImBool show_app_about = ImBool.from(false);
-  private ImBool show_app_metrics = ImBool.from(false);
+  ImBool show_app_main_menu_bar = ImBool.from(false);
+  ImBool show_app_console = ImBool.from(false);
+  ImBool show_app_log = ImBool.from(false);
+  ImBool show_app_layout = ImBool.from(false);
+  ImBool show_app_property_editor = ImBool.from(false);
+  ImBool show_app_long_text = ImBool.from(false);
+  ImBool show_app_auto_resize = ImBool.from(false);
+  ImBool show_app_constrained_resize = ImBool.from(false);
+  ImBool show_app_fixed_overlay = ImBool.from(false);
+  ImBool show_app_manipulating_window_title = ImBool.from(false);
+  ImBool show_app_custom_rendering = ImBool.from(false);
+  ImBool show_app_style_editor = ImBool.from(false);
+  ImBool show_app_about = ImBool.from(false);
+  ImBool show_app_metrics = ImBool.from(false);
 
   // various window flags
-  private ImBool no_titlebar = ImBool.from(false);
-  private ImBool no_border = ImBool.from(true);
-  private ImBool no_resize = ImBool.from(false);
-  private ImBool no_move = ImBool.from(false);
-  private ImBool no_scrollbar = ImBool.from(false);
-  private ImBool no_collapse = ImBool.from(false);
-  private ImBool no_menu = ImBool.from(false);
+  ImBool no_titlebar = ImBool.from(false);
+  ImBool no_border = ImBool.from(true);
+  ImBool no_resize = ImBool.from(false);
+  ImBool no_move = ImBool.from(false);
+  ImBool no_scrollbar = ImBool.from(false);
+  ImBool no_collapse = ImBool.from(false);
+  ImBool no_menu = ImBool.from(false);
 
+
+  ImBool align_label_with_current_x_position = ImBool.from(false);
+
+  int selection_mask = (1 << 2); // Dumb representation of what may be user-side selection state. You may carry selection state inside or outside your objects in whatever format you see fit.
 
   @Override
   public void renderGui() {
@@ -122,315 +120,320 @@ public class PortedNativeDemo extends ImDemoApp {
     ImGui.spacing();
     if (ImGui.collapsingHeader("Help")) {
       ImGui.textWrapped("This window is being created by the ShowTestWindow() function. Please refer to the code for programming reference.\n\nUser Guide:");
-      // TODO: ported showUserGuide();
+      // TODO: port showUserGuide();
+      ImGui.text("//TODO: port ImGui::ShowUserGuide();");
     }
 
     if (ImGui.collapsingHeader("Window options")) {
-      ImGui.checkbox("No titlebar", no_titlebar); ImGui.sameLine(150);
-      ImGui.checkbox("No border", no_border); ImGui.sameLine(300);
+      ImGui.checkbox("No titlebar", no_titlebar);
+      ImGui.sameLine(150);
+      ImGui.checkbox("No border", no_border);
+      ImGui.sameLine(300);
       ImGui.checkbox("No resize", no_resize);
-      ImGui.checkbox("No move", no_move); ImGui.sameLine(150);
-      ImGui.checkbox("No scrollbar", no_scrollbar); ImGui.sameLine(300);
+      ImGui.checkbox("No move", no_move);
+      ImGui.sameLine(150);
+      ImGui.checkbox("No scrollbar", no_scrollbar);
+      ImGui.sameLine(300);
       ImGui.checkbox("No collapse", no_collapse);
       ImGui.checkbox("No menu", no_menu);
 
-      /*if (ImGui::TreeNode("Style"))
-      {
-        ImGui::ShowStyleEditor();
-        ImGui::TreePop();
+      if (ImGui.treeNode("Style")) {
+        // TODO port ImGui::ShowStyleEditor();
+        ImGui.text("//TODO: port ImGui::ShowStyleEditor();");
+        ImGui.treePop();
       }
 
-      if (ImGui::TreeNode("Logging"))
-      {
-        ImGui::TextWrapped("The logging API redirects all text output so you can easily capture the content of a window or a block. Tree nodes can be automatically expanded. You can also call ImGui::LogText() to output directly to the log without a visual output.");
-        ImGui::LogButtons();
-        ImGui::TreePop();
-      }*/
+      if (ImGui.treeNode("Logging")) {
+        ImGui.textWrapped("The logging API redirects all text output so you can easily capture the content of a window or a block. Tree nodes can be automatically expanded. You can also call ImGui::LogText() to output directly to the log without a visual output.");
+        ImGui.logButtons();
+        ImGui.treePop();
+      }
     }
-//
-//    if (ImGui::CollapsingHeader("Widgets"))
-//    {
-//      if (ImGui::TreeNode("Trees"))
-//      {
-//        if (ImGui::TreeNode("Basic trees"))
-//        {
-//          for (int i = 0; i < 5; i++)
-//            if (ImGui::TreeNode((void*)(intptr_t)i, "Child %d", i))
-//          {
-//            ImGui::Text("blah blah");
-//            ImGui::SameLine();
-//            if (ImGui::SmallButton("print")) printf("Child %d pressed", i);
-//            ImGui::TreePop();
-//          }
-//          ImGui::TreePop();
-//        }
-//
-//        if (ImGui::TreeNode("Advanced, with Selectable nodes"))
-//        {
-//          ShowHelpMarker("This is a more standard looking tree with selectable nodes.\nClick to select, CTRL+Click to toggle, click on arrows or double-click to open.");
-//          static bool align_label_with_current_x_position = false;
-//          ImGui::Checkbox("Align label with current X position)", &align_label_with_current_x_position);
-//          ImGui::Text("Hello!");
-//          if (align_label_with_current_x_position)
-//            ImGui::Unindent(ImGui::GetTreeNodeToLabelSpacing());
-//
-//          static int selection_mask = (1 << 2); // Dumb representation of what may be user-side selection state. You may carry selection state inside or outside your objects in whatever format you see fit.
-//          int node_clicked = -1;                // Temporary storage of what node we have clicked to process selection at the end of the loop. May be a pointer to your own node type, etc.
-//          ImGui::PushStyleVar(ImGuiStyleVar_IndentSpacing, ImGui::GetFontSize()*3); // Increase spacing to differentiate leaves from expanded contents.
-//          for (int i = 0; i < 6; i++)
-//          {
-//            // Disable the default open on single-click behavior and pass in Selected flag according to our selection state.
-//            ImGuiTreeNodeFlags node_flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ((selection_mask & (1 << i)) ? ImGuiTreeNodeFlags_Selected : 0);
-//            if (i < 3)
-//            {
-//              // Node
-//              bool node_open = ImGui::TreeNodeEx((void*)(intptr_t)i, node_flags, "Selectable Node %d", i);
-//              if (ImGui::IsItemClicked())
-//              node_clicked = i;
-//              if (node_open)
-//              {
-//                ImGui::Text("Blah blah\nBlah Blah");
-//                ImGui::TreePop();
-//              }
-//            }
-//            else
-//            {
-//              // Leaf: The only reason we have a TreeNode at all is to allow selection of the leaf. Otherwise we can use BulletText() or TreeAdvanceToLabelPos()+Text().
-//              ImGui::TreeNodeEx((void*)(intptr_t)i, node_flags | ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen, "Selectable Leaf %d", i);
-//              if (ImGui::IsItemClicked())
-//              node_clicked = i;
-//            }
-//          }
-//          if (node_clicked != -1)
-//          {
-//            // Update selection state. Process outside of tree loop to avoid visual inconsistencies during the clicking-frame.
-//            if (ImGui::GetIO().KeyCtrl)
-//            selection_mask ^= (1 << node_clicked);          // CTRL+click to toggle
-//                    else //if (!(selection_mask & (1 << node_clicked))) // Depending on selection behavior you want, this commented bit preserve selection when clicking on item that is part of the selection
-//            selection_mask = (1 << node_clicked);           // Click to single-select
-//          }
-//          ImGui::PopStyleVar();
-//          if (align_label_with_current_x_position)
-//            ImGui::Indent(ImGui::GetTreeNodeToLabelSpacing());
-//          ImGui::TreePop();
-//        }
-//        ImGui::TreePop();
-//      }
-//
-//      if (ImGui::TreeNode("Collapsing Headers"))
-//      {
-//        static bool closable_group = true;
-//        if (ImGui::CollapsingHeader("Header"))
-//        {
-//          ImGui::Checkbox("Enable extra group", &closable_group);
-//          for (int i = 0; i < 5; i++)
-//            ImGui::Text("Some content %d", i);
-//        }
-//        if (ImGui::CollapsingHeader("Header with a close button", &closable_group))
-//        {
-//          for (int i = 0; i < 5; i++)
-//            ImGui::Text("More content %d", i);
-//        }
-//        ImGui::TreePop();
-//      }
-//
-//      if (ImGui::TreeNode("Bullets"))
-//      {
-//        ImGui::BulletText("Bullet point 1");
-//        ImGui::BulletText("Bullet point 2\nOn multiple lines");
-//        ImGui::Bullet(); ImGui::Text("Bullet point 3 (two calls)");
-//        ImGui::Bullet(); ImGui::SmallButton("Button");
-//        ImGui::TreePop();
-//      }
-//
-//      if (ImGui::TreeNode("Colored Text"))
-//      {
-//        // Using shortcut. You can use PushStyleColor()/PopStyleColor() for more flexibility.
-//        ImGui::TextColored(ImVec4(1.0f,0.0f,1.0f,1.0f), "Pink");
-//        ImGui::TextColored(ImVec4(1.0f,1.0f,0.0f,1.0f), "Yellow");
-//        ImGui::TextDisabled("Disabled");
-//        ImGui::TreePop();
-//      }
-//
-//      if (ImGui::TreeNode("Word Wrapping"))
-//      {
-//        // Using shortcut. You can use PushTextWrapPos()/PopTextWrapPos() for more flexibility.
-//        ImGui::TextWrapped("This text should automatically wrap on the edge of the window. The current implementation for text wrapping follows simple rules suitable for English and possibly other languages.");
-//        ImGui::Spacing();
-//
-//        static float wrap_width = 200.0f;
-//        ImGui::SliderFloat("Wrap width", &wrap_width, -20, 600, "%.0f");
-//
-//        ImGui::Text("Test paragraph 1:");
-//        ImVec2 pos = ImGui::GetCursorScreenPos();
-//        ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(pos.x + wrap_width, pos.y), ImVec2(pos.x + wrap_width + 10, pos.y + ImGui::GetTextLineHeight()), IM_COL32(255,0,255,255));
-//        ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + wrap_width);
-//        ImGui::Text("The lazy dog is a good dog. This paragraph is made to fit within %.0f pixels. Testing a 1 character word. The quick brown fox jumps over the lazy dog.", wrap_width);
-//        ImGui::GetWindowDrawList()->AddRect(ImGui::GetItemRectMin(), ImGui::GetItemRectMax(), IM_COL32(255,255,0,255));
-//        ImGui::PopTextWrapPos();
-//
-//        ImGui::Text("Test paragraph 2:");
-//        pos = ImGui::GetCursorScreenPos();
-//        ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(pos.x + wrap_width, pos.y), ImVec2(pos.x + wrap_width + 10, pos.y + ImGui::GetTextLineHeight()), IM_COL32(255,0,255,255));
-//        ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + wrap_width);
-//        ImGui::Text("aaaaaaaa bbbbbbbb, c cccccccc,dddddddd. d eeeeeeee   ffffffff. gggggggg!hhhhhhhh");
-//        ImGui::GetWindowDrawList()->AddRect(ImGui::GetItemRectMin(), ImGui::GetItemRectMax(), IM_COL32(255,255,0,255));
-//        ImGui::PopTextWrapPos();
-//
-//        ImGui::TreePop();
-//      }
-//
-//      if (ImGui::TreeNode("UTF-8 Text"))
-//      {
-//        // UTF-8 test with Japanese characters
-//        // (needs a suitable font, try Arial Unicode or M+ fonts http://mplus-fonts.sourceforge.jp/mplus-outline-fonts/index-en.html)
-//        // Most compiler appears to support UTF-8 in source code (with Visual Studio you need to save your file as 'UTF-8 without signature')
-//        // However for the sake for maximum portability here we are *not* including raw UTF-8 character in this source file, instead we encode the string with hexadecimal constants.
-//        // In your own application be reasonable and use UTF-8 in source or retrieve the data from file system!
-//        // Note that characters values are preserved even if the font cannot be displayed, so you can safely copy & paste garbled characters into another application.
-//        ImGui::TextWrapped("CJK text will only appears if the font was loaded with the appropriate CJK character ranges. Call io.Font->LoadFromFileTTF() manually to load extra character ranges.");
-//        ImGui::Text("Hiragana: \xe3\x81\x8b\xe3\x81\x8d\xe3\x81\x8f\xe3\x81\x91\xe3\x81\x93 (kakikukeko)");
-//        ImGui::Text("Kanjis: \xe6\x97\xa5\xe6\x9c\xac\xe8\xaa\x9e (nihongo)");
-//        static char buf[32] = "\xe6\x97\xa5\xe6\x9c\xac\xe8\xaa\x9e";
-//        ImGui::InputText("UTF-8 input", buf, IM_ARRAYSIZE(buf));
-//        ImGui::TreePop();
-//      }
-//
-//      if (ImGui::TreeNode("Images"))
-//      {
-//        ImGui::TextWrapped("Below we are displaying the font texture (which is the only texture we have access to in this demo). Use the 'ImTextureID' type as storage to pass pointers or identifier to your own texture data. Hover the texture for a zoomed view!");
-//        ImVec2 tex_screen_pos = ImGui::GetCursorScreenPos();
-//        float tex_w = (float)ImGui::GetIO().Fonts->TexWidth;
-//        float tex_h = (float)ImGui::GetIO().Fonts->TexHeight;
-//        ImTextureID tex_id = ImGui::GetIO().Fonts->TexID;
-//        ImGui::Text("%.0fx%.0f", tex_w, tex_h);
-//        ImGui::Image(tex_id, ImVec2(tex_w, tex_h), ImVec2(0,0), ImVec2(1,1), ImColor(255,255,255,255), ImColor(255,255,255,128));
-//        if (ImGui::IsItemHovered())
-//        {
-//          ImGui::BeginTooltip();
-//          float focus_sz = 32.0f;
-//          float focus_x = ImGui::GetMousePos().x - tex_screen_pos.x - focus_sz * 0.5f; if (focus_x < 0.0f) focus_x = 0.0f; else if (focus_x > tex_w - focus_sz) focus_x = tex_w - focus_sz;
-//          float focus_y = ImGui::GetMousePos().y - tex_screen_pos.y - focus_sz * 0.5f; if (focus_y < 0.0f) focus_y = 0.0f; else if (focus_y > tex_h - focus_sz) focus_y = tex_h - focus_sz;
-//          ImGui::Text("Min: (%.2f, %.2f)", focus_x, focus_y);
-//          ImGui::Text("Max: (%.2f, %.2f)", focus_x + focus_sz, focus_y + focus_sz);
-//          ImVec2 uv0 = ImVec2((focus_x) / tex_w, (focus_y) / tex_h);
-//          ImVec2 uv1 = ImVec2((focus_x + focus_sz) / tex_w, (focus_y + focus_sz) / tex_h);
-//          ImGui::Image(tex_id, ImVec2(128,128), uv0, uv1, ImColor(255,255,255,255), ImColor(255,255,255,128));
-//          ImGui::EndTooltip();
-//        }
-//        ImGui::TextWrapped("And now some textured buttons..");
-//        static int pressed_count = 0;
-//        for (int i = 0; i < 8; i++)
-//        {
-//          ImGui::PushID(i);
-//          int frame_padding = -1 + i;     // -1 = uses default padding
-//          if (ImGui::ImageButton(tex_id, ImVec2(32,32), ImVec2(0,0), ImVec2(32.0f/tex_w,32/tex_h), frame_padding, ImColor(0,0,0,255)))
-//          pressed_count += 1;
-//          ImGui::PopID();
-//          ImGui::SameLine();
-//        }
-//        ImGui::NewLine();
-//        ImGui::Text("Pressed %d times.", pressed_count);
-//        ImGui::TreePop();
-//      }
-//
-//      if (ImGui::TreeNode("Selectables"))
-//      {
-//        if (ImGui::TreeNode("Basic"))
-//        {
-//          static bool selected[4] = { false, true, false, false };
-//          ImGui::Selectable("1. I am selectable", &selected[0]);
-//          ImGui::Selectable("2. I am selectable", &selected[1]);
-//          ImGui::Text("3. I am not selectable");
-//          ImGui::Selectable("4. I am selectable", &selected[2]);
-//          if (ImGui::Selectable("5. I am double clickable", selected[3], ImGuiSelectableFlags_AllowDoubleClick))
-//          if (ImGui::IsMouseDoubleClicked(0))
-//          selected[3] = !selected[3];
-//          ImGui::TreePop();
-//        }
-//        if (ImGui::TreeNode("Rendering more text into the same block"))
-//        {
-//          static bool selected[3] = { false, false, false };
-//          ImGui::Selectable("main.c", &selected[0]);    ImGui::SameLine(300); ImGui::Text(" 2,345 bytes");
-//          ImGui::Selectable("Hello.cpp", &selected[1]); ImGui::SameLine(300); ImGui::Text("12,345 bytes");
-//          ImGui::Selectable("Hello.h", &selected[2]);   ImGui::SameLine(300); ImGui::Text(" 2,345 bytes");
-//          ImGui::TreePop();
-//        }
-//        if (ImGui::TreeNode("In columns"))
-//        {
-//          ImGui::Columns(3, NULL, false);
-//          static bool selected[16] = { 0 };
-//          for (int i = 0; i < 16; i++)
-//          {
-//            char label[32]; sprintf(label, "Item %d", i);
-//            if (ImGui::Selectable(label, &selected[i])) {}
-//            ImGui::NextColumn();
-//          }
-//          ImGui::Columns(1);
-//          ImGui::TreePop();
-//        }
-//        if (ImGui::TreeNode("Grid"))
-//        {
-//          static bool selected[16] = { true, false, false, false, false, true, false, false, false, false, true, false, false, false, false, true };
-//          for (int i = 0; i < 16; i++)
-//          {
-//            ImGui::PushID(i);
-//            if (ImGui::Selectable("Sailor", &selected[i], 0, ImVec2(50,50)))
-//            {
-//              int x = i % 4, y = i / 4;
-//              if (x > 0) selected[i - 1] ^= 1;
-//              if (x < 3) selected[i + 1] ^= 1;
-//              if (y > 0) selected[i - 4] ^= 1;
-//              if (y < 3) selected[i + 4] ^= 1;
-//            }
-//            if ((i % 4) < 3) ImGui::SameLine();
-//            ImGui::PopID();
-//          }
-//          ImGui::TreePop();
-//        }
-//        ImGui::TreePop();
-//      }
-//
-//      if (ImGui::TreeNode("Filtered Text Input"))
-//      {
-//        static char buf1[64] = ""; ImGui::InputText("default", buf1, 64);
-//        static char buf2[64] = ""; ImGui::InputText("decimal", buf2, 64, ImGuiInputTextFlags_CharsDecimal);
-//        static char buf3[64] = ""; ImGui::InputText("hexadecimal", buf3, 64, ImGuiInputTextFlags_CharsHexadecimal | ImGuiInputTextFlags_CharsUppercase);
-//        static char buf4[64] = ""; ImGui::InputText("uppercase", buf4, 64, ImGuiInputTextFlags_CharsUppercase);
-//        static char buf5[64] = ""; ImGui::InputText("no blank", buf5, 64, ImGuiInputTextFlags_CharsNoBlank);
-//        struct TextFilters { static int FilterImGuiLetters(ImGuiTextEditCallbackData* data) { if (data->EventChar < 256 && strchr("imgui", (char)data->EventChar)) return 0; return 1; } };
-//        static char buf6[64] = ""; ImGui::InputText("\"imgui\" letters", buf6, 64, ImGuiInputTextFlags_CallbackCharFilter, TextFilters::FilterImGuiLetters);
-//
-//        ImGui::Text("Password input");
-//        static char bufpass[64] = "password123";
-//        ImGui::InputText("password", bufpass, 64, ImGuiInputTextFlags_Password | ImGuiInputTextFlags_CharsNoBlank);
-//        ImGui::SameLine(); ShowHelpMarker("Display all characters as '*'.\nDisable clipboard cut and copy.\nDisable logging.\n");
-//        ImGui::InputText("password (clear)", bufpass, 64, ImGuiInputTextFlags_CharsNoBlank);
-//
-//        ImGui::TreePop();
-//      }
-//
-//      if (ImGui::TreeNode("Multi-line Text Input"))
-//      {
-//        static bool read_only = false;
-//        static char text[1024*16] =
-//        "/*\n"
-//        " The Pentium F00F bug, shorthand for F0 0F C7 C8,\n"
-//        " the hexadecimal encoding of one offending instruction,\n"
-//        " more formally, the invalid operand with locked CMPXCHG8B\n"
-//        " instruction bug, is a design flaw in the majority of\n"
-//        " Intel Pentium, Pentium MMX, and Pentium OverDrive\n"
-//        " processors (all in the P5 microarchitecture).\n"
-//        "*/\n\n"
-//        "label:\n"
-//        "\tlock cmpxchg8b eax\n";
-//
-//        ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(0,0));
-//        ImGui::Checkbox("Read-only", &read_only);
-//        ImGui::PopStyleVar();
-//        ImGui::InputTextMultiline("##source", text, IM_ARRAYSIZE(text), ImVec2(-1.0f, ImGui::GetTextLineHeight() * 16), ImGuiInputTextFlags_AllowTabInput | (read_only ? ImGuiInputTextFlags_ReadOnly : 0));
-//        ImGui::TreePop();
-//      }
+
+    if (ImGui.collapsingHeader("Widgets")) {
+      if (ImGui.treeNode("Trees")) {
+        if (ImGui.treeNode("Basic trees")) {
+          for (int i = 0; i < 5; i++) {
+            if (ImGui.treeNode(String.format("Child %d", i))) {
+              //TODO node with ids
+              //if (ImGui.treeNode((void*)(intptr_t) i, "Child %d", i)){
+              ImGui.text("blah blah");
+              ImGui.sameLine();
+              if (ImGui.smallButton("print")) {
+                System.out.println(String.format("Child %d pressed", i));
+              }
+              ImGui.treePop();
+            }
+
+          }
+          ImGui.treePop(); // basic trees
+        }
+
+
+        if (ImGui.treeNode("Advanced, with Selectable nodes")) {
+          //TODO ShowHelpMarker("This is a more standard looking tree with selectable nodes.\nClick to select, CTRL+Click to toggle, click on arrows or double-click to open.");
+
+          ImGui.checkbox("Align label with current X position)", align_label_with_current_x_position);
+          ImGui.text("Hello!");
+          if (align_label_with_current_x_position.value) {
+            ImGui.unindent(ImGui.getTreeNodeToLabelSpacing());
+          }
+
+          int node_clicked = -1; // Temporary storage of what node we have clicked to process selection at the end of the loop. May be a pointer to your own node type, etc.
+          ImGui.pushStyleVar(ImGuiStyleVar.IndentSpacing, ImGui.getFontSize()*3); // Increase spacing to differentiate leaves from expanded contents.
+          for (int i = 0; i < 6; i++)
+          {
+            // Disable the default open on single-click behavior and pass in Selected flag according to our selection state.
+            int s = 0;
+            if ((selection_mask & (1 << i)) != 0) {
+              s = ImGuiTreeNodeFlags.Selected;
+            }
+            
+            int node_flags = ImGuiTreeNodeFlags.OpenOnArrow | ImGuiTreeNodeFlags.OpenOnDoubleClick | s;
+
+            if (i < 3)
+            {
+              // Node
+              boolean node_open = ImGui::TreeNodeEx((void*)(intptr_t)i, node_flags, "Selectable Node %d", i);
+              if (ImGui::IsItemClicked())
+              node_clicked = i;
+              if (node_open)
+              {
+                ImGui::Text("Blah blah\nBlah Blah");
+                ImGui::TreePop();
+              }
+            }
+            else
+            {
+              // Leaf: The only reason we have a TreeNode at all is to allow selection of the leaf. Otherwise we can use BulletText() or TreeAdvanceToLabelPos()+Text().
+              ImGui::TreeNodeEx((void*)(intptr_t)i, node_flags | ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen, "Selectable Leaf %d", i);
+              if (ImGui::IsItemClicked())
+              node_clicked = i;
+            }
+          }
+          if (node_clicked != -1)
+          {
+            // Update selection state. Process outside of tree loop to avoid visual inconsistencies during the clicking-frame.
+            if (ImGui::GetIO().KeyCtrl)
+            selection_mask ^= (1 << node_clicked);          // CTRL+click to toggle
+                    else //if (!(selection_mask & (1 << node_clicked))) // Depending on selection behavior you want, this commented bit preserve selection when clicking on item that is part of the selection
+            selection_mask = (1 << node_clicked);           // Click to single-select
+          }
+          ImGui::PopStyleVar();
+          if (align_label_with_current_x_position)
+            ImGui::Indent(ImGui::GetTreeNodeToLabelSpacing());
+          ImGui::TreePop();
+        }
+          ImGui.treePop(); // advanced trees
+        }
+        ImGui.treePop(); // trees
+      }
+
+        if (ImGui.treeNode("Collapsing Headers")) {
+        /*static bool closable_group = true;
+        if (ImGui::CollapsingHeader("Header"))
+        {
+          ImGui::Checkbox("Enable extra group", &closable_group);
+          for (int i = 0; i < 5; i++)
+            ImGui::Text("Some content %d", i);
+        }
+        if (ImGui::CollapsingHeader("Header with a close button", &closable_group))
+        {
+          for (int i = 0; i < 5; i++)
+            ImGui::Text("More content %d", i);
+        }*/
+          ImGui.treePop(); // collapsing headers
+        }
+
+        if (ImGui.treeNode("Bullets")) {
+        /*ImGui::BulletText("Bullet point 1");
+        ImGui::BulletText("Bullet point 2\nOn multiple lines");
+        ImGui::Bullet(); ImGui::Text("Bullet point 3 (two calls)");
+        ImGui::Bullet(); ImGui::SmallButton("Button");*/
+          ImGui.treePop();
+        }
+
+        if (ImGui.treeNode("Colored Text")) {
+          // Using shortcut. You can use PushStyleColor()/PopStyleColor() for more flexibility.
+        /*ImGui::TextColored(ImVec4(1.0f,0.0f,1.0f,1.0f), "Pink");
+        ImGui::TextColored(ImVec4(1.0f,1.0f,0.0f,1.0f), "Yellow");
+        ImGui::TextDisabled("Disabled");*/
+          ImGui.treePop();
+        }
+
+        if (ImGui.treeNode("Word Wrapping")) {
+          // Using shortcut. You can use PushTextWrapPos()/PopTextWrapPos() for more flexibility.
+        /*ImGui::TextWrapped("This text should automatically wrap on the edge of the window. The current implementation for text wrapping follows simple rules suitable for English and possibly other languages.");
+        ImGui::Spacing();
+
+        static float wrap_width = 200.0f;
+        ImGui::SliderFloat("Wrap width", &wrap_width, -20, 600, "%.0f");
+
+        ImGui::Text("Test paragraph 1:");
+        ImVec2 pos = ImGui::GetCursorScreenPos();
+        ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(pos.x + wrap_width, pos.y), ImVec2(pos.x + wrap_width + 10, pos.y + ImGui::GetTextLineHeight()), IM_COL32(255,0,255,255));
+        ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + wrap_width);
+        ImGui::Text("The lazy dog is a good dog. This paragraph is made to fit within %.0f pixels. Testing a 1 character word. The quick brown fox jumps over the lazy dog.", wrap_width);
+        ImGui::GetWindowDrawList()->AddRect(ImGui::GetItemRectMin(), ImGui::GetItemRectMax(), IM_COL32(255,255,0,255));
+        ImGui::PopTextWrapPos();
+
+        ImGui::Text("Test paragraph 2:");
+        pos = ImGui::GetCursorScreenPos();
+        ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(pos.x + wrap_width, pos.y), ImVec2(pos.x + wrap_width + 10, pos.y + ImGui::GetTextLineHeight()), IM_COL32(255,0,255,255));
+        ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + wrap_width);
+        ImGui::Text("aaaaaaaa bbbbbbbb, c cccccccc,dddddddd. d eeeeeeee   ffffffff. gggggggg!hhhhhhhh");
+        ImGui::GetWindowDrawList()->AddRect(ImGui::GetItemRectMin(), ImGui::GetItemRectMax(), IM_COL32(255,255,0,255));
+        ImGui::PopTextWrapPos();
+*/
+          ImGui.treePop();
+        }
+
+        if (ImGui.treeNode("UTF-8 Text")) {
+          // UTF-8 test with Japanese characters
+          // (needs a suitable font, try Arial Unicode or M+ fonts http://mplus-fonts.sourceforge.jp/mplus-outline-fonts/index-en.html)
+          // Most compiler appears to support UTF-8 in source code (with Visual Studio you need to save your file as 'UTF-8 without signature')
+          // However for the sake for maximum portability here we are *not* including raw UTF-8 character in this source file, instead we encode the string with hexadecimal constants.
+          // In your own application be reasonable and use UTF-8 in source or retrieve the data from file system!
+          // Note that characters values are preserved even if the font cannot be displayed, so you can safely copy & paste garbled characters into another application.
+        /*ImGui::TextWrapped("CJK text will only appears if the font was loaded with the appropriate CJK character ranges. Call io.Font->LoadFromFileTTF() manually to load extra character ranges.");
+        ImGui::Text("Hiragana: \xe3\x81\x8b\xe3\x81\x8d\xe3\x81\x8f\xe3\x81\x91\xe3\x81\x93 (kakikukeko)");
+        ImGui::Text("Kanjis: \xe6\x97\xa5\xe6\x9c\xac\xe8\xaa\x9e (nihongo)");
+        static char buf[32] = "\xe6\x97\xa5\xe6\x9c\xac\xe8\xaa\x9e";
+        ImGui::InputText("UTF-8 input", buf, IM_ARRAYSIZE(buf));*/
+          ImGui.treePop();
+        }
+
+        if (ImGui.treeNode("Images")) {
+        /*ImGui::TextWrapped("Below we are displaying the font texture (which is the only texture we have access to in this demo). Use the 'ImTextureID' type as storage to pass pointers or identifier to your own texture data. Hover the texture for a zoomed view!");
+        ImVec2 tex_screen_pos = ImGui::GetCursorScreenPos();
+        float tex_w = (float)ImGui::GetIO().Fonts->TexWidth;
+        float tex_h = (float)ImGui::GetIO().Fonts->TexHeight;
+        ImTextureID tex_id = ImGui::GetIO().Fonts->TexID;
+        ImGui::Text("%.0fx%.0f", tex_w, tex_h);
+        ImGui::Image(tex_id, ImVec2(tex_w, tex_h), ImVec2(0,0), ImVec2(1,1), ImColor(255,255,255,255), ImColor(255,255,255,128));
+        if (ImGui::IsItemHovered())
+        {
+          ImGui::BeginTooltip();
+          float focus_sz = 32.0f;
+          float focus_x = ImGui::GetMousePos().x - tex_screen_pos.x - focus_sz * 0.5f; if (focus_x < 0.0f) focus_x = 0.0f; else if (focus_x > tex_w - focus_sz) focus_x = tex_w - focus_sz;
+          float focus_y = ImGui::GetMousePos().y - tex_screen_pos.y - focus_sz * 0.5f; if (focus_y < 0.0f) focus_y = 0.0f; else if (focus_y > tex_h - focus_sz) focus_y = tex_h - focus_sz;
+          ImGui::Text("Min: (%.2f, %.2f)", focus_x, focus_y);
+          ImGui::Text("Max: (%.2f, %.2f)", focus_x + focus_sz, focus_y + focus_sz);
+          ImVec2 uv0 = ImVec2((focus_x) / tex_w, (focus_y) / tex_h);
+          ImVec2 uv1 = ImVec2((focus_x + focus_sz) / tex_w, (focus_y + focus_sz) / tex_h);
+          ImGui::Image(tex_id, ImVec2(128,128), uv0, uv1, ImColor(255,255,255,255), ImColor(255,255,255,128));
+          ImGui::EndTooltip();
+        }
+        ImGui::TextWrapped("And now some textured buttons..");
+        static int pressed_count = 0;
+        for (int i = 0; i < 8; i++)
+        {
+          ImGui::PushID(i);
+          int frame_padding = -1 + i;     // -1 = uses default padding
+          if (ImGui::ImageButton(tex_id, ImVec2(32,32), ImVec2(0,0), ImVec2(32.0f/tex_w,32/tex_h), frame_padding, ImColor(0,0,0,255)))
+          pressed_count += 1;
+          ImGui::PopID();
+          ImGui::SameLine();
+        }
+        ImGui::NewLine();
+        ImGui::Text("Pressed %d times.", pressed_count);*/
+          ImGui.treePop();
+        }
+
+        if (ImGui.treeNode("Selectables")) {
+        /*if (ImGui::TreeNode("Basic"))
+        {
+          static bool selected[4] = { false, true, false, false };
+          ImGui::Selectable("1. I am selectable", &selected[0]);
+          ImGui::Selectable("2. I am selectable", &selected[1]);
+          ImGui::Text("3. I am not selectable");
+          ImGui::Selectable("4. I am selectable", &selected[2]);
+          if (ImGui::Selectable("5. I am double clickable", selected[3], ImGuiSelectableFlags_AllowDoubleClick))
+          if (ImGui::IsMouseDoubleClicked(0))
+          selected[3] = !selected[3];
+          ImGui::TreePop();
+        }
+        if (ImGui::TreeNode("Rendering more text into the same block"))
+        {
+          static bool selected[3] = { false, false, false };
+          ImGui::Selectable("main.c", &selected[0]);    ImGui::SameLine(300); ImGui::Text(" 2,345 bytes");
+          ImGui::Selectable("Hello.cpp", &selected[1]); ImGui::SameLine(300); ImGui::Text("12,345 bytes");
+          ImGui::Selectable("Hello.h", &selected[2]);   ImGui::SameLine(300); ImGui::Text(" 2,345 bytes");
+          ImGui::TreePop();
+        }
+        if (ImGui::TreeNode("In columns"))
+        {
+          ImGui::Columns(3, NULL, false);
+          static bool selected[16] = { 0 };
+          for (int i = 0; i < 16; i++)
+          {
+            char label[32]; sprintf(label, "Item %d", i);
+            if (ImGui::Selectable(label, &selected[i])) {}
+            ImGui::NextColumn();
+          }
+          ImGui::Columns(1);
+          ImGui::TreePop();
+        }
+        if (ImGui::TreeNode("Grid"))
+        {
+          static bool selected[16] = { true, false, false, false, false, true, false, false, false, false, true, false, false, false, false, true };
+          for (int i = 0; i < 16; i++)
+          {
+            ImGui::PushID(i);
+            if (ImGui::Selectable("Sailor", &selected[i], 0, ImVec2(50,50)))
+            {
+              int x = i % 4, y = i / 4;
+              if (x > 0) selected[i - 1] ^= 1;
+              if (x < 3) selected[i + 1] ^= 1;
+              if (y > 0) selected[i - 4] ^= 1;
+              if (y < 3) selected[i + 4] ^= 1;
+            }
+            if ((i % 4) < 3) ImGui::SameLine();
+            ImGui::PopID();
+          }
+          ImGui::TreePop();
+        }*/
+          ImGui.treePop();
+        }
+
+        if (ImGui.treeNode("Filtered Text Input")) {
+        /*static char buf1[64] = ""; ImGui::InputText("default", buf1, 64);
+        static char buf2[64] = ""; ImGui::InputText("decimal", buf2, 64, ImGuiInputTextFlags_CharsDecimal);
+        static char buf3[64] = ""; ImGui::InputText("hexadecimal", buf3, 64, ImGuiInputTextFlags_CharsHexadecimal | ImGuiInputTextFlags_CharsUppercase);
+        static char buf4[64] = ""; ImGui::InputText("uppercase", buf4, 64, ImGuiInputTextFlags_CharsUppercase);
+        static char buf5[64] = ""; ImGui::InputText("no blank", buf5, 64, ImGuiInputTextFlags_CharsNoBlank);
+        struct TextFilters { static int FilterImGuiLetters(ImGuiTextEditCallbackData* data) { if (data->EventChar < 256 && strchr("imgui", (char)data->EventChar)) return 0; return 1; } };
+        static char buf6[64] = ""; ImGui::InputText("\"imgui\" letters", buf6, 64, ImGuiInputTextFlags_CallbackCharFilter, TextFilters::FilterImGuiLetters);
+
+        ImGui::Text("Password input");
+        static char bufpass[64] = "password123";
+        ImGui::InputText("password", bufpass, 64, ImGuiInputTextFlags_Password | ImGuiInputTextFlags_CharsNoBlank);
+        ImGui::SameLine(); ShowHelpMarker("Display all characters as '*'.\nDisable clipboard cut and copy.\nDisable logging.\n");
+        ImGui::InputText("password (clear)", bufpass, 64, ImGuiInputTextFlags_CharsNoBlank);*/
+
+          ImGui.treePop();
+        }
+
+        if (ImGui.treeNode("Multi-line Text Input")) {
+        /*static bool read_only = false;
+        static char text[1024*16] =
+        "*//*\n"
+        " The Pentium F00F bug, shorthand for F0 0F C7 C8,\n"
+        " the hexadecimal encoding of one offending instruction,\n"
+        " more formally, the invalid operand with locked CMPXCHG8B\n"
+        " instruction bug, is a design flaw in the majority of\n"
+        " Intel Pentium, Pentium MMX, and Pentium OverDrive\n"
+        " processors (all in the P5 microarchitecture).\n"
+        "*//*\n\n"
+        "label:\n"
+        "\tlock cmpxchg8b eax\n";
+
+        ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(0,0));
+        ImGui::Checkbox("Read-only", &read_only);
+        ImGui::PopStyleVar();
+        ImGui::InputTextMultiline("##source", text, IM_ARRAYSIZE(text), ImVec2(-1.0f, ImGui::GetTextLineHeight() * 16), ImGuiInputTextFlags_AllowTabInput | (read_only ? ImGuiInputTextFlags_ReadOnly : 0));*/
+          ImGui.treePop();
+        }
 //
 //      static bool a=false;
 //      if (ImGui::Button("Button")) { printf("Clicked\n"); a ^= 1; }
@@ -1517,6 +1520,10 @@ public class PortedNativeDemo extends ImDemoApp {
 //      }
 //    }
 //
+
+      }
+
     ImGui.end();
+    }
   }
-}
+
