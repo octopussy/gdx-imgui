@@ -157,7 +157,7 @@ public class PortedNativeDemo extends ImDemoApp {
       columnsWithSingleCell();
     }
 
-    if (ImGui.collapsingHeader("Filtering")){
+    if (ImGui.collapsingHeader("Filtering")) {
 //      static ImGuiTextFilter filter;
 //      ImGui::Text("Filter usage:\n"
 //      "  \"\"         display all lines\n"
@@ -200,6 +200,7 @@ public class PortedNativeDemo extends ImDemoApp {
 //        ImGui::TreePop();
 //      }
   }
+
   private void keyboardMouseState() {
     //
 //      if (ImGui::TreeNode("Keyboard & Mouse State"))
@@ -233,6 +234,7 @@ public class PortedNativeDemo extends ImDemoApp {
 //        ImGui::TreePop();
 //      }
   }
+
   private void dragging() {
     //      if (ImGui::TreeNode("Dragging"))
 //      {
@@ -253,6 +255,7 @@ public class PortedNativeDemo extends ImDemoApp {
 //        ImGui::TreePop();
 //      }
   }
+
   private void focusFromCode() {
     //      if (ImGui::TreeNode("Focus from code"))
 //      {
@@ -283,6 +286,7 @@ public class PortedNativeDemo extends ImDemoApp {
 //        ImGui::TreePop();
 //      }
   }
+
   private void tabbing() {
     //      if (ImGui::TreeNode("Tabbing"))
 //      {
@@ -299,6 +303,7 @@ public class PortedNativeDemo extends ImDemoApp {
 //        ImGui::TreePop();
 //      }
   }
+
   private void columnsWithSingleCell() {
     //
 //      bool node_open = ImGui::TreeNode("Tree within single cell");
@@ -314,6 +319,7 @@ public class PortedNativeDemo extends ImDemoApp {
 //        ImGui::TreePop();
 //      }
   }
+
   private void columnsBorders() {
     //
 //      if (ImGui::TreeNode("Borders"))
@@ -335,6 +341,7 @@ public class PortedNativeDemo extends ImDemoApp {
 //        ImGui::TreePop();
 //      }
   }
+
   private void columnsWorldWrap() {
     //
 //      // Word wrapping
@@ -352,6 +359,7 @@ public class PortedNativeDemo extends ImDemoApp {
 //        ImGui::TreePop();
 //      }
   }
+
   private void columnsMixed() {
     //      // Create multiple items in a same cell before switching to next column
 //      if (ImGui::TreeNode("Mixed items"))
@@ -384,6 +392,7 @@ public class PortedNativeDemo extends ImDemoApp {
 //        ImGui::TreePop();
 //      }
   }
+
   private void columnsScrolling() {
     //
 //      // Scrolling columns
@@ -412,6 +421,7 @@ public class PortedNativeDemo extends ImDemoApp {
 //        }
 //        */
   }
+
   private void columnsBasic() {
     //      if (ImGui::TreeNode("Basic"))
 //      {
@@ -507,6 +517,7 @@ public class PortedNativeDemo extends ImDemoApp {
 //        ImGui::TreePop();
 //      }
   }
+
   private void contextMenus() {
     //      if (ImGui::TreeNode("Context menus"))
 //      {
@@ -534,6 +545,7 @@ public class PortedNativeDemo extends ImDemoApp {
 //        ImGui::TreePop();
 //      }
   }
+
   private void popups() {
     //      if (ImGui::TreeNode("Popups"))
 //      {
@@ -620,6 +632,7 @@ public class PortedNativeDemo extends ImDemoApp {
 //        ImGui::TreePop();
 //      }
   }
+
   private void windowOptions() {
     if (ImGui.collapsingHeader("Window options")) {
       ImGui.checkbox("No titlebar", no_titlebar);
@@ -647,6 +660,7 @@ public class PortedNativeDemo extends ImDemoApp {
       }
     }
   }
+
   private void basicTree() {
     if (ImGui.treeNode("Basic trees")) {
       for (int i = 0; i < 5; i++) {
@@ -665,6 +679,7 @@ public class PortedNativeDemo extends ImDemoApp {
       ImGui.treePop(); // basic trees
     }
   }
+
   private void advancedTree() {
     if (ImGui.treeNode("Advanced, with Selectable nodes")) {
       //TODO ShowHelpMarker("This is a more standard looking tree with selectable nodes.\nClick to select, CTRL+Click to toggle, click on arrows or double-click to open.");
@@ -702,19 +717,21 @@ public class PortedNativeDemo extends ImDemoApp {
         }
         if (node_clicked != -1) {
           // Update selection state. Process outside of tree loop to avoid visual inconsistencies during the clicking-frame.
-        /*if (ImGui::GetIO().KeyCtrl)
-        selection_mask ^= (1 << node_clicked);          // CTRL+click to toggle
-                else //if (!(selection_mask & (1 << node_clicked))) // Depending on selection behavior you want, this commented bit preserve selection when clicking on item that is part of the selection
-        selection_mask = (1 << node_clicked);           // Click to single-select*/
+          //TODO Ctrl
+          //if (ImGui::GetIO ().KeyCtrl)
+          //selection_mask ^= (1 << node_clicked);          // CTRL+click to toggle
+//                else //if (!(selection_mask & (1 << node_clicked))) // Depending on selection behavior you want, this commented bit preserve selection when clicking on item that is part of the selection
+          selection_mask = (1 << node_clicked);           // Click to single-select*/
         }
-      /*ImGui::PopStyleVar();
-      if (align_label_with_current_x_position)
-        ImGui::Indent(ImGui::GetTreeNodeToLabelSpacing()); */
-        ImGui.treePop();
+        //ImGui::PopStyleVar();
+        if (align_label_with_current_x_position.value)
+          ImGui.indent(ImGui.getTreeNodeToLabelSpacing());
+
       }
-      ImGui.treePop(); // trees
+      ImGui.treePop();
     }
   }
+
   private void collapsingHeaders() {
     if (ImGui.treeNode("Collapsing Headers")) {
     /*static bool closable_group = true;
@@ -732,6 +749,7 @@ public class PortedNativeDemo extends ImDemoApp {
       ImGui.treePop(); // collapsing headers
     }
   }
+
   private void bullets() {
     if (ImGui.treeNode("Bullets")) {
     /*ImGui::BulletText("Bullet point 1");
@@ -741,6 +759,7 @@ public class PortedNativeDemo extends ImDemoApp {
       ImGui.treePop();
     }
   }
+
   private void coloredText() {
     if (ImGui.treeNode("Colored Text")) {
       // Using shortcut. You can use PushStyleColor()/PopStyleColor() for more flexibility.
@@ -750,6 +769,7 @@ public class PortedNativeDemo extends ImDemoApp {
       ImGui.treePop();
     }
   }
+
   private void wordWrapping() {
     if (ImGui.treeNode("Word Wrapping")) {
       // Using shortcut. You can use PushTextWrapPos()/PopTextWrapPos() for more flexibility.
@@ -778,6 +798,7 @@ public class PortedNativeDemo extends ImDemoApp {
       ImGui.treePop();
     }
   }
+
   private void utf8Text() {
     if (ImGui.treeNode("UTF-8 Text")) {
       // UTF-8 test with Japanese characters
@@ -794,6 +815,7 @@ public class PortedNativeDemo extends ImDemoApp {
       ImGui.treePop();
     }
   }
+
   private void images() {
     if (ImGui.treeNode("Images")) {
     /*ImGui::TextWrapped("Below we are displaying the font texture (which is the only texture we have access to in this demo). Use the 'ImTextureID' type as storage to pass pointers or identifier to your own texture data. Hover the texture for a zoomed view!");
@@ -832,6 +854,7 @@ public class PortedNativeDemo extends ImDemoApp {
       ImGui.treePop();
     }
   }
+
   private void selectables() {
     if (ImGui.treeNode("Selectables")) {
     /*if (ImGui::TreeNode("Basic"))
@@ -889,6 +912,7 @@ public class PortedNativeDemo extends ImDemoApp {
       ImGui.treePop();
     }
   }
+
   private void filteredTextInput() {
     if (ImGui.treeNode("Filtered Text Input")) {
       /*static char buf1[64] = ""; ImGui::InputText("default", buf1, 64);
@@ -908,6 +932,7 @@ public class PortedNativeDemo extends ImDemoApp {
       ImGui.treePop();
     }
   }
+
   private void multiLineTextInput() {
     if (ImGui.treeNode("Multi-line Text Input")) {
       /*static bool read_only = false;
@@ -930,6 +955,7 @@ public class PortedNativeDemo extends ImDemoApp {
       ImGui.treePop();
     }
   }
+
   private void button() {
   /*      static bool a=false;
         if (ImGui::Button("Button")) { printf("Clicked\n"); a ^= 1; }
@@ -939,6 +965,7 @@ public class PortedNativeDemo extends ImDemoApp {
           ImGui::Text("Thanks for clicking me!");
         }*/
   }
+
   private void checkbox() {
   /*      static bool check = true;
         ImGui::Checkbox("checkbox", &check);
@@ -961,6 +988,7 @@ public class PortedNativeDemo extends ImDemoApp {
           ImGui::PopID();
         }*/
   }
+
   private void hoverTooltip() {
   /*      ImGui::Text("Hover over me");
         if (ImGui::IsItemHovered())
@@ -977,6 +1005,7 @@ public class PortedNativeDemo extends ImDemoApp {
           ImGui::EndTooltip();
         }*/
   }
+
   private void combosInputsSliders() {
     //
 //      // Testing IMGUI_ONCE_UPON_A_FRAME macro
@@ -1055,6 +1084,7 @@ public class PortedNativeDemo extends ImDemoApp {
 //      //ImGui::ListBox("##listbox2", &listbox_item_current2, listbox_items, IM_ARRAYSIZE(listbox_items), 4);
 //      //ImGui::PopItemWidth();
   }
+
   private void rangeWidgets() {
     //
 //      if (ImGui::TreeNode("Range Widgets"))
@@ -1070,6 +1100,7 @@ public class PortedNativeDemo extends ImDemoApp {
 //        ImGui::TreePop();
 //      }
   }
+
   private void multiComponentWidgets() {
     //
 //      if (ImGui::TreeNode("Multi-component Widgets"))
@@ -1106,6 +1137,7 @@ public class PortedNativeDemo extends ImDemoApp {
 //        ImGui::TreePop();
 //      }
   }
+
   private void verticalSliders() {
     //
 //      if (ImGui::TreeNode("Vertical Sliders"))
@@ -1176,6 +1208,7 @@ public class PortedNativeDemo extends ImDemoApp {
 //      }
 //    }
   }
+
   private void menuBar() {
     if (ImGui.beginMenuBar()) {
       if (ImGui.beginMenu("Menu")) {
@@ -1205,6 +1238,7 @@ public class PortedNativeDemo extends ImDemoApp {
       ImGui.endMenuBar();
     }
   }
+
   private void graphWidgets() {
     //
 //    if (ImGui::CollapsingHeader("Graphs widgets"))
@@ -1270,6 +1304,7 @@ public class PortedNativeDemo extends ImDemoApp {
 //      ImGui::ProgressBar(progress, ImVec2(0.f,0.f), buf);
 //    }
   }
+
   private void clipping() {
     //
 //      if (ImGui::TreeNode("Clipping"))
@@ -1288,6 +1323,7 @@ public class PortedNativeDemo extends ImDemoApp {
 //      }
 //    }
   }
+
   private void horizontalScrolling() {
     //      if (ImGui::TreeNode("Horizontal Scrolling"))
 //      {
@@ -1333,6 +1369,7 @@ public class PortedNativeDemo extends ImDemoApp {
 //        ImGui::TreePop();
 //      }
   }
+
   private void scrolling() {
     //      if (ImGui::TreeNode("Scrolling"))
 //      {
@@ -1373,6 +1410,7 @@ public class PortedNativeDemo extends ImDemoApp {
 //        ImGui::TreePop();
 //      }
   }
+
   private void textBaseAlignment() {
     //      if (ImGui::TreeNode("Text Baseline Alignment"))
 //      {
@@ -1428,6 +1466,7 @@ public class PortedNativeDemo extends ImDemoApp {
 //        ImGui::TreePop();
 //      }
   }
+
   private void groups() {
     //      if (ImGui::TreeNode("Groups"))
 //      {
@@ -1471,6 +1510,7 @@ public class PortedNativeDemo extends ImDemoApp {
 //        ImGui::TreePop();
 //      }
   }
+
   private void horizontalLayout() {
     //      if (ImGui::TreeNode("Basic Horizontal Layout"))
 //      {
@@ -1544,6 +1584,7 @@ public class PortedNativeDemo extends ImDemoApp {
 //        ImGui::TreePop();
 //      }
   }
+
   private void widgetsRegions() {
     //
 //      if (ImGui::TreeNode("Widgets Width"))
@@ -1583,6 +1624,7 @@ public class PortedNativeDemo extends ImDemoApp {
 //      }
 //
   }
+
   private void childRegions() {
     //      if (ImGui::TreeNode("Child regions"))
 //      {
