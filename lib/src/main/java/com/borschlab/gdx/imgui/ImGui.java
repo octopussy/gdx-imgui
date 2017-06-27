@@ -528,7 +528,16 @@ public class ImGui {
 
   //  IMGUI_API void          PopItemWidth();
 //  IMGUI_API float         CalcItemWidth();                                                    // width of item given pushed settings and current cursor position
-//  IMGUI_API void          PushTextWrapPos(float wrap_pos_x = 0.0f);                           // word-wrapping for Text*() commands. < 0.0f: no wrapping; 0.0f: wrap to end of window (or column); > 0.0f: wrap at 'wrap_pos_x' position in window local space
+
+  // word-wrapping for Text*() commands. < 0.0f: no wrapping; 0.0f: wrap to end of window (or column); > 0.0f: wrap at 'wrap_pos_x' position in window local space
+  public static native void pushTextWrapPos(float wrapPosX); /*
+    ImGui::PushTextWrapPos(wrapPosX);
+  */
+
+  public static native void popTextWrapPos(); /*
+    ImGui::PopTextWrapPos();
+  */
+
 //  IMGUI_API void          PopTextWrapPos();
 //  IMGUI_API void          PushAllowKeyboardFocus(bool v);                                     // allow focusing using TAB/Shift-TAB, enabled by default but you can disable it for certain widgets
 //  IMGUI_API void          PopAllowKeyboardFocus();
@@ -574,6 +583,11 @@ public class ImGui {
 
 //  IMGUI_API void          BeginGroup();                                                       // lock horizontal starting position + capture group bounding box into one "item" (so you can use IsItemHovered() or layout primitives such as SameLine() on whole group, etc.)
 //  IMGUI_API void          EndGroup();
+
+  public static native Vector2 getCursorPos(); /*
+    return toGdxVec2(env, ImGui::GetCursorPos());
+  */
+
 //  IMGUI_API ImVec2        GetCursorPos();                                                     // cursor position is relative to window position
 //  IMGUI_API float         GetCursorPosX();                                                    // "
 //  IMGUI_API float         GetCursorPosY();                                                    // "
@@ -924,8 +938,16 @@ public class ImGui {
   //  IMGUI_API bool          IsItemVisible();                                                    // was the last item visible? (aka not out of sight due to clipping/scrolling.)
 //  IMGUI_API bool          IsAnyItemHovered();
 //  IMGUI_API bool          IsAnyItemActive();
-//  IMGUI_API ImVec2        GetItemRectMin();                                                   // get bounding rect of last item in screen space
-//  IMGUI_API ImVec2        GetItemRectMax();                                                   // "
+
+  // get bounding rect of last item in screen space
+  public static native Vector2 getItemRectMin(); /*
+    return toGdxVec2(env, ImGui::GetItemRectMin());
+  */
+
+  public static native Vector2 getItemRectMax(); /*
+    return toGdxVec2(env, ImGui::GetItemRectMax());
+  */
+
 //  IMGUI_API ImVec2        GetItemRectSize();                                                  // "
 //  IMGUI_API void          SetItemAllowOverlap();                                              // allow last item to be overlapped by a subsequent item. sometimes useful with invisible buttons, selectables, etc. to catch unused area.
 //  IMGUI_API bool          IsWindowHovered();                                                  // is current window hovered and hoverable (not blocked by a popup) (differentiate child windows from each others)
@@ -1006,6 +1028,19 @@ public class ImGui {
 //  // Primitives
 //  IMGUI_API void  AddLine(const ImVec2& a, const ImVec2& b, ImU32 col, float thickness = 1.0f);
 //  IMGUI_API void  AddRect(const ImVec2& a, const ImVec2& b, ImU32 col, float rounding = 0.0f, int rounding_corners_flags = ~0, float thickness = 1.0f);   // a: upper-left, b: lower-right, rounding_corners_flags: 4-bits corresponding to which corner to round
+
+  // a: upper-left, b: lower-right
+  public static native void addRect(float a_x, float a_y, float b_x, float b_y, int color, float rounding, int roundingCornersFlag); /*
+    ImGui::GetWindowDrawList()->AddRect(ImVec2(a_x, a_y), ImVec2(b_x, b_y), color, rounding, roundingCornersFlag);
+  */
+
+  public static void addRect(float a_x, float a_y, float b_x, float b_y, Color col){
+    addRect(a_x, a_y, b_x, b_y, col.toIntBits(), 0f, ~0);
+  }
+
+  public static void addRect(float a_x, float a_y, float b_x, float b_y, Color col, float rounding){
+    addRect(a_x, a_y, b_x, b_y, col.toIntBits(), rounding, ~0);
+  }
 
   // a: upper-left, b: lower-right
   public static native void addRectFilled(float a_x, float a_y, float b_x, float b_y, int color, float rounding, int roundingCornersFlag); /*

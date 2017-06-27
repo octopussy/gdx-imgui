@@ -788,18 +788,28 @@ public class PortedNativeDemo extends ImDemoApp {
       Vector2 pos = ImGui.getCursorScreenPos();
       ImGui.addRectFilled(pos.x + wrap_width.value, pos.y, pos.x + wrap_width.value + 10,
         pos.y + ImGui.getTextLineHeight(), new Color(255f, 0f, 255f, 255f));
-      //ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + wrap_width);
-      //ImGui.text("The lazy dog is a good dog. This paragraph is made to fit within %.0f pixels. Testing a 1 character word. The quick brown fox jumps over the lazy dog.", wrap_width);
-      //ImGui::GetWindowDrawList()->AddRect(ImGui::GetItemRectMin(), ImGui::GetItemRectMax(), IM_COL32(255,255,0,255));
-      //ImGui::PopTextWrapPos();
 
-      //ImGui.text("Test paragraph 2:");
-      //pos = ImGui.getCursorScreenPos();
-      //ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(pos.x + wrap_width, pos.y), ImVec2(pos.x + wrap_width + 10, pos.y + ImGui::GetTextLineHeight()), IM_COL32(255,0,255,255));
-      //ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + wrap_width);
-      //ImGui.text("aaaaaaaa bbbbbbbb, c cccccccc,dddddddd. d eeeeeeee   ffffffff. gggggggg!hhhhhhhh");
-      //ImGui::GetWindowDrawList()->AddRect(ImGui::GetItemRectMin(), ImGui::GetItemRectMax(), IM_COL32(255,255,0,255));
-      //ImGui::PopTextWrapPos ();
+      ImGui.pushTextWrapPos(ImGui.getCursorPos().x + wrap_width.value);
+
+      ImGui.text("The lazy dog is a good dog. This paragraph is made to fit within %.0f pixels. Testing a 1 character word. The quick brown fox jumps over the lazy dog.", wrap_width.value);
+
+      Vector2 itemRectMin = ImGui.getItemRectMin();
+      Vector2 itemRectMax = ImGui.getItemRectMax();
+      ImGui.addRect(itemRectMin.x, itemRectMin.y, itemRectMax.x, itemRectMax.y, new Color(255f, 255f, 0f, 255f));
+
+      ImGui.popTextWrapPos();
+
+      ImGui.text("Test paragraph 2:");
+      pos = ImGui.getCursorScreenPos();
+      ImGui.addRectFilled(pos.x + wrap_width.value, pos.y, pos.x + wrap_width.value + 10, pos.y + ImGui.getTextLineHeight(), new Color(255,0,255,255));
+      ImGui.pushTextWrapPos(ImGui.getCursorPos().x + wrap_width.value);
+      ImGui.text("aaaaaaaa bbbbbbbb, c cccccccc,dddddddd. d eeeeeeee   ffffffff. gggggggg!hhhhhhhh");
+
+      itemRectMin = ImGui.getItemRectMin();
+      itemRectMax = ImGui.getItemRectMax();
+      ImGui.addRect(itemRectMin.x, itemRectMin.y, itemRectMax.x, itemRectMax.y, new Color(255f, 255f, 0f, 255f));
+
+      ImGui.popTextWrapPos();
 
       ImGui.treePop();
     }

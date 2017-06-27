@@ -609,6 +609,22 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_pushItemWidth
 
 /*
  * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    pushTextWrapPos
+ * Signature: (F)V
+ */
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_pushTextWrapPos
+  (JNIEnv *, jclass, jfloat);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    popTextWrapPos
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_popTextWrapPos
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
  * Method:    separator
  * Signature: ()V
  */
@@ -646,6 +662,14 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_indent
  */
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_unindent
   (JNIEnv *, jclass, jfloat);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    getCursorPos
+ * Signature: ()Lcom/badlogic/gdx/math/Vector2;
+ */
+JNIEXPORT jobject JNICALL Java_com_borschlab_gdx_imgui_ImGui_getCursorPos
+  (JNIEnv *, jclass);
 
 /*
  * Class:     com_borschlab_gdx_imgui_ImGui
@@ -857,11 +881,35 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_isItemClicked
 
 /*
  * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    getItemRectMin
+ * Signature: ()Lcom/badlogic/gdx/math/Vector2;
+ */
+JNIEXPORT jobject JNICALL Java_com_borschlab_gdx_imgui_ImGui_getItemRectMin
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    getItemRectMax
+ * Signature: ()Lcom/badlogic/gdx/math/Vector2;
+ */
+JNIEXPORT jobject JNICALL Java_com_borschlab_gdx_imgui_ImGui_getItemRectMax
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
  * Method:    getVersion
  * Signature: ()Ljava/lang/String;
  */
 JNIEXPORT jstring JNICALL Java_com_borschlab_gdx_imgui_ImGui_getVersion
   (JNIEnv *, jclass);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    addRect
+ * Signature: (FFFFIFI)V
+ */
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_addRect
+  (JNIEnv *, jclass, jfloat, jfloat, jfloat, jfloat, jint, jfloat, jint);
 
 /*
  * Class:     com_borschlab_gdx_imgui_ImGui
