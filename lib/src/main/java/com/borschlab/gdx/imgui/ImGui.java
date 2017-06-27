@@ -620,10 +620,16 @@ public class ImGui {
     text(String.format(fmt, args));
   }
 
-//  IMGUI_API void          TextColored(const ImVec4& col, const char* fmt, ...) IM_PRINTFARGS(2);  // shortcut for PushStyleColor(ImGuiCol_Text, col); Text(fmt, ...); PopStyleColor();
-//  IMGUI_API void          TextColoredV(const ImVec4& col, const char* fmt, va_list args);
+  public static native void textDisabled(String str); /*
+      ImGui::TextDisabled(str);
+  */
+
+  // shortcut for PushStyleColor(ImGuiCol_Text, col); Text(fmt, ...); PopStyleColor();
+  public static native void textColored(float r, float g, float b, float a, String str); /*
+      ImGui::TextColored(ImVec4(r, g, b, a), str);
+  */
+
 //  IMGUI_API void          TextDisabled(const char* fmt, ...) IM_PRINTFARGS(1);                    // shortcut for PushStyleColor(ImGuiCol_Text, style.Colors[ImGuiCol_TextDisabled]); Text(fmt, ...); PopStyleColor();
-//  IMGUI_API void          TextDisabledV(const char* fmt, va_list args);
 
   // shortcut for PushTextWrapPos(0.0f); Text(fmt, ...); PopTextWrapPos();. Note that this won't work on an auto-resizing window if there's no other widgets to extend the window width, yoy may need to set a size using SetNextWindowSize().
   public static native void textWrapped(String str); /*
@@ -637,9 +643,16 @@ public class ImGui {
 //  IMGUI_API void          TextUnformatted(const char* text, const char* text_end = NULL);         // doesn't require null terminated string if 'text_end' is specified. no copy done to any bounded stack buffer, recommended for long chunks of text
 //  IMGUI_API void          LabelText(const char* label, const char* fmt, ...) IM_PRINTFARGS(2);    // display text+label aligned the same way as value+label widgets
 //  IMGUI_API void          LabelTextV(const char* label, const char* fmt, va_list args);
-//  IMGUI_API void          Bullet();                                                               // draw a small circle and keep the cursor on the same line. advance cursor x position by GetTreeNodeToLabelSpacing(), same distance that TreeNode() uses
-//  IMGUI_API void          BulletText(const char* fmt, ...) IM_PRINTFARGS(1);                      // shortcut for Bullet()+Text()
-//  IMGUI_API void          BulletTextV(const char* fmt, va_list args);
+
+  public static native void bullet(); /*
+    ImGui::Bullet();
+  */
+
+  // draw a small circle and keep the cursor on the same line. advance cursor x position by GetTreeNodeToLabelSpacing(), same distance that TreeNode() uses
+  public static native void bulletText(String text); /*
+    ImGui::BulletText(text);
+  */
+
 //  IMGUI_API bool          Button(const char* label, const ImVec2& size = ImVec2(0,0));            // button
 
   public static native boolean smallButton(String label); /*
@@ -700,6 +713,15 @@ public class ImGui {
 //  IMGUI_API bool          InputInt4(const char* label, int v[4], ImGuiInputTextFlags extra_flags = 0);
 //
 //  // Widgets: Sliders (tip: ctrl+click on a slider to input with keyboard. manually input values aren't clamped, can go off-bounds)
+  public static native boolean sliderFloat(String label, ImFloat v, float vMin, float vMax, String displayFormat, float power); /*
+    float f = getImFloat(env, v);
+    bool returnValue = ImGui::SliderFloat(label, &f, vMin, vMax, displayFormat, power);
+    setImFloat(env, v, f);
+    return returnValue;
+  */
+  public static boolean sliderFloat(String label, ImFloat v, float vMin, float vMax, String displayFormat) {
+    return sliderFloat(label, v, vMin, vMax, displayFormat, 1f);
+  }
 //  IMGUI_API bool          SliderFloat(const char* label, float* v, float v_min, float v_max, const char* display_format = "%.3f", float power = 1.0f);     // adjust display_format to decorate the value with a prefix or a suffix. Use power!=1.0 for logarithmic sliders
 //  IMGUI_API bool          SliderFloat2(const char* label, float v[2], float v_min, float v_max, const char* display_format = "%.3f", float power = 1.0f);
 //  IMGUI_API bool          SliderFloat3(const char* label, float v[3], float v_min, float v_max, const char* display_format = "%.3f", float power = 1.0f);

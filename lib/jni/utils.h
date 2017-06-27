@@ -20,7 +20,7 @@ bool getImBool(JNIEnv* env, jobject imbool) {
     jclass resultCls = env->FindClass("com/borschlab/gdx/imgui/ImBool");
     assert(resultCls != NULL);
 
-    jmethodID getMethod = env->GetMethodID(resultCls, "isSet", "()Z");
+    jmethodID getMethod = env->GetMethodID(resultCls, "get", "()Z");
     assert(getMethod != NULL);
 
     return env->CallBooleanMethod(imbool, getMethod);
@@ -34,6 +34,26 @@ void setImBool(JNIEnv* env, jobject imbool, bool value) {
     assert(setMethod != NULL);
 
     env->CallVoidMethod(imbool, setMethod, value);
+}
+
+float getImFloat(JNIEnv* env, jobject imfloat) {
+    jclass resultCls = env->FindClass("com/borschlab/gdx/imgui/ImFloat");
+    assert(resultCls != NULL);
+
+    jmethodID getMethod = env->GetMethodID(resultCls, "get", "()F");
+    assert(getMethod != NULL);
+
+    return env->CallFloatMethod(imfloat, getMethod);
+}
+
+void setImFloat(JNIEnv* env, jobject imfloat, float value) {
+    jclass resultCls = env->FindClass("com/borschlab/gdx/imgui/ImFloat");
+    assert(resultCls != NULL);
+
+    jmethodID setMethod = env->GetMethodID(resultCls, "set", "(F)V");
+    assert(setMethod != NULL);
+
+    env->CallVoidMethod(imfloat, setMethod, value);
 }
 
 #endif

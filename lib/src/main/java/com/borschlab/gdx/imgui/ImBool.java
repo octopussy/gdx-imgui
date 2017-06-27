@@ -10,7 +10,7 @@ public final class ImBool {
     value = initial;
   }
 
-  public boolean isSet() { return value; }
+  public boolean get() { return value; }
 
   public void set(boolean value) { this.value = value; }
 

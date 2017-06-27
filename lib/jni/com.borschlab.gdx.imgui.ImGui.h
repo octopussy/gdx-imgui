@@ -657,10 +657,42 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_text
 
 /*
  * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    textDisabled
+ * Signature: (Ljava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_textDisabled
+  (JNIEnv *, jclass, jstring);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    textColored
+ * Signature: (FFFFLjava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_textColored
+  (JNIEnv *, jclass, jfloat, jfloat, jfloat, jfloat, jstring);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
  * Method:    textWrapped
  * Signature: (Ljava/lang/String;)V
  */
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_textWrapped
+  (JNIEnv *, jclass, jstring);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    bullet
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_bullet
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    bulletText
+ * Signature: (Ljava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_bulletText
   (JNIEnv *, jclass, jstring);
 
 /*
@@ -678,6 +710,14 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_smallButton
  */
 JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_checkbox
   (JNIEnv *, jclass, jstring, jobject);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    sliderFloat
+ * Signature: (Ljava/lang/String;Lcom/borschlab/gdx/imgui/ImFloat;FFLjava/lang/String;F)Z
+ */
+JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_sliderFloat
+  (JNIEnv *, jclass, jstring, jobject, jfloat, jfloat, jstring, jfloat);
 
 /*
  * Class:     com_borschlab_gdx_imgui_ImGui

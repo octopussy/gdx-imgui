@@ -44,8 +44,6 @@ public class PortedNativeDemo extends ImDemoApp {
   // Demonstrate most ImGui features (big function!)
   private void showTestWindow(ImBool p_open) {
 
-    Thread.currentThread().setName("***XUI***");
-
     // TODO example apps
 //    if (show_app_main_menu_bar) ShowExampleAppMainMenuBar();
 //    if (show_app_console) ShowExampleAppConsole(&show_app_console);
@@ -692,6 +690,7 @@ public class PortedNativeDemo extends ImDemoApp {
       }
 
       int node_clicked = -1; // Temporary storage of what node we have clicked to process selection at the end of the loop. May be a pointer to your own node type, etc.
+      // TODO pushStyleVar
       //ImGui.pushStyleVar(ImGuiStyleVar.IndentSpacing, ImGui.getFontSize() * 3); // Increase spacing to differentiate leaves from expanded contents.
       for (int i = 0; i < 6; i++) {
         // Disable the default open on single-click behavior and pass in Selected flag according to our selection state.
@@ -723,6 +722,7 @@ public class PortedNativeDemo extends ImDemoApp {
 //                else //if (!(selection_mask & (1 << node_clicked))) // Depending on selection behavior you want, this commented bit preserve selection when clicking on item that is part of the selection
           selection_mask = (1 << node_clicked);           // Click to single-select*/
         }
+        // TODO popStyleVar
         //ImGui::PopStyleVar();
         if (align_label_with_current_x_position.value)
           ImGui.indent(ImGui.getTreeNodeToLabelSpacing());
@@ -733,19 +733,18 @@ public class PortedNativeDemo extends ImDemoApp {
   }
 
   private ImBool closable_group = ImBool.from(true);
+
   private void collapsingHeaders() {
     if (ImGui.treeNode("Collapsing Headers")) {
 
-      if (ImGui.collapsingHeader ("Header"))
-      {
-        ImGui.checkbox ("Enable extra group", closable_group);
+      if (ImGui.collapsingHeader("Header")) {
+        ImGui.checkbox("Enable extra group", closable_group);
         for (int i = 0; i < 5; i++)
-          ImGui.text ("Some content %d", i);
+          ImGui.text("Some content %d", i);
       }
-      if (ImGui.collapsingHeader ("Header with a close button", closable_group))
-      {
+      if (ImGui.collapsingHeader("Header with a close button", closable_group)) {
         for (int i = 0; i < 5; i++)
-          ImGui.text ("More content %d", i);
+          ImGui.text("More content %d", i);
       }
       ImGui.treePop(); // collapsing headers
     }
@@ -753,10 +752,12 @@ public class PortedNativeDemo extends ImDemoApp {
 
   private void bullets() {
     if (ImGui.treeNode("Bullets")) {
-    /*ImGui::BulletText("Bullet point 1");
-    ImGui::BulletText("Bullet point 2\nOn multiple lines");
-    ImGui::Bullet(); ImGui::Text("Bullet point 3 (two calls)");
-    ImGui::Bullet(); ImGui::SmallButton("Button");*/
+      ImGui.bulletText("Bullet point 1");
+      ImGui.bulletText("Bullet point 2\nOn multiple lines");
+      ImGui.bullet();
+      ImGui.text("Bullet point 3 (two calls)");
+      ImGui.bullet();
+      ImGui.smallButton("Button");
       ImGui.treePop();
     }
   }
@@ -764,38 +765,38 @@ public class PortedNativeDemo extends ImDemoApp {
   private void coloredText() {
     if (ImGui.treeNode("Colored Text")) {
       // Using shortcut. You can use PushStyleColor()/PopStyleColor() for more flexibility.
-    /*ImGui::TextColored(ImVec4(1.0f,0.0f,1.0f,1.0f), "Pink");
-    ImGui::TextColored(ImVec4(1.0f,1.0f,0.0f,1.0f), "Yellow");
-    ImGui::TextDisabled("Disabled");*/
+      ImGui.textColored(1.0f, 0.0f, 1.0f, 1.0f, "Pink");
+      ImGui.textColored(1.0f, 1.0f, 0.0f, 1.0f, "Yellow");
+      ImGui.textDisabled("Disabled");
       ImGui.treePop();
     }
   }
 
+  private ImFloat wrap_width = ImFloat.from(200.0f);
   private void wordWrapping() {
     if (ImGui.treeNode("Word Wrapping")) {
       // Using shortcut. You can use PushTextWrapPos()/PopTextWrapPos() for more flexibility.
-    /*ImGui::TextWrapped("This text should automatically wrap on the edge of the window. The current implementation for text wrapping follows simple rules suitable for English and possibly other languages.");
-    ImGui::Spacing();
+      ImGui.textWrapped("This text should automatically wrap on the edge of the window. The current implementation for text wrapping follows simple rules suitable for English and possibly other languages.");
+      ImGui.spacing();
 
-    static float wrap_width = 200.0f;
-    ImGui::SliderFloat("Wrap width", &wrap_width, -20, 600, "%.0f");
+      ImGui.sliderFloat("Wrap width", wrap_width, -20, 600, "%.0f");
 
-    ImGui::Text("Test paragraph 1:");
-    ImVec2 pos = ImGui::GetCursorScreenPos();
-    ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(pos.x + wrap_width, pos.y), ImVec2(pos.x + wrap_width + 10, pos.y + ImGui::GetTextLineHeight()), IM_COL32(255,0,255,255));
-    ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + wrap_width);
-    ImGui::Text("The lazy dog is a good dog. This paragraph is made to fit within %.0f pixels. Testing a 1 character word. The quick brown fox jumps over the lazy dog.", wrap_width);
-    ImGui::GetWindowDrawList()->AddRect(ImGui::GetItemRectMin(), ImGui::GetItemRectMax(), IM_COL32(255,255,0,255));
-    ImGui::PopTextWrapPos();
+      ImGui.text("Test paragraph 1:");
+      //ImVec2 pos = ImGui::GetCursorScreenPos ();
+      //ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(pos.x + wrap_width, pos.y), ImVec2(pos.x + wrap_width + 10, pos.y + ImGui::GetTextLineHeight()), IM_COL32(255,0,255,255));
+      //ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + wrap_width);
+      //ImGui.text("The lazy dog is a good dog. This paragraph is made to fit within %.0f pixels. Testing a 1 character word. The quick brown fox jumps over the lazy dog.", wrap_width);
+      //ImGui::GetWindowDrawList()->AddRect(ImGui::GetItemRectMin(), ImGui::GetItemRectMax(), IM_COL32(255,255,0,255));
+      //ImGui::PopTextWrapPos();
 
-    ImGui::Text("Test paragraph 2:");
-    pos = ImGui::GetCursorScreenPos();
-    ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(pos.x + wrap_width, pos.y), ImVec2(pos.x + wrap_width + 10, pos.y + ImGui::GetTextLineHeight()), IM_COL32(255,0,255,255));
-    ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + wrap_width);
-    ImGui::Text("aaaaaaaa bbbbbbbb, c cccccccc,dddddddd. d eeeeeeee   ffffffff. gggggggg!hhhhhhhh");
-    ImGui::GetWindowDrawList()->AddRect(ImGui::GetItemRectMin(), ImGui::GetItemRectMax(), IM_COL32(255,255,0,255));
-    ImGui::PopTextWrapPos();
-*/
+      //ImGui.text("Test paragraph 2:");
+      //pos = ImGui.getCursorScreenPos();
+      //ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(pos.x + wrap_width, pos.y), ImVec2(pos.x + wrap_width + 10, pos.y + ImGui::GetTextLineHeight()), IM_COL32(255,0,255,255));
+      //ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + wrap_width);
+      //ImGui.text("aaaaaaaa bbbbbbbb, c cccccccc,dddddddd. d eeeeeeee   ffffffff. gggggggg!hhhhhhhh");
+      //ImGui::GetWindowDrawList()->AddRect(ImGui::GetItemRectMin(), ImGui::GetItemRectMax(), IM_COL32(255,255,0,255));
+      //ImGui::PopTextWrapPos ();
+
       ImGui.treePop();
     }
   }
