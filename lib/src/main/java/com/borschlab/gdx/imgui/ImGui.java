@@ -1,5 +1,6 @@
 package com.borschlab.gdx.imgui;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 
 /**
@@ -580,10 +581,21 @@ public class ImGui {
 //  IMGUI_API void          SetCursorPosX(float x);                                             // "
 //  IMGUI_API void          SetCursorPosY(float y);                                             // "
 //  IMGUI_API ImVec2        GetCursorStartPos();                                                // initial cursor position
-//  IMGUI_API ImVec2        GetCursorScreenPos();                                               // cursor position in absolute screen coordinates [0..io.DisplaySize] (useful to work with ImDrawList API)
+
+  // cursor position in absolute screen coordinates [0..io.DisplaySize] (useful to work with ImDrawList API)
+  public static native Vector2 getCursorScreenPos(); /*
+    return toGdxVec2(env, ImGui::GetCursorScreenPos());
+  */
+
 //  IMGUI_API void          SetCursorScreenPos(const ImVec2& pos);                              // cursor position in absolute screen coordinates [0..io.DisplaySize]
 //  IMGUI_API void          AlignFirstTextHeightToWidgets();                                    // call once if the first item on the line is a Text() item and you want to vertically lower it to match subsequent (bigger) widgets
-//  IMGUI_API float         GetTextLineHeight();                                                // height of font == GetWindowFontSize()
+
+  // height of font == GetWindowFontSize()
+  public static native float getTextLineHeight(); /*
+    return ImGui::GetTextLineHeight();
+  */
+
+//  IMGUI_API float         GetTextLineHeight();
 //  IMGUI_API float         GetTextLineHeightWithSpacing();                                     // distance (in pixels) between 2 consecutive lines of text == GetWindowFontSize() + GetStyle().ItemSpacing.y
 //  IMGUI_API float         GetItemsLineHeightWithSpacing();                                    // distance (in pixels) between 2 consecutive lines of standard height widgets == GetWindowFontSize() + GetStyle().FramePadding.y*2 + GetStyle().ItemSpacing.y
 //
@@ -712,7 +724,9 @@ public class ImGui {
 //  IMGUI_API bool          InputInt3(const char* label, int v[3], ImGuiInputTextFlags extra_flags = 0);
 //  IMGUI_API bool          InputInt4(const char* label, int v[4], ImGuiInputTextFlags extra_flags = 0);
 //
-//  // Widgets: Sliders (tip: ctrl+click on a slider to input with keyboard. manually input values aren't clamped, can go off-bounds)
+
+  // Widgets: Sliders (tip: ctrl+click on a slider to input with keyboard. manually input values aren't clamped, can go off-bounds)
+  // adjust display_format to decorate the value with a prefix or a suffix. Use power!=1.0 for logarithmic sliders
   public static native boolean sliderFloat(String label, ImFloat v, float vMin, float vMax, String displayFormat, float power); /*
     float f = getImFloat(env, v);
     bool returnValue = ImGui::SliderFloat(label, &f, vMin, vMax, displayFormat, power);
@@ -722,7 +736,6 @@ public class ImGui {
   public static boolean sliderFloat(String label, ImFloat v, float vMin, float vMax, String displayFormat) {
     return sliderFloat(label, v, vMin, vMax, displayFormat, 1f);
   }
-//  IMGUI_API bool          SliderFloat(const char* label, float* v, float v_min, float v_max, const char* display_format = "%.3f", float power = 1.0f);     // adjust display_format to decorate the value with a prefix or a suffix. Use power!=1.0 for logarithmic sliders
 //  IMGUI_API bool          SliderFloat2(const char* label, float v[2], float v_min, float v_max, const char* display_format = "%.3f", float power = 1.0f);
 //  IMGUI_API bool          SliderFloat3(const char* label, float v[3], float v_min, float v_max, const char* display_format = "%.3f", float power = 1.0f);
 //  IMGUI_API bool          SliderFloat4(const char* label, float v[4], float v_min, float v_max, const char* display_format = "%.3f", float power = 1.0f);
@@ -976,5 +989,86 @@ public class ImGui {
 //  IMGUI_API void          DestroyContext(ImGuiContext* ctx);
 //  IMGUI_API ImGuiContext* GetCurrentContext();
 //  IMGUI_API void          SetCurrentContext(ImGuiContext* ctx);
+
+
+
+
+
+
+
+  ////////// Current window draw list methods
+  //  IMGUI_API void  PushClipRect(ImVec2 clip_rect_min, ImVec2 clip_rect_max, bool intersect_with_current_clip_rect = false);  // Render-level scissoring. This is passed down to your render function but not used for CPU-side coarse clipping. Prefer using higher-level ImGui::PushClipRect() to affect logic (hit-testing and widget culling)
+//  IMGUI_API void  PushClipRectFullScreen();
+//  IMGUI_API void  PopClipRect();
+//  IMGUI_API void  PushTextureID(const ImTextureID& texture_id);
+//  IMGUI_API void  PopTextureID();
+//
+//  // Primitives
+//  IMGUI_API void  AddLine(const ImVec2& a, const ImVec2& b, ImU32 col, float thickness = 1.0f);
+//  IMGUI_API void  AddRect(const ImVec2& a, const ImVec2& b, ImU32 col, float rounding = 0.0f, int rounding_corners_flags = ~0, float thickness = 1.0f);   // a: upper-left, b: lower-right, rounding_corners_flags: 4-bits corresponding to which corner to round
+
+  // a: upper-left, b: lower-right
+  public static native void addRectFilled(float a_x, float a_y, float b_x, float b_y, int color, float rounding, int roundingCornersFlag); /*
+    ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(a_x, a_y), ImVec2(b_x, b_y), color, rounding, roundingCornersFlag);
+  */
+
+  public static void addRectFilled(float a_x, float a_y, float b_x, float b_y, Color col){
+    addRectFilled(a_x, a_y, b_x, b_y, col.toIntBits(), 0f, ~0);
+  }
+
+  public static void addRectFilled(float a_x, float a_y, float b_x, float b_y, Color col, float rounding){
+    addRectFilled(a_x, a_y, b_x, b_y, col.toIntBits(), rounding, ~0);
+  }
+
+//  IMGUI_API void  AddRectFilledMultiColor(const ImVec2& a, const ImVec2& b, ImU32 col_upr_left, ImU32 col_upr_right, ImU32 col_bot_right, ImU32 col_bot_left);
+//  IMGUI_API void  AddQuad(const ImVec2& a, const ImVec2& b, const ImVec2& c, const ImVec2& d, ImU32 col, float thickness = 1.0f);
+//  IMGUI_API void  AddQuadFilled(const ImVec2& a, const ImVec2& b, const ImVec2& c, const ImVec2& d, ImU32 col);
+//  IMGUI_API void  AddTriangle(const ImVec2& a, const ImVec2& b, const ImVec2& c, ImU32 col, float thickness = 1.0f);
+//  IMGUI_API void  AddTriangleFilled(const ImVec2& a, const ImVec2& b, const ImVec2& c, ImU32 col);
+//  IMGUI_API void  AddCircle(const ImVec2& centre, float radius, ImU32 col, int num_segments = 12, float thickness = 1.0f);
+//  IMGUI_API void  AddCircleFilled(const ImVec2& centre, float radius, ImU32 col, int num_segments = 12);
+//  IMGUI_API void  AddText(const ImVec2& pos, ImU32 col, const char* text_begin, const char* text_end = NULL);
+//  IMGUI_API void  AddText(const ImFont* font, float font_size, const ImVec2& pos, ImU32 col, const char* text_begin, const char* text_end = NULL, float wrap_width = 0.0f, const ImVec4* cpu_fine_clip_rect = NULL);
+//  IMGUI_API void  AddImage(ImTextureID user_texture_id, const ImVec2& a, const ImVec2& b, const ImVec2& uv_a = ImVec2(0,0), const ImVec2& uv_b = ImVec2(1,1), ImU32 col = 0xFFFFFFFF);
+//  IMGUI_API void  AddImageQuad(ImTextureID user_texture_id, const ImVec2& a, const ImVec2& b, const ImVec2& c, const ImVec2& d, const ImVec2& uv_a = ImVec2(0,0), const ImVec2& uv_b = ImVec2(1,0), const ImVec2& uv_c = ImVec2(1,1), const ImVec2& uv_d = ImVec2(0,1), ImU32 col = 0xFFFFFFFF);
+//  IMGUI_API void  AddPolyline(const ImVec2* points, const int num_points, ImU32 col, bool closed, float thickness, bool anti_aliased);
+//  IMGUI_API void  AddConvexPolyFilled(const ImVec2* points, const int num_points, ImU32 col, bool anti_aliased);
+//  IMGUI_API void  AddBezierCurve(const ImVec2& pos0, const ImVec2& cp0, const ImVec2& cp1, const ImVec2& pos1, ImU32 col, float thickness, int num_segments = 0);
+//
+//  // Stateful path API, add points then finish with PathFill() or PathStroke()
+//  inline    void  PathClear()                                                 { _Path.resize(0); }
+//  inline    void  PathLineTo(const ImVec2& pos)                               { _Path.push_back(pos); }
+//  inline    void  PathLineToMergeDuplicate(const ImVec2& pos)                 { if (_Path.Size == 0 || memcmp(&_Path[_Path.Size-1], &pos, 8) != 0) _Path.push_back(pos); }
+//  inline    void  PathFillConvex(ImU32 col)                                   { AddConvexPolyFilled(_Path.Data, _Path.Size, col, true); PathClear(); }
+//  inline    void  PathStroke(ImU32 col, bool closed, float thickness = 1.0f)  { AddPolyline(_Path.Data, _Path.Size, col, closed, thickness, true); PathClear(); }
+//  IMGUI_API void  PathArcTo(const ImVec2& centre, float radius, float a_min, float a_max, int num_segments = 10);
+//  IMGUI_API void  PathArcToFast(const ImVec2& centre, float radius, int a_min_of_12, int a_max_of_12);                                // Use precomputed angles for a 12 steps circle
+//  IMGUI_API void  PathBezierCurveTo(const ImVec2& p1, const ImVec2& p2, const ImVec2& p3, int num_segments = 0);
+//  IMGUI_API void  PathRect(const ImVec2& rect_min, const ImVec2& rect_max, float rounding = 0.0f, int rounding_corners_flags = ~0);   // rounding_corners_flags: 4-bits corresponding to which corner to round
+//
+//  // Channels
+//  // - Use to simulate layers. By switching channels to can render out-of-order (e.g. submit foreground primitives before background primitives)
+//  // - Use to minimize draw calls (e.g. if going back-and-forth between multiple non-overlapping clipping rectangles, prefer to append into separate channels then merge at the end)
+//  IMGUI_API void  ChannelsSplit(int channels_count);
+//  IMGUI_API void  ChannelsMerge();
+//  IMGUI_API void  ChannelsSetCurrent(int channel_index);
+//
+//  // Advanced
+//  IMGUI_API void  AddCallback(ImDrawCallback callback, void* callback_data);  // Your rendering function must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles.
+//  IMGUI_API void  AddDrawCmd();                                               // This is useful if you need to forcefully create a new draw call (to allow for dependent rendering / blending). Otherwise primitives are merged into the same draw-call as much as possible
+//
+//  // Internal helpers
+//  // NB: all primitives needs to be reserved via PrimReserve() beforehand!
+//  IMGUI_API void  Clear();
+//  IMGUI_API void  ClearFreeMemory();
+//  IMGUI_API void  PrimReserve(int idx_count, int vtx_count);
+//  IMGUI_API void  PrimRect(const ImVec2& a, const ImVec2& b, ImU32 col);      // Axis aligned rectangle (composed of two triangles)
+//  IMGUI_API void  PrimRectUV(const ImVec2& a, const ImVec2& b, const ImVec2& uv_a, const ImVec2& uv_b, ImU32 col);
+//  IMGUI_API void  PrimQuadUV(const ImVec2& a, const ImVec2& b, const ImVec2& c, const ImVec2& d, const ImVec2& uv_a, const ImVec2& uv_b, const ImVec2& uv_c, const ImVec2& uv_d, ImU32 col);
+//  inline    void  PrimWriteVtx(const ImVec2& pos, const ImVec2& uv, ImU32 col){ _VtxWritePtr->pos = pos; _VtxWritePtr->uv = uv; _VtxWritePtr->col = col; _VtxWritePtr++; _VtxCurrentIdx++; }
+//  inline    void  PrimWriteIdx(ImDrawIdx idx)                                 { *_IdxWritePtr = idx; _IdxWritePtr++; }
+//  inline    void  PrimVtx(const ImVec2& pos, const ImVec2& uv, ImU32 col)     { PrimWriteIdx((ImDrawIdx)_VtxCurrentIdx); PrimWriteVtx(pos, uv, col); }
+//  IMGUI_API void  UpdateClipRect();
+//  IMGUI_API void  UpdateTextureID();
 
 }

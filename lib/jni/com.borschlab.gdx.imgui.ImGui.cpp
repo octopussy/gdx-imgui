@@ -1,13 +1,13 @@
 #include <com.borschlab.gdx.imgui.ImGui.h>
 
-//@line:12
+//@line:13
 
                 #include <imgui.h>
 		#include <utils.h>
 	 JNIEXPORT jobject JNICALL Java_com_borschlab_gdx_imgui_ImGui_getTexDataAsRGBA32(JNIEnv* env, jclass clazz) {
 
 
-//@line:23
+//@line:24
 
                 ImGuiIO& io = ImGui::GetIO();
 		unsigned char* pixels;
@@ -31,7 +31,7 @@
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setKeyMap(JNIEnv* env, jclass clazz, jint key, jint value) {
 
 
-//@line:48
+//@line:49
  ImGui::GetIO().KeyMap[key] = value; 
 
 }
@@ -39,7 +39,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setKeyMap(JNIEnv* env,
 JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_getDeltaTime(JNIEnv* env, jclass clazz) {
 
 
-//@line:50
+//@line:51
  ImGui::GetIO().DeltaTime; 
 
 }
@@ -47,7 +47,7 @@ JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_getDeltaTime(JNIEnv*
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setDisplaySize(JNIEnv* env, jclass clazz, jfloat width, jfloat height) {
 
 
-//@line:52
+//@line:53
 
                 ImGuiIO& io = ImGui::GetIO();
 	 	io.DisplaySize = ImVec2(width, height);
@@ -58,7 +58,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setDisplaySize(JNIEnv*
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setDeltaTime(JNIEnv* env, jclass clazz, jfloat value) {
 
 
-//@line:57
+//@line:58
 
 		ImGuiIO& io = ImGui::GetIO();
 	 	io.DeltaTime = value > 0.0 ? value : (float)(1.0f/60.0f);
@@ -69,7 +69,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setDeltaTime(JNIEnv* e
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setMousePos(JNIEnv* env, jclass clazz, jfloat x, jfloat y) {
 
 
-//@line:62
+//@line:63
 
 	 	ImGuiIO& io = ImGui::GetIO();
 	 	io.MousePos = ImVec2(x, y);
@@ -80,7 +80,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setMousePos(JNIEnv* en
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setMouseDown(JNIEnv* env, jclass clazz, jint index, jboolean buttonPressed) {
 
 
-//@line:67
+//@line:68
 
 		ImGuiIO& io = ImGui::GetIO();
 		io.MouseDown[index] = buttonPressed;
@@ -91,7 +91,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setMouseDown(JNIEnv* e
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setKeyDown(JNIEnv* env, jclass clazz, jint keycode, jboolean set) {
 
 
-//@line:72
+//@line:73
 
 		ImGuiIO& io = ImGui::GetIO();
 		io.KeysDown[keycode] = set;
@@ -102,7 +102,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setKeyDown(JNIEnv* env
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setKeyCtrl(JNIEnv* env, jclass clazz, jboolean set) {
 
 
-//@line:77
+//@line:78
 
 		ImGuiIO& io = ImGui::GetIO();
 		io.KeyCtrl = set;
@@ -113,7 +113,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setKeyCtrl(JNIEnv* env
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setKeyShift(JNIEnv* env, jclass clazz, jboolean set) {
 
 
-//@line:82
+//@line:83
 
 		ImGuiIO& io = ImGui::GetIO();
 		io.KeyShift = set;
@@ -124,7 +124,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setKeyShift(JNIEnv* en
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setKeyAlt(JNIEnv* env, jclass clazz, jboolean set) {
 
 
-//@line:87
+//@line:88
 
 		ImGuiIO& io = ImGui::GetIO();
 		io.KeyAlt = set;
@@ -135,7 +135,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setKeyAlt(JNIEnv* env,
 JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_isKeysDown(JNIEnv* env, jclass clazz, jint keycode) {
 
 
-//@line:92
+//@line:93
 
 		ImGuiIO& io = ImGui::GetIO();
 		return io.KeysDown[keycode];
@@ -146,7 +146,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_isKeysDown(JNIEnv*
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_addInputCharacter(JNIEnv* env, jclass clazz, jchar character) {
 
 
-//@line:97
+//@line:98
 
 	 	ImGuiIO& io = ImGui::GetIO();
 	 	io.AddInputCharacter(character);
@@ -157,7 +157,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_addInputCharacter(JNIE
 JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_isMouseHoveringAnyWindow(JNIEnv* env, jclass clazz) {
 
 
-//@line:102
+//@line:103
 
 		return ImGui::IsMouseHoveringAnyWindow();
 	
@@ -167,7 +167,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_isMouseHoveringAny
 JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_wantCaptureMouse(JNIEnv* env, jclass clazz) {
 
 
-//@line:106
+//@line:107
 
 	 	return ImGui::GetIO().WantCaptureMouse;
 	
@@ -177,7 +177,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_wantCaptureMouse(J
 JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_wantCaptureKeyboard(JNIEnv* env, jclass clazz) {
 
 
-//@line:110
+//@line:111
 
 	 	return ImGui::GetIO().WantCaptureKeyboard;
 	
@@ -187,7 +187,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_wantCaptureKeyboar
 JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_wantTextInput(JNIEnv* env, jclass clazz) {
 
 
-//@line:114
+//@line:115
 
 	 	return ImGui::GetIO().WantTextInput;
 	
@@ -197,7 +197,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_wantTextInput(JNIE
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setMouseWheel(JNIEnv* env, jclass clazz, jfloat value) {
 
 
-//@line:118
+//@line:119
 
 		ImGuiIO& io = ImGui::GetIO();
 	 	io.MouseWheel = value;
@@ -208,7 +208,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setMouseWheel(JNIEnv* 
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_newFrame(JNIEnv* env, jclass clazz) {
 
 
-//@line:123
+//@line:124
 
 	 	ImGui::NewFrame();
 	
@@ -218,7 +218,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_newFrame(JNIEnv* env, 
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_render(JNIEnv* env, jclass clazz) {
 
 
-//@line:127
+//@line:128
 
 	 	ImGui::Render();
 	
@@ -228,7 +228,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_render(JNIEnv* env, jc
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_shutdown(JNIEnv* env, jclass clazz) {
 
 
-//@line:131
+//@line:132
 
 	 	ImGui::Shutdown();
 	
@@ -238,7 +238,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_shutdown(JNIEnv* env, 
 JNIEXPORT jint JNICALL Java_com_borschlab_gdx_imgui_ImGui_getDrawListCount(JNIEnv* env, jclass clazz) {
 
 
-//@line:135
+//@line:136
 
 	 	ImDrawData* data = ImGui::GetDrawData();
 	 	return data->CmdListsCount;
@@ -249,7 +249,7 @@ JNIEXPORT jint JNICALL Java_com_borschlab_gdx_imgui_ImGui_getDrawListCount(JNIEn
 JNIEXPORT jobject JNICALL Java_com_borschlab_gdx_imgui_ImGui_getDrawList(JNIEnv* env, jclass clazz, jint index) {
 
 
-//@line:140
+//@line:141
 
 	 	ImDrawData* data = ImGui::GetDrawData();
 	 	ImDrawList* list = data->CmdLists[index];
@@ -290,7 +290,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_getVertBuffer(JNIEnv* 
 	float* out = (float*)env->GetPrimitiveArrayCritical(obj_out, 0);
 
 
-//@line:174
+//@line:175
 
 		ImDrawData* data = ImGui::GetDrawData();
 		const ImDrawList* cmd_list = data->CmdLists[cmdListIndex];
@@ -307,7 +307,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_getIdxBuffer(JNIEnv* e
 	short* out = (short*)env->GetPrimitiveArrayCritical(obj_out, 0);
 
 
-//@line:183
+//@line:184
 
 		ImDrawData* data = ImGui::GetDrawData();
 		const ImDrawList* cmd_list = data->CmdLists[cmdListIndex];
@@ -323,7 +323,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_getIdxBuffer(JNIEnv* e
 JNIEXPORT jint JNICALL Java_com_borschlab_gdx_imgui_ImGui_getTotalVtxCount(JNIEnv* env, jclass clazz) {
 
 
-//@line:192
+//@line:193
 
 	 	ImDrawData* data = ImGui::GetDrawData();
 	 	return data->TotalVtxCount;
@@ -334,7 +334,7 @@ JNIEXPORT jint JNICALL Java_com_borschlab_gdx_imgui_ImGui_getTotalVtxCount(JNIEn
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_showNativeUserGuide(JNIEnv* env, jclass clazz) {
 
 
-//@line:200
+//@line:201
 
 	 	ImGui::ShowUserGuide();
 	
@@ -344,7 +344,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_showNativeUserGuide(JN
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_showNativeTestWindow(JNIEnv* env, jclass clazz) {
 
 
-//@line:204
+//@line:205
 
 	 	ImGui::ShowTestWindow();
 	
@@ -354,7 +354,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_showNativeTestWindow(J
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_showMetricsWindow(JNIEnv* env, jclass clazz) {
 
 
-//@line:208
+//@line:209
 
 	 	ImGui::ShowTestWindow();
 	
@@ -364,7 +364,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_showMetricsWindow(JNIE
 static inline jboolean wrapped_Java_com_borschlab_gdx_imgui_ImGui_begin__Ljava_lang_String_2I
 (JNIEnv* env, jclass clazz, jstring obj_name, jint flags, char* name) {
 
-//@line:222
+//@line:223
 
     return ImGui::Begin(name, NULL, flags);
   
@@ -383,7 +383,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_begin__Ljava_lang_
 static inline jboolean wrapped_Java_com_borschlab_gdx_imgui_ImGui_begin__Ljava_lang_String_2Lcom_borschlab_gdx_imgui_ImBool_2I
 (JNIEnv* env, jclass clazz, jstring obj_name, jobject openRef, jint flags, char* name) {
 
-//@line:231
+//@line:232
 
         bool open = getImBool(env, openRef);
 	bool collapsed = ImGui::Begin(name, &open, flags);
@@ -405,7 +405,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_begin__Ljava_lang_
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_end(JNIEnv* env, jclass clazz) {
 
 
-//@line:238
+//@line:239
  ImGui::End(); 
 
 }
@@ -413,7 +413,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_end(JNIEnv* env, jclas
 static inline jboolean wrapped_Java_com_borschlab_gdx_imgui_ImGui_beginChild__Ljava_lang_String_2FFZI
 (JNIEnv* env, jclass clazz, jstring obj_id, jfloat width, jfloat height, jboolean border, jint extraWindowFlags, char* id) {
 
-//@line:249
+//@line:250
 
 	 	return ImGui::BeginChild(id, ImVec2(width, height), border, extraWindowFlags);
 	
@@ -432,7 +432,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_beginChild__Ljava_
 JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_beginChild__IFFI(JNIEnv* env, jclass clazz, jint id, jfloat width, jfloat height, jint extraWindowFlags) {
 
 
-//@line:253
+//@line:254
 
 	 	return ImGui::BeginChild(id, ImVec2(width, height), false, extraWindowFlags);
 	
@@ -442,7 +442,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_beginChild__IFFI(J
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_endChild(JNIEnv* env, jclass clazz) {
 
 
-//@line:257
+//@line:258
 
 		ImGui::EndChild();
 	
@@ -452,7 +452,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_endChild(JNIEnv* env, 
 JNIEXPORT jobject JNICALL Java_com_borschlab_gdx_imgui_ImGui_getContentRegionMax(JNIEnv* env, jclass clazz) {
 
 
-//@line:262
+//@line:263
 
 		return toGdxVec2(env, ImGui::GetContentRegionMax());
 	
@@ -462,7 +462,7 @@ JNIEXPORT jobject JNICALL Java_com_borschlab_gdx_imgui_ImGui_getContentRegionMax
 JNIEXPORT jobject JNICALL Java_com_borschlab_gdx_imgui_ImGui_getContentRegionAvail(JNIEnv* env, jclass clazz) {
 
 
-//@line:267
+//@line:268
 
 		return toGdxVec2(env, ImGui::GetContentRegionAvail());
 	
@@ -472,7 +472,7 @@ JNIEXPORT jobject JNICALL Java_com_borschlab_gdx_imgui_ImGui_getContentRegionAva
 JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_getContentRegionAvailWidth(JNIEnv* env, jclass clazz) {
 
 
-//@line:271
+//@line:272
 
 		return ImGui::GetContentRegionAvailWidth();
 	
@@ -482,7 +482,7 @@ JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_getContentRegionAvai
 JNIEXPORT jobject JNICALL Java_com_borschlab_gdx_imgui_ImGui_getWindowContentRegionMin(JNIEnv* env, jclass clazz) {
 
 
-//@line:276
+//@line:277
 
 		return toGdxVec2(env, ImGui::GetWindowContentRegionMin());
 	
@@ -492,7 +492,7 @@ JNIEXPORT jobject JNICALL Java_com_borschlab_gdx_imgui_ImGui_getWindowContentReg
 JNIEXPORT jobject JNICALL Java_com_borschlab_gdx_imgui_ImGui_getWindowContentRegionMax(JNIEnv* env, jclass clazz) {
 
 
-//@line:281
+//@line:282
 
 		return toGdxVec2(env, ImGui::GetWindowContentRegionMax());
 	
@@ -502,7 +502,7 @@ JNIEXPORT jobject JNICALL Java_com_borschlab_gdx_imgui_ImGui_getWindowContentReg
 JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_getWindowContentRegionWidth(JNIEnv* env, jclass clazz) {
 
 
-//@line:285
+//@line:286
 
 	 	return ImGui::GetWindowContentRegionWidth();
 	
@@ -512,7 +512,7 @@ JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_getWindowContentRegi
 JNIEXPORT jobject JNICALL Java_com_borschlab_gdx_imgui_ImGui_getWindowPos(JNIEnv* env, jclass clazz) {
 
 
-//@line:294
+//@line:295
 
 		return toGdxVec2(env, ImGui::GetWindowPos());
 	
@@ -522,7 +522,7 @@ JNIEXPORT jobject JNICALL Java_com_borschlab_gdx_imgui_ImGui_getWindowPos(JNIEnv
 JNIEXPORT jobject JNICALL Java_com_borschlab_gdx_imgui_ImGui_getWindowSize(JNIEnv* env, jclass clazz) {
 
 
-//@line:299
+//@line:300
 
 		return toGdxVec2(env, ImGui::GetWindowSize());
 	
@@ -532,7 +532,7 @@ JNIEXPORT jobject JNICALL Java_com_borschlab_gdx_imgui_ImGui_getWindowSize(JNIEn
 JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_getWindowWidth(JNIEnv* env, jclass clazz) {
 
 
-//@line:303
+//@line:304
 
 	 	return ImGui::GetWindowWidth();
 	
@@ -542,7 +542,7 @@ JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_getWindowWidth(JNIEn
 JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_getWindowHeight(JNIEnv* env, jclass clazz) {
 
 
-//@line:307
+//@line:308
 
 	 	return ImGui::GetWindowHeight();
 	
@@ -552,7 +552,7 @@ JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_getWindowHeight(JNIE
 JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_isWindowCollapsed(JNIEnv* env, jclass clazz) {
 
 
-//@line:311
+//@line:312
 
 	 	return ImGui::IsWindowCollapsed();
 	
@@ -562,7 +562,7 @@ JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_isWindowCollapsed(JN
 JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_setWindowFontScale(JNIEnv* env, jclass clazz, jfloat scale) {
 
 
-//@line:315
+//@line:316
 
 	 	ImGui::SetWindowFontScale(scale);
 	
@@ -572,7 +572,7 @@ JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_setWindowFontScale(J
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setNextWindowPos(JNIEnv* env, jclass clazz, jfloat x, jfloat y, jint condFlags) {
 
 
-//@line:328
+//@line:329
 
 		ImGui::SetNextWindowPos(ImVec2(x, y), condFlags);
 	
@@ -582,7 +582,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setNextWindowPos(JNIEn
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setNextWindowPosCenter(JNIEnv* env, jclass clazz, jint condFlags) {
 
 
-//@line:339
+//@line:340
 
 		ImGui::SetNextWindowPosCenter(condFlags);
 	
@@ -592,7 +592,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setNextWindowPosCenter
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setNextWindowSize(JNIEnv* env, jclass clazz, jfloat width, jfloat height, jint condFlags) {
 
 
-//@line:350
+//@line:351
 
 		ImGui::SetNextWindowSize(ImVec2(width, height), condFlags);
 	
@@ -602,7 +602,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setNextWindowSize(JNIE
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setNextWindowSizeConstraints(JNIEnv* env, jclass clazz, jfloat minWidth, jfloat minHeight, jfloat maxWidth, jfloat maxHeight) {
 
 
-//@line:356
+//@line:357
 
 		ImGuiSizeConstraintCallback custom_callback = NULL;
 		void* custom_callback_data = NULL;
@@ -614,7 +614,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setNextWindowSizeConst
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setNextWindowContentSize(JNIEnv* env, jclass clazz, jfloat width, jfloat height) {
 
 
-//@line:363
+//@line:364
 
 		ImGui::SetNextWindowContentSize(ImVec2(width, height));
 	
@@ -624,7 +624,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setNextWindowContentSi
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setNextWindowContentWidth(JNIEnv* env, jclass clazz, jfloat width) {
 
 
-//@line:368
+//@line:369
 
 		ImGui::SetNextWindowContentWidth(width);
 	
@@ -634,7 +634,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setNextWindowContentWi
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setNextWindowCollapsed(JNIEnv* env, jclass clazz, jboolean collapsed, jint condFlags) {
 
 
-//@line:378
+//@line:379
 
 	 	ImGui::SetNextWindowCollapsed(collapsed, condFlags);
 	
@@ -644,7 +644,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setNextWindowCollapsed
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setNextWindowFocus(JNIEnv* env, jclass clazz) {
 
 
-//@line:383
+//@line:384
  ImGui::SetNextWindowFocus(); 
 
 }
@@ -652,7 +652,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setNextWindowFocus(JNI
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setWindowPos__FFI(JNIEnv* env, jclass clazz, jfloat x, jfloat y, jint condFlags) {
 
 
-//@line:393
+//@line:394
  ImGui::SetWindowPos(ImVec2(x, y), condFlags); 
 
 }
@@ -660,7 +660,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setWindowPos__FFI(JNIE
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setWindowSize__FFI(JNIEnv* env, jclass clazz, jfloat width, jfloat height, jint condFlags) {
 
 
-//@line:402
+//@line:403
 
 		ImGui::SetWindowSize(ImVec2(width, height), condFlags);
 	
@@ -670,7 +670,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setWindowSize__FFI(JNI
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setWindowCollapsed__ZI(JNIEnv* env, jclass clazz, jboolean collapsed, jint condFlags) {
 
 
-//@line:412
+//@line:413
  ImGui::SetWindowCollapsed(collapsed, condFlags); 
 
 }
@@ -678,7 +678,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setWindowCollapsed__ZI
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setWindowFocus__(JNIEnv* env, jclass clazz) {
 
 
-//@line:415
+//@line:416
  ImGui::SetWindowFocus(); 
 
 }
@@ -687,7 +687,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setWindowPos__Ljava_la
 	char* name = (char*)env->GetStringUTFChars(obj_name, 0);
 
 
-//@line:424
+//@line:425
 
 		ImGui::SetWindowPos(name, ImVec2(x, y), condFlags);
 	
@@ -699,7 +699,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setWindowSize__Ljava_l
 	char* name = (char*)env->GetStringUTFChars(obj_name, 0);
 
 
-//@line:435
+//@line:436
 
 		ImGui::SetWindowSize(name, ImVec2(width, height), condFlags);
 	
@@ -711,7 +711,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setWindowCollapsed__Lj
 	char* name = (char*)env->GetStringUTFChars(obj_name, 0);
 
 
-//@line:447
+//@line:448
 
 	 	ImGui::SetWindowCollapsed(name, collapsed, condFlags);
 	
@@ -723,7 +723,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setWindowFocus__Ljava_
 	char* name = (char*)env->GetStringUTFChars(obj_name, 0);
 
 
-//@line:452
+//@line:453
 
 		ImGui::SetWindowFocus(name);
 	
@@ -734,7 +734,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setWindowFocus__Ljava_
 JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_getScrollX(JNIEnv* env, jclass clazz) {
 
 
-//@line:457
+//@line:458
  return ImGui::GetScrollX(); 
 
 }
@@ -742,7 +742,7 @@ JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_getScrollX(JNIEnv* e
 JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_getScrollY(JNIEnv* env, jclass clazz) {
 
 
-//@line:460
+//@line:461
  return ImGui::GetScrollY(); 
 
 }
@@ -750,7 +750,7 @@ JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_getScrollY(JNIEnv* e
 JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_getScrollMaxX(JNIEnv* env, jclass clazz) {
 
 
-//@line:463
+//@line:464
  return ImGui::GetScrollMaxX(); 
 
 }
@@ -758,7 +758,7 @@ JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_getScrollMaxX(JNIEnv
 JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_getScrollMaxY(JNIEnv* env, jclass clazz) {
 
 
-//@line:466
+//@line:467
  return ImGui::GetScrollMaxY(); 
 
 }
@@ -766,7 +766,7 @@ JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_getScrollMaxY(JNIEnv
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setScrollX(JNIEnv* env, jclass clazz, jfloat scrollX) {
 
 
-//@line:469
+//@line:470
  ImGui::SetScrollX(scrollX); 
 
 }
@@ -774,7 +774,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setScrollX(JNIEnv* env
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setScrollY(JNIEnv* env, jclass clazz, jfloat scrollY) {
 
 
-//@line:472
+//@line:473
  ImGui::SetScrollY(scrollY); 
 
 }
@@ -782,7 +782,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setScrollY(JNIEnv* env
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setScrollHere(JNIEnv* env, jclass clazz, jfloat centerYRatio) {
 
 
-//@line:475
+//@line:476
  ImGui::SetScrollHere(centerYRatio); 
 
 }
@@ -790,7 +790,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setScrollHere(JNIEnv* 
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setScrollFromPosY(JNIEnv* env, jclass clazz, jfloat posY, jfloat centerYRatio) {
 
 
-//@line:478
+//@line:479
  ImGui::SetScrollFromPosY(posY, centerYRatio); 
 
 }
@@ -798,7 +798,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setScrollFromPosY(JNIE
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setKeyboardFocusHere(JNIEnv* env, jclass clazz, jint offset) {
 
 
-//@line:485
+//@line:486
  ImGui::SetKeyboardFocusHere(offset); 
 
 }
@@ -806,7 +806,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_setKeyboardFocusHere(J
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_pushStyleVar(JNIEnv* env, jclass clazz, jint idx, jfloat val) {
 
 
-//@line:498
+//@line:499
 
     ImGui::PushStyleVar(idx, val);
   
@@ -816,7 +816,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_pushStyleVar(JNIEnv* e
 JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_getFontSize(JNIEnv* env, jclass clazz) {
 
 
-//@line:512
+//@line:513
 
       return ImGui::GetFontSize();
   
@@ -826,7 +826,7 @@ JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_getFontSize(JNIEnv* 
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_pushItemWidth(JNIEnv* env, jclass clazz, jfloat itemWidth) {
 
 
-//@line:524
+//@line:525
 
       ImGui::PushItemWidth(itemWidth);
   
@@ -836,7 +836,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_pushItemWidth(JNIEnv* 
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_separator(JNIEnv* env, jclass clazz) {
 
 
-//@line:538
+//@line:539
 
       ImGui::Separator();
   
@@ -846,7 +846,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_separator(JNIEnv* env,
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_sameLine(JNIEnv* env, jclass clazz, jfloat posX, jfloat spacingW) {
 
 
-//@line:543
+//@line:544
 
       ImGui::SameLine(posX, spacingW);
   
@@ -856,7 +856,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_sameLine(JNIEnv* env, 
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_spacing(JNIEnv* env, jclass clazz) {
 
 
-//@line:558
+//@line:559
 
       ImGui::Spacing();
   
@@ -866,7 +866,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_spacing(JNIEnv* env, j
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_indent(JNIEnv* env, jclass clazz, jfloat indentW) {
 
 
-//@line:565
+//@line:566
 
       ImGui::Indent(indentW);
   
@@ -876,9 +876,29 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_indent(JNIEnv* env, jc
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_unindent(JNIEnv* env, jclass clazz, jfloat indentW) {
 
 
-//@line:570
+//@line:571
 
       ImGui::Unindent(indentW);
+  
+
+}
+
+JNIEXPORT jobject JNICALL Java_com_borschlab_gdx_imgui_ImGui_getCursorScreenPos(JNIEnv* env, jclass clazz) {
+
+
+//@line:586
+
+    return toGdxVec2(env, ImGui::GetCursorScreenPos());
+  
+
+}
+
+JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_getTextLineHeight(JNIEnv* env, jclass clazz) {
+
+
+//@line:594
+
+    return ImGui::GetTextLineHeight();
   
 
 }
@@ -887,7 +907,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_text(JNIEnv* env, jcla
 	char* str = (char*)env->GetStringUTFChars(obj_str, 0);
 
 
-//@line:615
+//@line:627
 
       ImGui::Text(str);
   
@@ -899,7 +919,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_textDisabled(JNIEnv* e
 	char* str = (char*)env->GetStringUTFChars(obj_str, 0);
 
 
-//@line:623
+//@line:635
 
       ImGui::TextDisabled(str);
   
@@ -911,7 +931,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_textColored(JNIEnv* en
 	char* str = (char*)env->GetStringUTFChars(obj_str, 0);
 
 
-//@line:628
+//@line:640
 
       ImGui::TextColored(ImVec4(r, g, b, a), str);
   
@@ -923,7 +943,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_textWrapped(JNIEnv* en
 	char* str = (char*)env->GetStringUTFChars(obj_str, 0);
 
 
-//@line:635
+//@line:647
 
       ImGui::TextWrapped(str);
   
@@ -934,7 +954,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_textWrapped(JNIEnv* en
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_bullet(JNIEnv* env, jclass clazz) {
 
 
-//@line:647
+//@line:659
 
     ImGui::Bullet();
   
@@ -945,7 +965,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_bulletText(JNIEnv* env
 	char* text = (char*)env->GetStringUTFChars(obj_text, 0);
 
 
-//@line:652
+//@line:664
 
     ImGui::BulletText(text);
   
@@ -956,7 +976,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_bulletText(JNIEnv* env
 static inline jboolean wrapped_Java_com_borschlab_gdx_imgui_ImGui_smallButton
 (JNIEnv* env, jclass clazz, jstring obj_label, char* label) {
 
-//@line:658
+//@line:670
 
     return ImGui::SmallButton(label);
   
@@ -975,7 +995,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_smallButton(JNIEnv
 static inline jboolean wrapped_Java_com_borschlab_gdx_imgui_ImGui_checkbox
 (JNIEnv* env, jclass clazz, jstring obj_label, jobject v, char* label) {
 
-//@line:666
+//@line:678
 
     bool p_v = getImBool(env, v);
     bool result = ImGui::Checkbox(label, &p_v);
@@ -997,7 +1017,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_checkbox(JNIEnv* e
 static inline jboolean wrapped_Java_com_borschlab_gdx_imgui_ImGui_sliderFloat
 (JNIEnv* env, jclass clazz, jstring obj_label, jobject v, jfloat vMin, jfloat vMax, jstring obj_displayFormat, jfloat power, char* label, char* displayFormat) {
 
-//@line:716
+//@line:730
 
     float f = getImFloat(env, v);
     bool returnValue = ImGui::SliderFloat(label, &f, vMin, vMax, displayFormat, power);
@@ -1021,7 +1041,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_sliderFloat(JNIEnv
 static inline jboolean wrapped_Java_com_borschlab_gdx_imgui_ImGui_treeNode
 (JNIEnv* env, jclass clazz, jstring obj_label, char* label) {
 
-//@line:740
+//@line:753
 
     return ImGui::TreeNode(label);
   
@@ -1040,7 +1060,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_treeNode(JNIEnv* e
 static inline jboolean wrapped_Java_com_borschlab_gdx_imgui_ImGui_treeNodeEx
 (JNIEnv* env, jclass clazz, jstring obj_label, jint flags, char* label) {
 
-//@line:745
+//@line:758
 
     return ImGui::TreeNodeEx(label, flags);
   
@@ -1059,7 +1079,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_treeNodeEx(JNIEnv*
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_treePop(JNIEnv* env, jclass clazz) {
 
 
-//@line:761
+//@line:774
 
      ImGui::TreePop();
   
@@ -1069,7 +1089,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_treePop(JNIEnv* env, j
 JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_getTreeNodeToLabelSpacing(JNIEnv* env, jclass clazz) {
 
 
-//@line:767
+//@line:780
 
     return ImGui::GetTreeNodeToLabelSpacing();
   
@@ -1079,7 +1099,7 @@ JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_getTreeNodeToLabelSp
 static inline jboolean wrapped_Java_com_borschlab_gdx_imgui_ImGui_collapsingHeader__Ljava_lang_String_2I
 (JNIEnv* env, jclass clazz, jstring obj_label, jint flags, char* label) {
 
-//@line:775
+//@line:788
 
       return ImGui::CollapsingHeader(label, flags);
   
@@ -1098,7 +1118,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_collapsingHeader__
 static inline jboolean wrapped_Java_com_borschlab_gdx_imgui_ImGui_collapsingHeader__Ljava_lang_String_2Lcom_borschlab_gdx_imgui_ImBool_2
 (JNIEnv* env, jclass clazz, jstring obj_label, jobject v, char* label) {
 
-//@line:779
+//@line:792
 
       bool p_v = getImBool(env, v);
       bool result = ImGui::CollapsingHeader(label, &p_v);
@@ -1120,7 +1140,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_collapsingHeader__
 JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_beginMenuBar(JNIEnv* env, jclass clazz) {
 
 
-//@line:820
+//@line:833
 
     return ImGui::BeginMenuBar();
   
@@ -1130,7 +1150,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_beginMenuBar(JNIEn
 JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_endMenuBar(JNIEnv* env, jclass clazz) {
 
 
-//@line:824
+//@line:837
 
     ImGui::EndMenuBar();
   
@@ -1140,7 +1160,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_endMenuBar(JNIEnv*
 static inline jboolean wrapped_Java_com_borschlab_gdx_imgui_ImGui_beginMenu
 (JNIEnv* env, jclass clazz, jstring obj_label, jboolean enabled, char* label) {
 
-//@line:829
+//@line:842
 
     return ImGui::BeginMenu(label, enabled);
   
@@ -1159,7 +1179,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_beginMenu(JNIEnv* 
 JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_endMenu(JNIEnv* env, jclass clazz) {
 
 
-//@line:837
+//@line:850
 
     ImGui::EndMenu();
   
@@ -1169,7 +1189,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_endMenu(JNIEnv* en
 static inline jboolean wrapped_Java_com_borschlab_gdx_imgui_ImGui_menuItem__Ljava_lang_String_2Ljava_lang_String_2ZZ
 (JNIEnv* env, jclass clazz, jstring obj_label, jstring obj_shortcut, jboolean selected, jboolean enabled, char* label, char* shortcut) {
 
-//@line:850
+//@line:863
 
       return ImGui::MenuItem(label, shortcut, selected, enabled);
   
@@ -1190,7 +1210,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_menuItem__Ljava_la
 static inline jboolean wrapped_Java_com_borschlab_gdx_imgui_ImGui_menuItem__Ljava_lang_String_2Lcom_borschlab_gdx_imgui_ImBool_2
 (JNIEnv* env, jclass clazz, jstring obj_label, jobject selected, char* label) {
 
-//@line:855
+//@line:868
 
       bool p_selected = getImBool(env, selected);
       bool result = ImGui::MenuItem(label, NULL, &p_selected);
@@ -1212,7 +1232,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_menuItem__Ljava_la
 static inline jboolean wrapped_Java_com_borschlab_gdx_imgui_ImGui_menuItem__Ljava_lang_String_2Ljava_lang_String_2Lcom_borschlab_gdx_imgui_ImBool_2
 (JNIEnv* env, jclass clazz, jstring obj_label, jstring obj_shortcut, jobject selected, char* label, char* shortcut) {
 
-//@line:862
+//@line:875
 
       bool p_selected = getImBool(env, selected);
       bool result = ImGui::MenuItem(label, shortcut, &p_selected);
@@ -1236,7 +1256,7 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_menuItem__Ljava_la
 JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_logButtons(JNIEnv* env, jclass clazz) {
 
 
-//@line:887
+//@line:900
 
       ImGui::LogButtons();
   
@@ -1246,7 +1266,7 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_logButtons(JNIEnv* env
 JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_isItemClicked(JNIEnv* env, jclass clazz, jint mouseButton) {
 
 
-//@line:903
+//@line:916
 
     return ImGui::IsItemClicked(mouseButton);
   
@@ -1256,9 +1276,19 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_isItemClicked(JNIE
 JNIEXPORT jstring JNICALL Java_com_borschlab_gdx_imgui_ImGui_getVersion(JNIEnv* env, jclass clazz) {
 
 
-//@line:971
+//@line:984
 
     return env->NewStringUTF(ImGui::GetVersion());
+  
+
+}
+
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_addRectFilled(JNIEnv* env, jclass clazz, jfloat a_x, jfloat a_y, jfloat b_x, jfloat b_y, jint color, jfloat rounding, jint roundingCornersFlag) {
+
+
+//@line:1011
+
+    ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(a_x, a_y), ImVec2(b_x, b_y), color, rounding, roundingCornersFlag);
   
 
 }

@@ -1,5 +1,7 @@
 package com.github.octopussy.test;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.Vector2;
 import com.borschlab.gdx.imgui.*;
 
 public class PortedNativeDemo extends ImDemoApp {
@@ -773,6 +775,7 @@ public class PortedNativeDemo extends ImDemoApp {
   }
 
   private ImFloat wrap_width = ImFloat.from(200.0f);
+
   private void wordWrapping() {
     if (ImGui.treeNode("Word Wrapping")) {
       // Using shortcut. You can use PushTextWrapPos()/PopTextWrapPos() for more flexibility.
@@ -782,8 +785,9 @@ public class PortedNativeDemo extends ImDemoApp {
       ImGui.sliderFloat("Wrap width", wrap_width, -20, 600, "%.0f");
 
       ImGui.text("Test paragraph 1:");
-      //ImVec2 pos = ImGui::GetCursorScreenPos ();
-      //ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(pos.x + wrap_width, pos.y), ImVec2(pos.x + wrap_width + 10, pos.y + ImGui::GetTextLineHeight()), IM_COL32(255,0,255,255));
+      Vector2 pos = ImGui.getCursorScreenPos();
+      ImGui.addRectFilled(pos.x + wrap_width.value, pos.y, pos.x + wrap_width.value + 10,
+        pos.y + ImGui.getTextLineHeight(), new Color(255f, 0f, 255f, 255f));
       //ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + wrap_width);
       //ImGui.text("The lazy dog is a good dog. This paragraph is made to fit within %.0f pixels. Testing a 1 character word. The quick brown fox jumps over the lazy dog.", wrap_width);
       //ImGui::GetWindowDrawList()->AddRect(ImGui::GetItemRectMin(), ImGui::GetItemRectMax(), IM_COL32(255,255,0,255));

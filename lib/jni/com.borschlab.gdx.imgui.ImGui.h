@@ -649,6 +649,22 @@ JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_unindent
 
 /*
  * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    getCursorScreenPos
+ * Signature: ()Lcom/badlogic/gdx/math/Vector2;
+ */
+JNIEXPORT jobject JNICALL Java_com_borschlab_gdx_imgui_ImGui_getCursorScreenPos
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    getTextLineHeight
+ * Signature: ()F
+ */
+JNIEXPORT jfloat JNICALL Java_com_borschlab_gdx_imgui_ImGui_getTextLineHeight
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
  * Method:    text
  * Signature: (Ljava/lang/String;)V
  */
@@ -846,6 +862,14 @@ JNIEXPORT jboolean JNICALL Java_com_borschlab_gdx_imgui_ImGui_isItemClicked
  */
 JNIEXPORT jstring JNICALL Java_com_borschlab_gdx_imgui_ImGui_getVersion
   (JNIEnv *, jclass);
+
+/*
+ * Class:     com_borschlab_gdx_imgui_ImGui
+ * Method:    addRectFilled
+ * Signature: (FFFFIFI)V
+ */
+JNIEXPORT void JNICALL Java_com_borschlab_gdx_imgui_ImGui_addRectFilled
+  (JNIEnv *, jclass, jfloat, jfloat, jfloat, jfloat, jint, jfloat, jint);
 
 #ifdef __cplusplus
 }
